@@ -66,8 +66,7 @@ ui: ajustar posición del marcador de puntuación
 ```
 
 **Reglas:**
-- Descripción en minúsculas y en infinitivo
-- Máximo 60 caracteres
+- Descripción corta en minúsculas y en infinitivo
 - Sin punto final
 
 ---
