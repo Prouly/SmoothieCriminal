@@ -7,7 +7,7 @@
 [Link Kanban](https://github.com/users/Prouly/projects/5/views/1)
 
 ## Guía de Estilos: Comentarios en Código
-[Link Gúi de Estilos](https://docs.google.com/document/d/1LLupK9fOVhgG9IsMlIMDQ1TccswxzIai/edit?usp=drive_link&ouid=118423209587717261722&rtpof=true&sd=true)
+[Link Guía de Estilos](https://docs.google.com/document/d/1LLupK9fOVhgG9IsMlIMDQ1TccswxzIai/edit?usp=drive_link&ouid=118423209587717261722&rtpof=true&sd=true)
 
 # Flujo de trabajo Git
 
