@@ -1,13 +1,13 @@
 # Enlaces
 
 ## Drive
-[(https://drive.google.com/drive/folders/1mU7QK-KrlB8Qi48LuKZNaKmsjQc8FOF6?usp=drive_link)]
+[Link Drive](https://drive.google.com/drive/folders/1mU7QK-KrlB8Qi48LuKZNaKmsjQc8FOF6?usp=drive_link)
 
 ## Kanban
-[(https://github.com/users/Prouly/projects/5/views/1)]
+[Link Kanban](https://github.com/users/Prouly/projects/5/views/1)
 
 ## Guía de Estilos: Comentarios en Código
-[(https://docs.google.com/document/d/1LLupK9fOVhgG9IsMlIMDQ1TccswxzIai/edit?usp=drive_link&ouid=118423209587717261722&rtpof=true&sd=true)]
+[Link Gúi de Estilos](https://docs.google.com/document/d/1LLupK9fOVhgG9IsMlIMDQ1TccswxzIai/edit?usp=drive_link&ouid=118423209587717261722&rtpof=true&sd=true)
 
 # Flujo de trabajo Git
 
