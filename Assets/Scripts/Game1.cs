@@ -69,6 +69,7 @@ public class Game1 : MonoBehaviour
 
         if (clickeadosCount >= number)
         {
+            GameManager.instancia.Ganar();
             if (winImage != null) winImage.gameObject.SetActive(true);
             gameFinished = true;
         }
@@ -80,6 +81,7 @@ public class Game1 : MonoBehaviour
 
         if (!gameFinished)
         {
+            GameManager.instancia.Perder();
             if (loseImage != null) loseImage.gameObject.SetActive(true);
             gameFinished = true;
         }

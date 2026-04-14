@@ -61,12 +61,14 @@ public class Player : MonoBehaviour
                     currentStep++;
                     if (currentStep >= sequence.Count)
                     {
+                        GameManager.instancia.Ganar();
                         Debug.Log("¡Correcto! Has completado la secuencia.");
                         waitingForInput = false;
                     }
                 }
                 else
                 {
+                    GameManager.instancia.Perder();
                     Debug.Log("¡Error! Has fallado la secuencia.");
                     waitingForInput = false;
                 }
@@ -77,6 +79,7 @@ public class Player : MonoBehaviour
 
         if (waitingForInput)
         {
+            GameManager.instancia.Perder();
             Debug.Log("¡Se acabó el tiempo! Has perdido.");
             waitingForInput = false;
         }
