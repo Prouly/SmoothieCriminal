@@ -1,6 +1,11 @@
-<<<<<<< HEAD
 using UnityEngine;
 
+/**
+ * Proyecto: Smoothie Criminal
+ * Autor: Luismi Muñoz
+ * Descripción: Gestiona la lógica del ganador del minijuego de Carrera
+ * Última modificación: 14/04/2026
+ */
 public class Meta : MonoBehaviour
 {
     public bool jugadorGano = false;
@@ -31,37 +36,3 @@ public class Meta : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
     }
 }
-=======
-using UnityEngine;
-
-public class Meta : MonoBehaviour
-{
-    public bool jugadorGano = false;
-    public Sprite spritePerdedor;
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //Mostramos el tag del objeto que entró
-        Debug.Log("Objeto entró al collider con tag: " + other.tag);
-
-        //Marcamos si el jugador fue el primero
-        if (other.CompareTag("Player"))
-        {
-            jugadorGano = true;
-            Debug.Log("¡El Player llegó primero!");
-            GameObject competidor = GameObject.FindGameObjectWithTag("NPC");
-            if (competidor != null) competidor.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
-            
-            GameManager.instancia.Ganar();
-        }
-        else
-        {
-            GameObject competidor = GameObject.FindGameObjectWithTag("Player");
-            if (competidor != null) competidor.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
-            GameManager.instancia.Perder();
-        }
-
-        //Desactivamos el collider para que no se vuelva a activar
-        GetComponent<Collider2D>().enabled = false;
-    }
-}
->>>>>>> 6582b7c27b7bb627f7c1a50f0e38a056e4d593a0
