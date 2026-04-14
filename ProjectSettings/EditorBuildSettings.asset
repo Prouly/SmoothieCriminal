@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Trileros.unity
     guid: 9f29a61e3f7f1484592e3c850813e8da
+  - enabled: 1
+    path: Assets/Scenes/Vaquero.unity
+    guid: e92083153cc21634ca5aa03300d3aa73
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
