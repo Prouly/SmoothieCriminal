@@ -37,7 +37,14 @@ public class VaqueroLogic : MonoBehaviour
     #region Lógica del Juego
     /// <summary>
     /// Selecciona 5 puntos aleatorios y distribuye bandidos e inocentes según las reglas.
+    /// Indica si la partida ha finalizado para bloquear interacciones externas.
     /// </summary>
+    /// <returns>Verdadero si el juego ha terminado.</returns>
+    
+    public bool EstaJuegoTerminado()
+    {
+        return juegoTerminado;
+    }
     private void ConfigurarEscena()
     {
         // Obtenemos todos los puntos disponibles del objeto padre
@@ -80,7 +87,7 @@ public class VaqueroLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Registra la eliminación de un bandido y verifica si se ha limpiado la zona.
+    /// Registra la muerte de un bandido y finaliza si no quedan más.
     /// </summary>
     public void BandidoEliminado()
     {
@@ -89,19 +96,19 @@ public class VaqueroLogic : MonoBehaviour
         bandidosRestantes--;
         if (bandidosRestantes <= 0)
         {
-            Debug.Log("RESULTADO: ¡Todos los bandidos eliminados! Victoria.");
+            Debug.Log("RESULTADO: ¡Victoria! Todos los bandidos eliminados.");
             FinalizarPartida(true);
         }
     }
 
     /// <summary>
-    /// Procesa el error de disparar a un inocente.
+    /// Finaliza la partida inmediatamente al disparar a un inocente.
     /// </summary>
     public void InocenteDisparado()
     {
         if (juegoTerminado) return;
 
-        Debug.Log("RESULTADO: ¡Has disparado a un inocente! Derrota inmediata.");
+        Debug.Log("RESULTADO: ¡Derrota! Has disparado a un inocente.");
         FinalizarPartida(false);
     }
 

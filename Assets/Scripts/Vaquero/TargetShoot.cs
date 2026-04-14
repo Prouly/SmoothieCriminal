@@ -1,11 +1,11 @@
-using UnityEngine;
-
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
- * Descripción: Detecta el disparo del jugador y notifica a la lógica principal.
- * Última modificación: 10/04/2026
+ * Descripción: Detecta disparos y bloquea la interacción si el juego ha finalizado.
+ * Última modificación: 14/04/2026
  */
+
+using UnityEngine;
 
 public class TargetShoot : MonoBehaviour
 {
@@ -15,21 +15,25 @@ public class TargetShoot : MonoBehaviour
 
     #region Variables Privadas
     private VaqueroLogic logica;
+    private SpriteRenderer spriteRenderer;
     #endregion
 
     #region Métodos de Unity
     void Start()
     {
-        // Buscamos la lógica en la escena para reportar el disparo
         logica = FindFirstObjectByType<VaqueroLogic>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        AjustarProfundidad();
     }
 
     /// <summary>
-    /// Detecta el click del ratón (disparo) sobre el collider del personaje.
+    /// Detecta el click del ratón. Bloquea el disparo si el juego ya terminó.
     /// </summary>
     private void OnMouseDown()
     {
-        if (logica == null) return;
+        // Si no hay lógica o el juego ya ha finalizado, no permitimos más disparos
+        if (logica == null || logica.EstaJuegoTerminado()) return;
 
         if (esBandido)
         {
@@ -40,8 +44,21 @@ public class TargetShoot : MonoBehaviour
             logica.InocenteDisparado();
         }
 
-        // El personaje desaparece al ser disparado
+        // El personaje desaparece solo si el disparo fue válido
         gameObject.SetActive(false);
+    }
+    #endregion
+
+    #region Ajustes Visuales
+    /// <summary>
+    /// Ajusta el Order in Layer según la posición Y para evitar solapamientos.
+    /// </summary>
+    private void AjustarProfundidad()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
+        }
     }
     #endregion
 }
