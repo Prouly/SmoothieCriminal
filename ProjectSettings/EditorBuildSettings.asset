@@ -35,6 +35,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Vaquero.unity
     guid: e92083153cc21634ca5aa03300d3aa73
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: c5c8b0633ac93cd4a82da360f383ccf2
+  - enabled: 1
+    path: Assets/Scenes/EscenaEsp.unity
+    guid: 77c2e98445074bd43963a3ff6959535e
+  - enabled: 1
+    path: Assets/Scenes/Balloon.unity
+    guid: 1a37a67ff15cfdc4d93162c828c586d4
+  - enabled: 1
+    path: Assets/Scenes/Secuencia.unity
+    guid: 345f339c102acc14e9e6536cc683804b
+  - enabled: 1
+    path: Assets/Scenes/Carrera.unity
+    guid: e71c4b43a38458e429a419e4ab90eb0a
+  - enabled: 1
+    path: Assets/Scenes/Random.unity
+    guid: 7c1988439ee24414aabc911f2413fb9e
+  - enabled: 1
+    path: Assets/Scenes/FinDEMO.unity
+    guid: 034609c628edec943b088f908e00a5a6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
