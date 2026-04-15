@@ -1258,7 +1258,9 @@ MonoBehaviour:
   minijuegos:
   - WhackACircle
   - Balloon
-  - Secuencia
+  - Patos
+  - Trileros
+  - Vaquero
   - Carrera
   vidas: 4
   puntosPorIncrementoVelocidad: 7

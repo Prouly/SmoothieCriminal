@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9fe2bf468a1d74d4c815082abb0f5341
+guid: a0f81075fda359b47a7d5ca13df53330
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 89187214615935362
-    second: Inocente_Smoothie_Criminal_0
+      213: 323460827689037923
+    second: Trileros_Background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,9 +49,9 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
+  alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 150
+  spritePixelsToUnits: 68
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Inocente_Smoothie_Criminal_0
+      name: Trileros_Background_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 19
-        width: 406
-        height: 533
+        x: 0
+        y: 0
+        width: 1512
+        height: 688
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 28970b59c4bdc3100800000000000000
-      internalID: 89187214615935362
+      spriteID: 360b825b8e92d7400800000000000000
+      internalID: 323460827689037923
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Inocente_Smoothie_Criminal_0: 89187214615935362
+      Trileros_Background_0: 323460827689037923
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

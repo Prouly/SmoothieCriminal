@@ -1,50 +1,108 @@
+/**
+ * Proyecto: Smoothie Criminal
+ * Autor: Álvaro Muñoz Adán
+ * Descripción: Gestiona el flujo de caza de patos, control de tiempo y estado del cursor.
+ * Última modificación: 15/04/2026
+ */
+
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class DuckHuntLogic : MonoBehaviour
 {
-    public GameObject patoPrefab;
-    public Transform respawnPointsParent;
-    public int patosParaGanar = 4;
-    private int patosEliminados = 0;
+    #region Variables de Configuración
+    [Header("Ajustes de Spawn")]
+    [SerializeField] private GameObject patoPrefab;
+    [SerializeField] private Transform contenedorPuntosSpawn;
+    [SerializeField] private int patosAGenerar = 4;
 
+    [Header("Ajustes de Tiempo")]
+    [SerializeField] private float tiempoLimite = 7f;
+    #endregion
+
+    #region Variables de Estado
+    private int patosEliminados = 0;
+    private bool juegoTerminado = false;
+    #endregion
+
+    #region Métodos de Unity
     void Start()
     {
-        SpawnDucks();
+        // Ocultamos y bloqueamos el cursor para usar la mirilla
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
+        GenerarPatos();
+        StartCoroutine(CronometroPartida());
+    }
+    #endregion
+
+    #region Lógica del Juego
+    /// <summary>
+    /// Devuelve si la partida ha finalizado para bloquear interacciones.
+    /// </summary>
+    public bool EstaJuegoTerminado()
+    {
+        return juegoTerminado;
     }
 
-    void SpawnDucks()
+    private void GenerarPatos()
     {
-        // Obtenemos todos los puntos de respawn
-        List<Transform> puntos = new List<Transform>();
-        foreach (Transform child in respawnPointsParent) puntos.Add(child);
+        if (patoPrefab == null || contenedorPuntosSpawn == null) return;
 
-        // Elegimos 4 posiciones aleatorias sin repetir
-        for (int i = 0; i < 4; i++)
+        List<Transform> puntosDisponibles = new List<Transform>();
+        foreach (Transform hijo in contenedorPuntosSpawn) puntosDisponibles.Add(hijo);
+
+        for (int i = 0; i < patosAGenerar; i++)
         {
-            if (puntos.Count == 0) break;
-            int randomIndex = Random.Range(0, puntos.Count);
-            Instantiate(patoPrefab, puntos[randomIndex].position, Quaternion.identity);
-            puntos.RemoveAt(randomIndex);
+            if (puntosDisponibles.Count == 0) break;
+            int index = Random.Range(0, puntosDisponibles.Count);
+            Instantiate(patoPrefab, puntosDisponibles[index].position, Quaternion.identity);
+            puntosDisponibles.RemoveAt(index);
         }
     }
 
-    public void RegistrarMuerte()
+    IEnumerator CronometroPartida()
     {
+        yield return new WaitForSeconds(tiempoLimite);
+
+        if (!juegoTerminado)
+        {
+            Debug.Log("SISTEMA: Tiempo agotado. Fin de la partida.");
+            FinalizarJuego(false);
+        }
+    }
+
+    public void RegistrarBaja()
+    {
+        if (juegoTerminado) return;
+
         patosEliminados++;
-        Debug.Log("Pato eliminado: " + patosEliminados);
-
-        if (patosEliminados >= patosParaGanar)
+        if (patosEliminados >= patosAGenerar)
         {
-            // Seguridad: Comprobamos si la instancia existe antes de llamarla
-            if (GameManager.instancia != null) 
-            {
-                GameManager.instancia.Ganar();
-            }
-            else 
-            {
-                Debug.LogWarning("No se encontró GameManager en la escena. ¡Ganaste, pero no puedo avisar al Manager!");
-            }
+            Debug.Log("SISTEMA: ¡Victoria! Todos los patos abatidos.");
+            FinalizarJuego(true);
         }
     }
+
+    /// <summary>
+    /// Finaliza el juego, restaura el cursor y notifica el resultado.
+    /// </summary>
+    private void FinalizarJuego(bool victoria)
+    {
+        juegoTerminado = true;
+        StopAllCoroutines();
+
+        // Reactivación vital del cursor para el usuario
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        if (GameManager.instancia != null)
+        {
+            if (victoria) GameManager.instancia.Ganar();
+            else GameManager.instancia.Perder();
+        }
+    }
+    #endregion
 }
