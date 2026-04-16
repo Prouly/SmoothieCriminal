@@ -198,7 +198,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -726,7 +742,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -893,7 +925,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -978,7 +1026,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1003,7 +1067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1195368838}
-  - component: {fileID: 1195368837}
+  - component: {fileID: 1195368839}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1011,31 +1075,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1195368837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195368836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac7d11cad9cde3d44960a38c8101a5ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  squares:
-  - {fileID: 1727949808}
-  - {fileID: 1551323588}
-  - {fileID: 1527896467}
-  - {fileID: 315002390}
-  - {fileID: 1183241156}
-  - {fileID: 1035426519}
-  - {fileID: 2051439382}
-  - {fileID: 652106051}
-  - {fileID: 355327217}
-  number: 3
-  timer: 10
-  newSpriteMole: {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!4 &1195368838
 Transform:
   m_ObjectHideFlags: 0
@@ -1051,6 +1090,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195368839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195368836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1690f1a89f2af44b43d3e34dc70e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squares:
+  - {fileID: 1727949808}
+  - {fileID: 1551323588}
+  - {fileID: 1527896467}
+  - {fileID: 315002390}
+  - {fileID: 1183241156}
+  - {fileID: 1035426519}
+  - {fileID: 2051439382}
+  - {fileID: 652106051}
+  - {fileID: 355327217}
+  number: 3
+  timer: 10
+  newSpriteMole: {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1001 &1289836297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,7 +1194,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1215,7 +1295,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1300,7 +1396,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1405,7 +1517,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1432,7 +1560,7 @@ GameObject:
   - component: {fileID: 1992969092}
   - component: {fileID: 1992969093}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1526,7 +1654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2029316549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1803,7 +1931,23 @@ PrefabInstance:
     - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 1195368837}
+      objectReference: {fileID: 1195368839}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: isClickable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+    - target: {fileID: 9138642876292215156, guid: f59a5b8905dc3704eb4d434386454643, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

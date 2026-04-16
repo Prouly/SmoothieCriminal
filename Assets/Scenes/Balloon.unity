@@ -650,7 +650,7 @@ MonoBehaviour:
   scaleIncrement: 0.1
   pressesToPop: 10
   timer: 7
-  explosionSprite: {fileID: 5986030973748356752, guid: 6c53e220cf2dc514d88d6a0f7cbeee04, type: 3}
+  explosionSprite: {fileID: 21300000, guid: b799120cf72befc448c0ac6840217752, type: 3}
   balloonSprites:
   - {fileID: 2238532939061138466, guid: 04ae211d6a2409344b56460749c93b24, type: 3}
   - {fileID: 135065485045051345, guid: e7721337f2bcf7044a3fbecf03bbd1e5, type: 3}
