@@ -120,7 +120,9 @@ public class VaqueroLogic : MonoBehaviour
     {
         juegoTerminado = true;
         StopAllCoroutines();
-
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
         if (GameManager.instancia != null)
         {
             if (victoria) GameManager.instancia.Ganar();

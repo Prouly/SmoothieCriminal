@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     public Image imagenGanar;    
     public Image imagenPerder;
+    public GameObject imagenCargaMinijuego;
     public Image[] imagenesVidas;
     public TextMeshProUGUI textoPuntos;
     public TextMeshProUGUI textoVelocidad;
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
         
         ultimoResultado = Resultado.Perder;
         vidas--;
+        puntos++;
         StartCoroutine(VolverAEscenaBase());
     }
 
@@ -166,8 +168,11 @@ public class GameManager : MonoBehaviour
             
             textoPuntos = canvasGO.transform.Find("Puntos")?.GetComponent<TextMeshProUGUI>();
             textoVelocidad = canvasGO.transform.Find("SpeedWarning")?.GetComponent<TextMeshProUGUI>();
+            
+            
             if (textoPuntos != null) textoPuntos.text = "Puntos: " + puntos;
         }
+        imagenCargaMinijuego = GameObject.Find("TransicionNormal");
             
         Transform vidasParent = canvasGO.transform.Find("Vidas");
         if (vidasParent != null)
@@ -203,21 +208,27 @@ public class GameManager : MonoBehaviour
         if (ultimoResultado == Resultado.Ganar && imagenGanar != null)
         {
             imagenGanar.gameObject.SetActive(true);  
+            imagenCargaMinijuego.SetActive(false);
             yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
             imagenGanar.gameObject.SetActive(false);
+            imagenCargaMinijuego.SetActive(true);
             
+            /*
             if (textoVelocidad != null && Time.timeScale > 1f)
             {
                 textoVelocidad.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 textoVelocidad.gameObject.SetActive(false);
             }
+            */
         }
         else if (ultimoResultado == Resultado.Perder && imagenPerder != null)
         {
             imagenPerder.gameObject.SetActive(true);
+            imagenCargaMinijuego.SetActive(false);
             yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
             imagenPerder.gameObject.SetActive(false);
+            imagenCargaMinijuego.SetActive(true);
         }
 
         ultimoResultado = Resultado.Ninguno;

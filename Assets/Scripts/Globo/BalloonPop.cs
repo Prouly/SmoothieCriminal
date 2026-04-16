@@ -9,10 +9,14 @@ public class BalloonPop : MonoBehaviour
     [SerializeField] private float timer = 7f;            
     private int spaceCount = 0;  
     private bool gameFinished = false;
-
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite explosionSprite;
+    [SerializeField] private Sprite[] balloonSprites;
     void Start()
     {
         StartCoroutine(TimerCoroutine());
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[0];
     }
 
     void Update()
@@ -23,9 +27,18 @@ public class BalloonPop : MonoBehaviour
             
             targetObject.transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
             
+            // Calcular en qué tercio estamos (cambio de sprites)
+            int totalSprites = balloonSprites.Length;
+            int index = Mathf.FloorToInt((float)spaceCount / pressesToPop * totalSprites);
+
+            // Asegurar que no se pase del índice máximo
+            index = Mathf.Clamp(index, 0, totalSprites - 1);
+
+            targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[index];
+            
             if (spaceCount >= pressesToPop)
             {
-                targetObject.SetActive(false); 
+                targetObject.GetComponent<SpriteRenderer>().sprite = explosionSprite;
                 gameFinished = true;
                 GameManager.instancia.Ganar();
                 Debug.Log("¡Has ganado!");

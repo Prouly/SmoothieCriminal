@@ -1,0 +1,347 @@
+fileFormatVersion: 2
+guid: d0198514d8e7a0942986fd2fd370b9b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7893632648631604653
+    second: Vidas_Sheet_0
+  - first:
+      213: -6499361425584796439
+    second: Vidas_Sheet_1
+  - first:
+      213: -3295858326220461673
+    second: Vidas_Sheet_2
+  - first:
+      213: 7839118749750170600
+    second: Vidas_Sheet_3
+  - first:
+      213: 8987643298957715614
+    second: Vidas_Sheet_4
+  - first:
+      213: 1593677441480505040
+    second: Vidas_Sheet_5
+  - first:
+      213: -8603207030464535980
+    second: Vidas_Sheet_6
+  - first:
+      213: 6760540388968953765
+    second: Vidas_Sheet_7
+  - first:
+      213: 631450422037914229
+    second: Vidas_Sheet_8
+  - first:
+      213: 2924871937804751943
+    second: Vidas_Sheet_9
+  - first:
+      213: -7994765828223570095
+    second: Vidas_Sheet_10
+  - first:
+      213: 4992415083705623793
+    second: Vidas_Sheet_11
+  - first:
+      213: 6895227881792162888
+    second: Vidas_Sheet_12
+  - first:
+      213: -4597916658753518493
+    second: Vidas_Sheet_13
+  - first:
+      213: -5134030217763377721
+    second: Vidas_Sheet_14
+  - first:
+      213: 4004965671183629975
+    second: Vidas_Sheet_15
+  - first:
+      213: -5490839234630999756
+    second: Vidas_Sheet_16
+  - first:
+      213: 8736371108245676262
+    second: Vidas_Sheet_17
+  - first:
+      213: -6322779542201149505
+    second: Vidas_Sheet_18
+  - first:
+      213: -9038868967909202828
+    second: Vidas_Sheet_19
+  - first:
+      213: 8305433502257180123
+    second: Vidas_Sheet_20
+  - first:
+      213: 3269833228614527633
+    second: Vidas_Sheet_21
+  - first:
+      213: -11276424106595297
+    second: Vidas_Sheet_22
+  - first:
+      213: -8440772449964165123
+    second: Vidas_Sheet_23
+  - first:
+      213: 2371605395645300111
+    second: Vidas_Sheet_24
+  - first:
+      213: 7375489998878368906
+    second: Vidas_Sheet_25
+  - first:
+      213: 4789813362382331888
+    second: Vidas_Sheet_26
+  - first:
+      213: 6575161786348246348
+    second: Vidas_Sheet_27
+  - first:
+      213: -138731093531202344
+    second: Vidas_Sheet_28
+  - first:
+      213: -5473257013226301930
+    second: Vidas_Sheet_29
+  - first:
+      213: 1399222924852878803
+    second: Vidas_Sheet_30
+  - first:
+      213: 2214188445212389464
+    second: Vidas_Sheet_31
+  - first:
+      213: 4283943949965203936
+    second: Vidas_Sheet_32
+  - first:
+      213: -6147592470466604225
+    second: Vidas_Sheet_33
+  - first:
+      213: 8760839427636453939
+    second: Vidas_Sheet_34
+  - first:
+      213: -6525410708807083955
+    second: Vidas_Sheet_35
+  - first:
+      213: 1673360593935390949
+    second: Vidas_Sheet_36
+  - first:
+      213: 920704933953282000
+    second: Vidas_Sheet_37
+  - first:
+      213: -372193938665416704
+    second: Vidas_Sheet_38
+  - first:
+      213: 8109053151326734054
+    second: Vidas_Sheet_39
+  - first:
+      213: -268611596565871411
+    second: Vidas_Sheet_40
+  - first:
+      213: 7730751496403609853
+    second: Vidas_Sheet_41
+  - first:
+      213: -7553821163270310573
+    second: Vidas_Sheet_42
+  - first:
+      213: 3042457909937109285
+    second: Vidas_Sheet_43
+  - first:
+      213: -4086317598597264108
+    second: Vidas_Sheet_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Vidas_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 317
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da5dc195211db8d60800000000000000
+      internalID: 7893632648631604653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vidas_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 0
+        width: 317
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ec4421f731adc5a0800000000000000
+      internalID: -6499361425584796439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vidas_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 0
+        width: 317
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 799ad938052c242d0800000000000000
+      internalID: -3295858326220461673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3885f759fa93e7446bd308b7a1c032ed
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Vidas_Sheet_0: 7893632648631604653
+      Vidas_Sheet_1: -6499361425584796439
+      Vidas_Sheet_2: -3295858326220461673
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
