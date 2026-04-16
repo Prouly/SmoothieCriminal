@@ -80,4 +80,68 @@ ui: ajustar posición del marcador de puntuación
 - Descripción corta en minúsculas y en infinitivo
 - Sin punto final
 
----
+## Guía de uso Git
+
+### Sincronizar
+
+Tanto para subir cambios en Git como para descargarlos siempre ejecutar previamente el comando:
+```bash
+git fetch
+```
+
+### Gestión de Ramas
+
+Lista ramas locales.
+```bash
+git branch
+```
+Lista ramas remotas y locales.
+```bash
+git branch -a
+```
+Moverse a una rama existente.
+```bash
+git checkout nombre_rama
+```
+Crea una rama nueva y moverse a ella automáticamente.
+```bash
+git checkout -b nombre_rama
+```
+
+### Subir Cambios
+
+Estando en la rama que se desea subir ejecutar:
+```bash
+git fetch
+git add -A
+git commit -m "Mensaje descriptivo"
+git push
+```
+
+### Descargar Cambios
+
+Estando en la rama que se desea descargar ejecutar:
+```bash
+git fetch
+git pull
+```
+
+### Fusionar Ramas
+
+Para meter tus cambios de una rama (ej. dev_luismi) en otra rama (ej. dev_testing):
+```bash
+git checkout dev_testing
+git pull origin dev_testing
+git merge dev_luismi
+git push origin dev_testing
+```
+
+### Resolver conflictos
+
+Es posible que al intentar fusionar dos ramas surjan conflictos que haya que resolver:
+
+- Abre los archivos en VS Code.
+- Busca las marcas <<<< HEAD, elige el código correcto y guarda el archivo.
+- git add .
+- git commit -m "Fix: conflictos resueltos"
+- git push origin <rama-en-la-que-estás>
