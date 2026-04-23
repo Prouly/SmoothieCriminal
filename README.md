@@ -19,7 +19,7 @@
 | `dev` | Rama de integración. Todo el trabajo de desarrollo se fusiona aquí. |
 | `art` | Rama de integración para diseño. Assets, sprites, UI y animaciones. |
 | `dev_nombre_feature` | Rama personal de cada desarrollador. |
-| `des_nombre_feature` | Rama personal de cada diseñador. |
+| `art_nombre_feature` | Rama personal de cada diseñador. |
 
 ---
 
@@ -34,9 +34,9 @@ git checkout -b dev_tunombre_feature
 
 **Diseñadores** parten siempre desde `des`:
 ```bash
-git checkout des
-git pull origin des
-git checkout -b des_tunombre_feature
+git checkout art
+git pull origin art
+git checkout -b art_tunombre_feature
 ```
 
 Cuando el trabajo está listo, se abre un **Pull Request** hacia `dev` o `art` según corresponda. Otra persona lo revisa antes de mergear.
