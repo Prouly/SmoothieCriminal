@@ -145,3 +145,17 @@ Es posible que al intentar fusionar dos ramas surjan conflictos que haya que res
 - git add .
 - git commit -m "Fix: conflictos resueltos"
 - git push origin <rama-en-la-que-estás>
+
+Cuando se borran ficheros y Scenes o cuando muevas de ubicación un fichero ocurrirá que se duplican los archivos movidos y que no se borran los archivos. Solución:
+
+- Cierra Unity.
+- Borra desde el explorador los archivos (incluído su archivo .meta).
+
+Utiliza los comandos para subir los archivos: 
+
+```bash
+git add --all
+git commit -m "Mensaje descriptivo"
+git push
+```
+
