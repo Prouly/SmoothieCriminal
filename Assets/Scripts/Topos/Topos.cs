@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Topos : MonoBehaviour
 {
-    [SerializeField] private GameObject[] squares;
+    [SerializeField] private GameObject[] vasosTopos;
     [SerializeField] private float number;
     private List<GameObject> seleccionados;
 
@@ -21,7 +21,7 @@ public class Topos : MonoBehaviour
     private void Start()
     {
         seleccionados = new List<GameObject>();
-        List<GameObject> copia = new List<GameObject>(squares);
+        List<GameObject> copia = new List<GameObject>(vasosTopos);
 
         for (int i = 0; i < number && copia.Count > 0; i++)
         {

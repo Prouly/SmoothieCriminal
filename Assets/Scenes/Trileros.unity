@@ -1031,8 +1031,8 @@ MonoBehaviour:
   - {fileID: 712031980}
   bolita: {fileID: 1468962494}
   alturaLevantado: 3
-  tiempoMezcla: 10
-  tiempoDecision: 5
+  tiempoMezcla: 5
+  tiempoDecision: 3
   duracionIntercambio: 0.5
 --- !u!4 &2092874959
 Transform:

@@ -1,38 +1,41 @@
-using UnityEngine;
-
 /**
  * Proyecto: Smoothie Criminal
- * Autor: Luismi Muñoz
- * Descripción: Gestiona la lógica del ganador del minijuego de Carrera
- * Última modificación: 14/04/2026
+ * Autor: Luis Miguel Muñoz Vega
+ * Descripción: Gestiona la meta y expone el estado de finalización de la carrera.
+ * Última modificación: 23/04/2026 (Álvaro Muñoz Adán)
  */
+using UnityEngine;
+
 public class Meta : MonoBehaviour
 {
-    public bool jugadorGano = false;
+    private bool carreraYaTieneGanador = false;
     public Sprite spritePerdedor;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Mostramos el tag del objeto que entró
-        Debug.Log("Objeto entró al collider con tag: " + other.tag);
+        // Si ya alguien cruzó la meta, ignoramos el resto para el resultado, 
+        // pero permitimos que sigan moviéndose.
+        if (carreraYaTieneGanador) return;
 
-        //Marcamos si el jugador fue el primero
+        carreraYaTieneGanador = true;
+
         if (other.CompareTag("Player"))
         {
-            jugadorGano = true;
             Debug.Log("¡El Player llegó primero!");
-            GameObject competidor = GameObject.FindGameObjectWithTag("NPC");
-            if (competidor != null) competidor.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
-            
+            CambiarSpriteRival("NPC");
             GameManager.instancia.Ganar();
         }
-        else
+        else if (other.CompareTag("NPC"))
         {
-            GameObject competidor = GameObject.FindGameObjectWithTag("Player");
-            if (competidor != null) competidor.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
+            Debug.Log("El NPC llegó primero.");
+            CambiarSpriteRival("Player");
             GameManager.instancia.Perder();
         }
+    }
 
-        //Desactivamos el collider para que no se vuelva a activar
-        GetComponent<Collider2D>().enabled = false;
+    private void CambiarSpriteRival(string tagRival)
+    {
+        GameObject rival = GameObject.FindGameObjectWithTag(tagRival);
+        if (rival != null) rival.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
     }
 }

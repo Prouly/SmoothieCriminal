@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 1817302977}
   - component: {fileID: 1817302976}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Globo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,7 +649,7 @@ MonoBehaviour:
   targetObject: {fileID: 1817302975}
   scaleIncrement: 0.1
   pressesToPop: 10
-  timer: 7
+  timer: 5
   explosionSprite: {fileID: 21300000, guid: b799120cf72befc448c0ac6840217752, type: 3}
   balloonSprites:
   - {fileID: 2238532939061138466, guid: 04ae211d6a2409344b56460749c93b24, type: 3}

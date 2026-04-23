@@ -1,43 +1,54 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic; // Necesario para la gestión de listas
 using TMPro;
 using UnityEngine.UI;
 
 /**
  * Proyecto: Smoothie Criminal
- * Autor: Luismi Muñoz
- * Descripción: Gestiona la lógica del Juego general desde Scene Random
- * Última modificación: 14/04/2026
+ * Autor: Luis Miguel Muñoz Vega
+ * Descripción: Gestiona la lógica del Juego general desde Scene Random con rotación de minijuegos.
+ * Última modificación: 23/04/2026 (Álvaro Muñoz Adán)
+ * Cambiodo formato texto de puntuación y lógica para evitar se repitan juegos seguidamente
  */
 public class GameManager : MonoBehaviour
 {
     public static GameManager instancia;
 
-    public string escenaBase = "Random";      //Escena base donde se espera
-    public string[] minijuegos;               //Lista de minijuegos
+    #region Variables de Configuración
+    public string escenaBase = "Random";      // Escena base donde se espera
+    public string[] minijuegos;               // Lista de minijuegos
     public int vidas = 4;
     [SerializeField] private float puntosPorIncrementoVelocidad = 3f;
     private float velocidadAnterior = 1f;
     public float puntos = 0;
     [SerializeField] private float puntosMaximos = 12f;
-    public float tiempoPantallaVictoriaDerrota = 1f; //Duración de la imagen
+    
+    public float tiempoPantallaVictoriaDerrota = 1.5f; //Duración de la imagen
+    public float tiempoEspera = 2f;           // Espera tras ganar/perder
+    public float tiempoParaSiguiente = 4f;    // Tiempo antes de cargar un minijuego
+    #endregion
 
-    public float tiempoEspera = 1f;           //Espera tras ganar/perder
-    public float tiempoParaSiguiente = 2f;    //Tiempo antes de cargar un minijuego
-
+    #region Referencias UI
     public Image imagenGanar;    
     public Image imagenPerder;
     public GameObject imagenCargaMinijuego;
     public Image[] imagenesVidas;
     public TextMeshProUGUI textoPuntos;
     public TextMeshProUGUI textoVelocidad;
+    #endregion
     
+    #region Variables de Estado
     private bool enTransicion = false;
-
     private enum Resultado { Ninguno, Ganar, Perder }
     private Resultado ultimoResultado = Resultado.Ninguno;
     
+    // Almacena el último minijuego para reducir su probabilidad en la siguiente ronda
+    private string ultimoMinijuegoJugado = "";
+    #endregion
+
+    #region Métodos de Unity
     void Awake()
     {
         if (instancia == null)
@@ -61,7 +72,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    //Evita duplicados
+    // Evita duplicados
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -69,7 +80,6 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
         if (scene.name == "Main" || scene.name == "FinDEMO")
         {
             Destroy(gameObject);
@@ -78,12 +88,13 @@ public class GameManager : MonoBehaviour
         
         if (scene.name == escenaBase)
         {
-
             ManageUIOnReturn();
             StartCoroutine(MostrarPantallaYTemporizador());
         }
     }
+    #endregion
 
+    #region Lógica de Juego
     IEnumerator Temporizador()
     {
         if (vidas <= 0 || puntos >= puntosMaximos) yield break;
@@ -96,10 +107,10 @@ public class GameManager : MonoBehaviour
     {
         if (enTransicion) return;
 
-        //Calcula el multiplicador en base a los puntos
+        // Calcula el multiplicador en base a los puntos
         float nuevoTimeScale = 1f + (Mathf.Floor(puntos / puntosPorIncrementoVelocidad) * 0.25f);
 
-        //Limitar a máximo x2
+        // Limitar a máximo x2
         Time.timeScale = Mathf.Min(nuevoTimeScale, 2f);
         
         ultimoResultado = Resultado.Ganar;
@@ -137,7 +148,8 @@ public class GameManager : MonoBehaviour
             vidas = 4;
             puntos = 0;
             SceneManager.LoadScene("Main");
-        } else if (winOver)
+        } 
+        else if (winOver)
         {
             yield return new WaitForSeconds(5f);
             Time.timeScale = 1f;
@@ -149,14 +161,38 @@ public class GameManager : MonoBehaviour
         enTransicion = false;
     }
 
+    /// <summary>
+    /// Selecciona el siguiente minijuego evitando repetir el último jugado si hay más opciones.
+    /// </summary>
     void CargarMinijuego()
     {
         if (minijuegos.Length == 0) return;
 
-        int r = Random.Range(0, minijuegos.Length);
-        SceneManager.LoadScene(minijuegos[r]);
-    }
+        string proximaEscena = "";
 
+        // Si hay varios minijuegos, filtramos para no repetir el anterior inmediatamente
+        if (minijuegos.Length > 1)
+        {
+            List<string> opcionesValidas = new List<string>();
+            foreach (string juego in minijuegos)
+            {
+                if (juego != ultimoMinijuegoJugado) opcionesValidas.Add(juego);
+            }
+
+            int r = Random.Range(0, opcionesValidas.Count);
+            proximaEscena = opcionesValidas[r];
+        }
+        else
+        {
+            proximaEscena = minijuegos[0];
+        }
+
+        ultimoMinijuegoJugado = proximaEscena;
+        SceneManager.LoadScene(proximaEscena);
+    }
+    #endregion
+
+    #region Interfaz de Usuario (UI)
     void ManageUIOnReturn()
     {
         GameObject canvasGO = GameObject.Find("Canvas");
@@ -169,8 +205,8 @@ public class GameManager : MonoBehaviour
             textoPuntos = canvasGO.transform.Find("Puntos")?.GetComponent<TextMeshProUGUI>();
             textoVelocidad = canvasGO.transform.Find("SpeedWarning")?.GetComponent<TextMeshProUGUI>();
             
-            
-            if (textoPuntos != null) textoPuntos.text = "Puntos: " + puntos;
+            // Cambio solicitado: "Puntos" seguido de salto de línea y la puntuación
+            if (textoPuntos != null) textoPuntos.text = "Puntos\n" + puntos;
         }
         imagenCargaMinijuego = GameObject.Find("TransicionNormal");
             
@@ -212,15 +248,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
             imagenGanar.gameObject.SetActive(false);
             imagenCargaMinijuego.SetActive(true);
-            
-            /*
-            if (textoVelocidad != null && Time.timeScale > 1f)
-            {
-                textoVelocidad.gameObject.SetActive(true);
-                yield return new WaitForSeconds(1f);
-                textoVelocidad.gameObject.SetActive(false);
-            }
-            */
         }
         else if (ultimoResultado == Resultado.Perder && imagenPerder != null)
         {
@@ -235,4 +262,5 @@ public class GameManager : MonoBehaviour
         
         StartCoroutine(Temporizador());
     }
+    #endregion
 }
