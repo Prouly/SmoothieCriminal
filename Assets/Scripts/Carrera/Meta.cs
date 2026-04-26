@@ -2,7 +2,7 @@
  * Proyecto: Smoothie Criminal
  * Autor: Luis Miguel Muñoz Vega
  * Descripción: Gestiona la meta y expone el estado de finalización de la carrera.
- * Última modificación: 23/04/2026 (Álvaro Muñoz Adán)
+ * Última modificación: 26/04/2026 (Álvaro Muñoz Adán)
  */
 using UnityEngine;
 
@@ -10,26 +10,24 @@ public class Meta : MonoBehaviour
 {
     private bool carreraYaTieneGanador = false;
     public Sprite spritePerdedor;
+    private CarreraLogic carreraLogic;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Si ya alguien cruzó la meta, ignoramos el resto para el resultado, 
-        // pero permitimos que sigan moviéndose.
-        if (carreraYaTieneGanador) return;
-
-        carreraYaTieneGanador = true;
+        // Buscamos la lógica si no la tenemos
+        if (carreraLogic == null) carreraLogic = Object.FindFirstObjectByType<CarreraLogic>();
+    
+        if (carreraLogic == null || carreraLogic.EstaJuegoTerminado()) return;
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("¡El Player llegó primero!");
             CambiarSpriteRival("NPC");
-            GameManager.instancia.Ganar();
+            carreraLogic.FinalizarCarrera(true); // Victoria
         }
         else if (other.CompareTag("NPC"))
         {
-            Debug.Log("El NPC llegó primero.");
             CambiarSpriteRival("Player");
-            GameManager.instancia.Perder();
+            carreraLogic.FinalizarCarrera(false); // Derrota
         }
     }
 

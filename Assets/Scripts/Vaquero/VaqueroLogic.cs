@@ -1,12 +1,11 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
- * Descripción: Gestiona el spawn aleatorio de bandidos e inocentes y la condición de victoria por tiempo.
- * Última modificación: 14/04/2026
+ * Descripción: Gestiona el spawn de personajes y el control de tiempo fluido para la UI.
+ * Última modificación: 26/04/2026
  */
 
 public class VaqueroLogic : MonoBehaviour
@@ -24,71 +23,60 @@ public class VaqueroLogic : MonoBehaviour
     #region Variables de Estado
     private int bandidosRestantes = 0;
     private bool juegoTerminado = false;
+    private float tiempoRestante; // Variable añadida para control fluido
     #endregion
 
     #region Métodos de Unity
     void Start()
     {
+        // Inicializamos el tiempo al límite configurado
+        tiempoRestante = tiempoLimite; 
         ConfigurarEscena();
-        StartCoroutine(CronometroJuego());
     }
-    #endregion
 
-    #region Lógica del Juego
-    /// <summary>
-    /// Selecciona 5 puntos aleatorios y distribuye bandidos e inocentes según las reglas.
-    /// Indica si la partida ha finalizado para bloquear interacciones externas.
-    /// </summary>
-    /// <returns>Verdadero si el juego ha terminado.</returns>
-    
-    public bool EstaJuegoTerminado()
+    void Update()
     {
-        return juegoTerminado;
-    }
-    private void ConfigurarEscena()
-    {
-        // Obtenemos todos los puntos disponibles del objeto padre
-        List<Transform> puntosDisponibles = new List<Transform>();
-        foreach (Transform t in puntosRespawnParent) puntosDisponibles.Add(t);
+        if (juegoTerminado) return;
 
-        // Determinamos cuántos inocentes saldrán (mínimo 1, máximo 2)
-        int cantidadInocentes = Random.Range(1, 3); 
-        int cantidadBandidos = 5 - cantidadInocentes; // El resto hasta 5 son bandidos
-        bandidosRestantes = cantidadBandidos;
+        // Descontamos el tiempo cada frame para que la barra de UI se mueva suavemente
+        tiempoRestante -= Time.deltaTime;
 
-        // Spawneamos los personajes en posiciones aleatorias sin repetir punto
-        for (int i = 0; i < 5; i++)
+        if (tiempoRestante <= 0)
         {
-            int randomIndex = Random.Range(0, puntosDisponibles.Count);
-            Transform puntoElegido = puntosDisponibles[randomIndex];
-            
-            // Decidimos qué prefab instanciar basándonos en el conteo restante
-            GameObject prefabAErigir = (i < cantidadInocentes) ? inocentePrefab : bandidoPrefab;
-            
-            Instantiate(prefabAErigir, puntoElegido.position, Quaternion.identity);
-            puntosDisponibles.RemoveAt(randomIndex); // Eliminamos el punto para no repetir
-        }
-
-        Debug.Log($"SISTEMA: Han aparecido {cantidadBandidos} bandidos y {cantidadInocentes} inocentes.");
-    }
-
-    /// <summary>
-    /// Gestiona el tiempo límite de la partida.
-    /// </summary>
-    IEnumerator CronometroJuego()
-    {
-        yield return new WaitForSeconds(tiempoLimite);
-
-        if (!juegoTerminado)
-        {
+            tiempoRestante = 0;
             Debug.Log("RESULTADO: ¡Se acabó el tiempo! Perdiste.");
             FinalizarPartida(false);
         }
     }
+    #endregion
 
-    /// <summary>
-    /// Registra la muerte de un bandido y finaliza si no quedan más.
-    /// </summary>
+    #region Lógica del Juego
+    public bool EstaJuegoTerminado() => juegoTerminado;
+
+    private void ConfigurarEscena()
+    {
+        if (puntosRespawnParent == null) return;
+
+        List<Transform> puntosDisponibles = new List<Transform>();
+        foreach (Transform t in puntosRespawnParent) puntosDisponibles.Add(t);
+
+        int cantidadInocentes = Random.Range(1, 3); 
+        int cantidadBandidos = 5 - cantidadInocentes; 
+        bandidosRestantes = cantidadBandidos;
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (puntosDisponibles.Count == 0) break;
+            int randomIndex = Random.Range(0, puntosDisponibles.Count);
+            Transform puntoElegido = puntosDisponibles[randomIndex];
+            
+            GameObject prefabAErigir = (i < cantidadInocentes) ? inocentePrefab : bandidoPrefab;
+            
+            Instantiate(prefabAErigir, puntoElegido.position, Quaternion.identity);
+            puntosDisponibles.RemoveAt(randomIndex);
+        }
+    }
+
     public void BandidoEliminado()
     {
         if (juegoTerminado) return;
@@ -101,9 +89,6 @@ public class VaqueroLogic : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Finaliza la partida inmediatamente al disparar a un inocente.
-    /// </summary>
     public void InocenteDisparado()
     {
         if (juegoTerminado) return;
@@ -112,14 +97,11 @@ public class VaqueroLogic : MonoBehaviour
         FinalizarPartida(false);
     }
 
-    /// <summary>
-    /// Comunica el resultado al GameManager o termina la ejecución local.
-    /// </summary>
-    /// <param name="victoria">Indica si el jugador ganó la partida.</param>
     private void FinalizarPartida(bool victoria)
     {
+        if (juegoTerminado) return;
         juegoTerminado = true;
-        StopAllCoroutines();
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         
@@ -129,5 +111,10 @@ public class VaqueroLogic : MonoBehaviour
             else GameManager.instancia.Perder();
         }
     }
+    #endregion
+
+    #region Getters para UI
+    public float ObtenerTiempoLimite() => tiempoLimite;
+    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
     #endregion
 }

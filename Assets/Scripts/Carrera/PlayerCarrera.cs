@@ -2,7 +2,7 @@
  * Proyecto: Smoothie Criminal
  * Autor: Luis Miguel Muñoz Vega
  * Descripción: Gestiona el movimiento del jugador, bloqueándolo al terminar la carrera.
- * Última modificación: 23/04/2026 (Álvaro Muñoz Adán)
+ * Última modificación: 26/04/2026 (Álvaro Muñoz Adán)
  */
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public class PlayerCarrera : MonoBehaviour
     [SerializeField] private Sprite spriteD;
     [SerializeField] private Sprite spriteA;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private CarreraLogic carreraLogic;
     #endregion
 
     #region Variables de Estado
@@ -23,7 +24,8 @@ public class PlayerCarrera : MonoBehaviour
 
     void Update()
     {
-
+        if (carreraLogic != null && carreraLogic.EstaJuegoTerminado()) return;
+        
         if (esperaD && Input.GetKeyDown(KeyCode.D))
         {
             Avanzar();

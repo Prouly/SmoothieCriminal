@@ -1,8 +1,8 @@
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
- * Descripción: Gestiona el flujo de caza de patos, control de tiempo y estado del cursor.
- * Última modificación: 15/04/2026
+ * Descripción: Gestiona el flujo de caza de patos, control de tiempo y estado del juego.
+ * Última modificación: 26/04/2026
  */
 
 using UnityEngine;
@@ -24,23 +24,41 @@ public class DuckHuntLogic : MonoBehaviour
     #region Variables de Estado
     private int patosEliminados = 0;
     private bool juegoTerminado = false;
+    private float tiempoRestante; 
     #endregion
 
     #region Métodos de Unity
     void Start()
     {
-        // Ocultamos y bloqueamos el cursor para usar la mirilla
+        // Configuración inicial del cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
+        // Inicializamos el tiempo para que el TimerUI lo detecte desde el segundo 0
+        tiempoRestante = tiempoLimite; 
+
         GenerarPatos();
-        StartCoroutine(CronometroPartida());
+    }
+
+    void Update()
+    {
+        if (juegoTerminado) return;
+
+        // Descontamos el tiempo cada frame para una barra de UI fluida
+        tiempoRestante -= Time.deltaTime;
+
+        if (tiempoRestante <= 0)
+        {
+            tiempoRestante = 0;
+            Debug.Log("SISTEMA: Tiempo agotado. Fin de la partida.");
+            FinalizarJuego(false);
+        }
     }
     #endregion
 
     #region Lógica del Juego
     /// <summary>
-    /// Devuelve si la partida ha finalizado para bloquear interacciones.
+    /// Devuelve si la partida ha finalizado. Necesario para ClickableDuck.
     /// </summary>
     public bool EstaJuegoTerminado()
     {
@@ -63,17 +81,6 @@ public class DuckHuntLogic : MonoBehaviour
         }
     }
 
-    IEnumerator CronometroPartida()
-    {
-        yield return new WaitForSeconds(tiempoLimite);
-
-        if (!juegoTerminado)
-        {
-            Debug.Log("SISTEMA: Tiempo agotado. Fin de la partida.");
-            FinalizarJuego(false);
-        }
-    }
-
     public void RegistrarBaja()
     {
         if (juegoTerminado) return;
@@ -86,15 +93,12 @@ public class DuckHuntLogic : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Finaliza el juego, restaura el cursor y notifica el resultado.
-    /// </summary>
     private void FinalizarJuego(bool victoria)
     {
+        if (juegoTerminado) return;
         juegoTerminado = true;
-        StopAllCoroutines();
 
-        // Reactivación vital del cursor para el usuario
+        // Restauramos el cursor para que el usuario pueda navegar tras el juego
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -104,5 +108,10 @@ public class DuckHuntLogic : MonoBehaviour
             else GameManager.instancia.Perder();
         }
     }
+    #endregion
+    
+    #region Getters de Tiempo para UI
+    public float ObtenerTiempoLimite() => tiempoLimite;
+    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
     #endregion
 }
