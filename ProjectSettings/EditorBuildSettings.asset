@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BuscarHaznarito.unity
     guid: 23b742c7af24a1e4394c387b225340bf
   - enabled: 1
+    path: Assets/Scenes/Bichos.unity
+    guid: 4460ab740252c95488797559bdccf38b
+  - enabled: 1
     path: Assets/Scenes/FinDEMO.unity
     guid: 034609c628edec943b088f908e00a5a6
   m_configObjects:

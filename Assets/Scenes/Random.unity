@@ -1467,6 +1467,8 @@ MonoBehaviour:
   - Trileros
   - Vaquero
   - Carrera
+  - Bichos
+  - BuscarHaznarito
   vidas: 4
   puntosPorIncrementoVelocidad: 4
   puntos: 0
