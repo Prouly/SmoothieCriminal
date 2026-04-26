@@ -129,6 +129,9 @@ git pull
 ### Fusionar Ramas
 
 Para meter tus cambios de una rama (ej. dev_luismi) en otra rama (ej. dev_testing):
+- Ir a la rama donde quieres que se guarde la información.
+- Llamar a la otra rama para que venga a entregarte sus cambios.
+
 ```bash
 git checkout dev_testing
 git pull origin dev_testing
