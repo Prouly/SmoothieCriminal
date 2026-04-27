@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 1072841005}
   - component: {fileID: 1072841004}
   m_Layer: 0
-  m_Name: Mini_Juego_Vaquero_Background
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1156,6 +1156,7 @@ MonoBehaviour:
   inocentePrefab: {fileID: 1864480877092910508, guid: 87baa687aec45a94ebf501a378e6b3d4, type: 3}
   puntosRespawnParent: {fileID: 1778567680}
   tiempoLimite: 7
+  sonidoDisparo: {fileID: 8300000, guid: 8c9d6148deead784999d6beb89e71788, type: 3}
 --- !u!4 &1082805094
 Transform:
   m_ObjectHideFlags: 0

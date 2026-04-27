@@ -1,11 +1,12 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
- * Descripción: Gestiona el spawn de personajes y el control de tiempo fluido para la UI.
- * Última modificación: 26/04/2026
+ * Descripción: Gestiona el spawn de personajes y el control de tiempo fluido con sonido de disparo persistente.
+ * Última modificación: 27/04/2026 (Blindaje de sonido en impactos y victoria)
  */
 
 public class VaqueroLogic : MonoBehaviour
@@ -18,12 +19,15 @@ public class VaqueroLogic : MonoBehaviour
     [Header("Ajustes de Escena")]
     [SerializeField] private Transform puntosRespawnParent;
     [SerializeField] private float tiempoLimite = 7f;
+
+    [Header("Efectos de Sonido")]
+    [SerializeField] private AudioClip sonidoDisparo;
     #endregion
 
     #region Variables de Estado
     private int bandidosRestantes = 0;
     private bool juegoTerminado = false;
-    private float tiempoRestante; // Variable añadida para control fluido
+    private float tiempoRestante; 
     #endregion
 
     #region Métodos de Unity
@@ -51,6 +55,18 @@ public class VaqueroLogic : MonoBehaviour
     #endregion
 
     #region Lógica del Juego
+    /// <summary>
+    /// Centraliza la reproducción del sonido de disparo para evitar cortes al destruir objetos.
+    /// </summary>
+    private void ReproducirSonidoDisparo()
+    {
+        if (sonidoDisparo != null)
+        {
+            // PlayClipAtPoint garantiza que el sonido sobreviva al cambio de frame o destrucción de objetos
+            AudioSource.PlayClipAtPoint(sonidoDisparo, Camera.main.transform.position);
+        }
+    }
+
     public bool EstaJuegoTerminado() => juegoTerminado;
 
     private void ConfigurarEscena()
@@ -58,15 +74,16 @@ public class VaqueroLogic : MonoBehaviour
         if (puntosRespawnParent == null) return;
 
         List<Transform> puntosDisponibles = new List<Transform>();
-        foreach (Transform t in puntosRespawnParent) puntosDisponibles.Add(t);
+        foreach (Transform punto in puntosRespawnParent) puntosDisponibles.Add(punto);
 
+        int totalASpawnear = 5;
         int cantidadInocentes = Random.Range(1, 3); 
-        int cantidadBandidos = 5 - cantidadInocentes; 
-        bandidosRestantes = cantidadBandidos;
+        bandidosRestantes = totalASpawnear - cantidadInocentes;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < totalASpawnear; i++)
         {
             if (puntosDisponibles.Count == 0) break;
+
             int randomIndex = Random.Range(0, puntosDisponibles.Count);
             Transform puntoElegido = puntosDisponibles[randomIndex];
             
@@ -77,31 +94,48 @@ public class VaqueroLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Registra la muerte de un bandido, reproduce sonido y finaliza si no quedan más.
+    /// </summary>
     public void BandidoEliminado()
     {
         if (juegoTerminado) return;
 
+        ReproducirSonidoDisparo();
         bandidosRestantes--;
+
         if (bandidosRestantes <= 0)
         {
             Debug.Log("RESULTADO: ¡Victoria! Todos los bandidos eliminados.");
-            FinalizarPartida(true);
+            StartCoroutine(RetrasoFinalizacion(true));
         }
     }
 
+    /// <summary>
+    /// Finaliza la partida inmediatamente al disparar a un inocente con sonido previo.
+    /// </summary>
     public void InocenteDisparado()
     {
         if (juegoTerminado) return;
 
+        ReproducirSonidoDisparo();
         Debug.Log("RESULTADO: ¡Derrota! Has disparado a un inocente.");
-        FinalizarPartida(false);
+        StartCoroutine(RetrasoFinalizacion(false));
+    }
+
+    /// <summary>
+    /// Pequeña espera para asegurar que el motor de audio procese el disparo antes de cerrar la escena.
+    /// </summary>
+    private IEnumerator RetrasoFinalizacion(bool victoria)
+    {
+        juegoTerminado = true;
+        yield return new WaitForSeconds(0.3f);
+        FinalizarPartida(victoria);
     }
 
     private void FinalizarPartida(bool victoria)
     {
-        if (juegoTerminado) return;
         juegoTerminado = true;
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         

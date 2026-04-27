@@ -63,8 +63,8 @@ public class BichosLogic : MonoBehaviour
         Debug.Log($"SISTEMA: Bicho aplastado ({bichosAplastados}/{totalBichos})");
 
         // Reproducir sonidos
-        if (sonidoZasMatamoscas != null) audioSource.PlayOneShot(sonidoZasMatamoscas);
-        if (sonidoAplastarBicho != null) audioSource.PlayOneShot(sonidoAplastarBicho);
+        if (sonidoZasMatamoscas != null) AudioSource.PlayClipAtPoint(sonidoZasMatamoscas, Camera.main.transform.position);
+        if (sonidoAplastarBicho != null) AudioSource.PlayClipAtPoint(sonidoAplastarBicho, Camera.main.transform.position);
         
         StartCoroutine(VibrarCamara());
 

@@ -980,6 +980,7 @@ MonoBehaviour:
   contenedorPuntosSpawn: {fileID: 102579217}
   patosAGenerar: 4
   tiempoLimite: 7
+  sonidoDisparo: {fileID: 8300000, guid: 8c9d6148deead784999d6beb89e71788, type: 3}
 --- !u!4 &1720400476
 Transform:
   m_ObjectHideFlags: 0
