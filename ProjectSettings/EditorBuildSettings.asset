@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Bichos.unity
     guid: 4460ab740252c95488797559bdccf38b
   - enabled: 1
+    path: Assets/Scenes/Natacion.unity
+    guid: 00272a225eb28344a88404d455cdae43
+  - enabled: 1
     path: Assets/Scenes/FinDEMO.unity
     guid: 034609c628edec943b088f908e00a5a6
   m_configObjects:

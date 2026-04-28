@@ -1469,6 +1469,7 @@ MonoBehaviour:
   - Carrera
   - Bichos
   - BuscarHaznarito
+  - Natacion
   vidas: 4
   puntosPorIncrementoVelocidad: 4
   puntos: 0
