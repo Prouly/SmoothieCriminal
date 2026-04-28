@@ -1466,7 +1466,7 @@ MonoBehaviour:
   - Vaquero
   - Carrera
   vidas: 4
-  puntosPorIncrementoVelocidad: 4
+  puntosPorIncrementoVelocidad: 2
   puntos: 0
   puntosMaximos: 12
   tiempoPantallaVictoriaDerrota: 2

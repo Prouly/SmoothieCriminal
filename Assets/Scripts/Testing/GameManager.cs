@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI textoVelocidad;
     
     private bool enTransicion = false;
+    private bool mostrarSpeedUp = false;
+    public float puntosFinales;
 
     private enum Resultado { Ninguno, Ganar, Perder }
     private Resultado ultimoResultado = Resultado.Ninguno;
@@ -98,12 +100,19 @@ public class GameManager : MonoBehaviour
 
         //Calcula el multiplicador en base a los puntos
         float nuevoTimeScale = 1f + (Mathf.Floor(puntos / puntosPorIncrementoVelocidad) * 0.25f);
-
         //Limitar a máximo x2
         Time.timeScale = Mathf.Min(nuevoTimeScale, 2f);
         
+        //Detecta si ha habido un cambio de velocidad
+        bool speedUp = nuevoTimeScale > velocidadAnterior;
+        velocidadAnterior = nuevoTimeScale;
+
+
         ultimoResultado = Resultado.Ganar;
         puntos++;
+        
+        if (speedUp) mostrarSpeedUp = true;
+        
         
         StartCoroutine(VolverAEscenaBase());
     }
@@ -125,6 +134,7 @@ public class GameManager : MonoBehaviour
 
         bool gameOver = (vidas <= 0);
         bool winOver = (puntos >= puntosMaximos);
+        puntosFinales = puntos;
 
         SceneManager.LoadScene(escenaBase);
 
@@ -132,15 +142,15 @@ public class GameManager : MonoBehaviour
 
         if (gameOver)
         {
-            yield return new WaitForSeconds(5f);
             Time.timeScale = 1f;
+            yield return new WaitForSeconds(5f);
             vidas = 4;
             puntos = 0;
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("FinDEMO");
         } else if (winOver)
         {
-            yield return new WaitForSeconds(5f);
             Time.timeScale = 1f;
+            yield return new WaitForSeconds(5f);
             vidas = 4;
             puntos = 0;
             SceneManager.LoadScene("FinDEMO");
@@ -213,14 +223,14 @@ public class GameManager : MonoBehaviour
             imagenGanar.gameObject.SetActive(false);
             imagenCargaMinijuego.SetActive(true);
             
-            /*
-            if (textoVelocidad != null && Time.timeScale > 1f)
+            if (mostrarSpeedUp && textoVelocidad != null)
             {
                 textoVelocidad.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 textoVelocidad.gameObject.SetActive(false);
+
+                mostrarSpeedUp = false; // importante resetear
             }
-            */
         }
         else if (ultimoResultado == Resultado.Perder && imagenPerder != null)
         {
