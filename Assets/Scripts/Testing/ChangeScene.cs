@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /**
  * Proyecto: Smoothie Criminal
@@ -9,8 +10,31 @@ using UnityEngine.SceneManagement;
  */
 public class ChangeScene : MonoBehaviour
 {
-    public void IrAEscena()
+
+    [SerializeField] private int opcion = -1;
+    
+    [SerializeField] private Button botonConfirmar;
+    
+    public void SeleccionarOpcion(int o)
     {
-        SceneManager.LoadScene("Random");
+        opcion = o;
+        Debug.Log("Has seleccionado: " + o);
+        
+        //Activa el boton de ir a los minijuegos solo si ha seleccionado a uno (no aparece al inicio donde no hay seleccionado ninguno)
+        if (botonConfirmar != null) botonConfirmar.gameObject.SetActive(opcion == 0 || opcion == 1);
+    }
+    
+    public void IrAjuego()
+    {
+        if (opcion == 0)
+        {
+            Debug.Log("Haznaritooooooooo");
+            SceneManager.LoadScene("Random");
+        }
+        else
+        {
+            Debug.Log("Jamon");
+            SceneManager.LoadScene("Random");
+        }
     }
 }
