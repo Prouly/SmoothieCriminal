@@ -256,10 +256,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1183941647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc0063a40fa67b44e9ef33fbc50c1210, type: 3}
+  m_Script: {fileID: 11500000, guid: c33e3f225f57df844a4c75e31fe8eca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputTime: 5
+  inputTime: 3
 --- !u!212 &1183941649
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1470,10 +1470,11 @@ MonoBehaviour:
   - Bichos
   - BuscarHaznarito
   - Natacion
+  - Penalty
   vidas: 4
   puntosPorIncrementoVelocidad: 2
   puntos: 0
-  puntosMaximos: 12
+  puntosMaximos: 18
   tiempoPantallaVictoriaDerrota: 1.5
   tiempoEspera: 2
   tiempoParaSiguiente: 3.4
@@ -1487,6 +1488,7 @@ MonoBehaviour:
   - {fileID: 127687050}
   textoPuntos: {fileID: 1321544463}
   textoVelocidad: {fileID: 557923129}
+  puntosFinales: 0
 --- !u!4 &1685593226
 Transform:
   m_ObjectHideFlags: 0
