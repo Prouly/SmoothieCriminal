@@ -1,38 +1,39 @@
-using UnityEngine;
-
 /**
  * Proyecto: Smoothie Criminal
- * Autor: Luismi Muñoz
- * Descripción: Gestiona la lógica del ganador del minijuego de Carrera
- * Última modificación: 14/04/2026
+ * Autor: Luis Miguel Muñoz Vega
+ * Descripción: Gestiona la meta y expone el estado de finalización de la carrera.
+ * Última modificación: 26/04/2026 (Álvaro Muñoz Adán)
  */
+using UnityEngine;
+
 public class Meta : MonoBehaviour
 {
-    public bool jugadorGano = false;
+    private bool carreraYaTieneGanador = false;
     public Sprite spritePerdedor;
+    private CarreraLogic carreraLogic;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Mostramos el tag del objeto que entró
-        Debug.Log("Objeto entró al collider con tag: " + other.tag);
+        // Buscamos la lógica si no la tenemos
+        if (carreraLogic == null) carreraLogic = Object.FindFirstObjectByType<CarreraLogic>();
+    
+        if (carreraLogic == null || carreraLogic.EstaJuegoTerminado()) return;
 
-        //Marcamos si el jugador fue el primero
         if (other.CompareTag("Player"))
         {
-            jugadorGano = true;
-            Debug.Log("¡El Player llegó primero!");
-            GameObject competidor = GameObject.FindGameObjectWithTag("NPC");
-            if (competidor != null) competidor.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
-            
-            GameManager.instancia.Ganar();
+            CambiarSpriteRival("NPC");
+            carreraLogic.FinalizarCarrera(true); // Victoria
         }
-        else
+        else if (other.CompareTag("NPC"))
         {
-            GameObject competidor = GameObject.FindGameObjectWithTag("Player");
-            if (competidor != null) competidor.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
-            GameManager.instancia.Perder();
+            CambiarSpriteRival("Player");
+            carreraLogic.FinalizarCarrera(false); // Derrota
         }
+    }
 
-        //Desactivamos el collider para que no se vuelva a activar
-        GetComponent<Collider2D>().enabled = false;
+    private void CambiarSpriteRival(string tagRival)
+    {
+        GameObject rival = GameObject.FindGameObjectWithTag(tagRival);
+        if (rival != null) rival.GetComponent<SpriteRenderer>().sprite = spritePerdedor;
     }
 }

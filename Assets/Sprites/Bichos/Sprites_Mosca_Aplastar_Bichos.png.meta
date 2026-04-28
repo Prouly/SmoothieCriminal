@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: b7f2c48603754d74dae598e3edf467ef
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 660282809482118281
+    second: Sprites_Mosca_Aplastar_Bichos_0
+  - first:
+      213: 5419236111523416413
+    second: Sprites_Mosca_Aplastar_Bichos_1
+  - first:
+      213: -1493308368048305545
+    second: Sprites_Mosca_Aplastar_Bichos_2
+  - first:
+      213: 5118431593389531705
+    second: Sprites_Mosca_Aplastar_Bichos_3
+  - first:
+      213: 8093282588677461257
+    second: Sprites_Mosca_Aplastar_Bichos_4
+  - first:
+      213: 3967362520640298607
+    second: Sprites_Mosca_Aplastar_Bichos_5
+  - first:
+      213: -5789791169905455898
+    second: Sprites_Mosca_Aplastar_Bichos_6
+  - first:
+      213: 5616085468429017944
+    second: Sprites_Mosca_Aplastar_Bichos_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprites_Mosca_Aplastar_Bichos_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 24
+        width: 163
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9848a7687bbc92900800000000000000
+      internalID: 660282809482118281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites_Mosca_Aplastar_Bichos_1
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 29
+        width: 159
+        height: 134
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5520116}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d598255f78ef43b40800000000000000
+      internalID: 5419236111523416413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites_Mosca_Aplastar_Bichos_3
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 8
+        width: 152
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 932ae136a62580740800000000000000
+      internalID: 5118431593389531705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b4825e3a1644f7549b74a7fbb60e690a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Sprites_Mosca_Aplastar_Bichos_0: 660282809482118281
+      Sprites_Mosca_Aplastar_Bichos_1: 5419236111523416413
+      Sprites_Mosca_Aplastar_Bichos_2: -1493308368048305545
+      Sprites_Mosca_Aplastar_Bichos_3: 5118431593389531705
+      Sprites_Mosca_Aplastar_Bichos_4: 8093282588677461257
+      Sprites_Mosca_Aplastar_Bichos_5: 3967362520640298607
+      Sprites_Mosca_Aplastar_Bichos_6: -5789791169905455898
+      Sprites_Mosca_Aplastar_Bichos_7: 5616085468429017944
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

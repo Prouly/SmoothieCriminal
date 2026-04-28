@@ -1,8 +1,8 @@
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
- * Descripción: Gestiona la lógica del minijuego de trileros (vasos y bolita).
- * Última modificación: 10/04/2026
+ * Descripción: Gestión de trileros con soporte para temporizador visual en la fase de decisión.
+ * Última modificación: 26/04/2026
  */
 
 using UnityEngine;
@@ -17,10 +17,9 @@ public class ShellGameLogic : MonoBehaviour
 
     [Header("Ajustes de Tiempos y Velocidad")]
     [SerializeField] private float alturaLevantado = 2f;
-    [SerializeField] private float tiempoMezcla = 10f;
-    [SerializeField] private float tiempoDecision = 5f;
+    [SerializeField] private float tiempoMezcla = 5f;
+    [SerializeField] private float tiempoDecision = 3f; // Este es el tiempo que mostrará la barra
     
-    [Tooltip("A mayor valor, más lento será el intercambio de los vasos.")]
     [SerializeField] private float duracionIntercambio = 0.5f; 
     #endregion
 
@@ -28,37 +27,33 @@ public class ShellGameLogic : MonoBehaviour
     private int indiceGanador;
     private bool puedeElegir = false;
     private bool juegoTerminado = false;
+    private float tiempoRestante; // Variable para la UI
     #endregion
 
-    #region Métodos de Unity
     void Start()
     {
-        // Iniciamos el flujo del minijuego
+        // Inicializamos el tiempo restante al máximo para que la barra empiece llena
+        tiempoRestante = tiempoDecision; 
         StartCoroutine(SecuenciaJuego());
     }
-    #endregion
 
     #region Corrutinas de Juego
-    /// <summary>
-    /// Ejecuta la secuencia: Mostrar bolita, mezclar vasos y esperar selección.
-    /// </summary>
     IEnumerator SecuenciaJuego()
     {
-        // 1. Configuración inicial de la bolita
+        // 1. Configuración inicial
         indiceGanador = Random.Range(0, vasos.Length);
         bolita.transform.position = vasos[indiceGanador].position;
         bolita.transform.SetParent(null); 
 
-        // 2. Fase de Revelación Inicial
+        // 2. Revelación
         Vector3 posOriginal = vasos[indiceGanador].position;
         yield return MoverVaso(vasos[indiceGanador], posOriginal + new Vector3(0, alturaLevantado, 0), 0.5f);
         yield return new WaitForSeconds(1f);
         yield return MoverVaso(vasos[indiceGanador], posOriginal, 0.5f);
 
-        // Emparentamos para que la bolita se mueva con el vaso durante la mezcla
         bolita.transform.SetParent(vasos[indiceGanador]);
 
-        // 3. Fase de Mezcla
+        // 3. Mezcla
         float tiempoPasado = 0;
         while (tiempoPasado < tiempoMezcla)
         {
@@ -70,10 +65,16 @@ public class ShellGameLogic : MonoBehaviour
             tiempoPasado += duracionIntercambio; 
         }
 
-        // 4. Fase de Selección
+        // 4. Fase de Selección (ACTUALIZADO PARA TIMER)
         puedeElegir = true;
         Debug.Log("SISTEMA: Elige un vaso...");
-        yield return new WaitForSeconds(tiempoDecision);
+
+        // Reemplazamos el WaitForSeconds por un bucle manual para descontar tiempo
+        while (tiempoRestante > 0 && !juegoTerminado)
+        {
+            tiempoRestante -= Time.deltaTime;
+            yield return null;
+        }
 
         if (!juegoTerminado)
         {
@@ -82,34 +83,24 @@ public class ShellGameLogic : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Intercambia la posición de dos vasos asegurando que la posición final sea exacta.
-    /// </summary>
+    // (Los métodos IntercambiarVasos y MoverVaso se mantienen igual que en tu script original)
     IEnumerator IntercambiarVasos(int idxA, int idxB)
     {
         Vector3 posA = vasos[idxA].position;
         Vector3 posB = vasos[idxB].position;
         float t = 0;
-
         while (t < 1f)
         {
-            // El incremento de t depende del framerate y la duración configurada
             t += Time.deltaTime / duracionIntercambio;
             float curvaSeno = Mathf.Sin(t * Mathf.PI) * 0.5f;
-            
             vasos[idxA].position = Vector3.Lerp(posA, posB, t) + new Vector3(0, curvaSeno, 0);
             vasos[idxB].position = Vector3.Lerp(posB, posA, t) + new Vector3(0, -curvaSeno, 0);
             yield return null;
         }
-
-        // Snap final: Forzamos la posición exacta para evitar desalineación por velocidad alta
         vasos[idxA].position = posB;
         vasos[idxB].position = posA;
     }
 
-    /// <summary>
-    /// Mueve un vaso a un destino específico y asegura el centrado al finalizar.
-    /// </summary>
     IEnumerator MoverVaso(Transform vaso, Vector3 destino, float tiempo)
     {
         Vector3 inicio = vaso.position;
@@ -120,17 +111,11 @@ public class ShellGameLogic : MonoBehaviour
             vaso.position = Vector3.Lerp(inicio, destino, t);
             yield return null;
         }
-
-        // Corregimos cualquier desfase decimal al terminar el movimiento
         vaso.position = destino;
     }
     #endregion
 
-    #region Interacción y Finalización
-    /// <summary>
-    /// Gestiona el click del jugador sobre un vaso.
-    /// </summary>
-    /// <param name="vasoClickeado">Transform del vaso seleccionado.</param>
+    #region Interacción y Getters
     public void IntentarSeleccion(Transform vasoClickeado)
     {
         if (!puedeElegir || juegoTerminado) return;
@@ -138,16 +123,7 @@ public class ShellGameLogic : MonoBehaviour
         juegoTerminado = true;
         bool esCorrecto = (vasoClickeado == vasos[indiceGanador]);
 
-        if (esCorrecto)
-        {
-            // Liberamos la bolita para que se quede en el suelo al subir el vaso
-            bolita.transform.SetParent(null); 
-            Debug.Log("RESULTADO: ¡Has acertado!");
-        }
-        else
-        {
-            Debug.Log("RESULTADO: Vaso vacío.");
-        }
+        if (esCorrecto) bolita.transform.SetParent(null); 
 
         StartCoroutine(MoverVaso(vasoClickeado, vasoClickeado.position + new Vector3(0, alturaLevantado, 0), 0.3f));
         FinalizarJuego(esCorrecto);
@@ -161,5 +137,9 @@ public class ShellGameLogic : MonoBehaviour
             else GameManager.instancia.Perder();
         }
     }
+
+    // Métodos para que el script de UI pueda leer los datos
+    public float ObtenerTiempoLimite() => tiempoDecision;
+    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
     #endregion
 }

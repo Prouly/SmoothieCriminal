@@ -5,8 +5,8 @@ using System.Collections.Generic;
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
- * Descripción: Gestiona el spawn aleatorio de bandidos e inocentes y la condición de victoria por tiempo.
- * Última modificación: 14/04/2026
+ * Descripción: Gestiona el spawn de personajes y el control de tiempo fluido con sonido de disparo persistente.
+ * Última modificación: 27/04/2026 (Blindaje de sonido en impactos y victoria)
  */
 
 public class VaqueroLogic : MonoBehaviour
@@ -19,107 +19,123 @@ public class VaqueroLogic : MonoBehaviour
     [Header("Ajustes de Escena")]
     [SerializeField] private Transform puntosRespawnParent;
     [SerializeField] private float tiempoLimite = 7f;
+
+    [Header("Efectos de Sonido")]
+    [SerializeField] private AudioClip sonidoDisparo;
     #endregion
 
     #region Variables de Estado
     private int bandidosRestantes = 0;
     private bool juegoTerminado = false;
+    private float tiempoRestante; 
     #endregion
 
     #region Métodos de Unity
     void Start()
     {
+        // Inicializamos el tiempo al límite configurado
+        tiempoRestante = tiempoLimite; 
         ConfigurarEscena();
-        StartCoroutine(CronometroJuego());
+    }
+
+    void Update()
+    {
+        if (juegoTerminado) return;
+
+        // Descontamos el tiempo cada frame para que la barra de UI se mueva suavemente
+        tiempoRestante -= Time.deltaTime;
+
+        if (tiempoRestante <= 0)
+        {
+            tiempoRestante = 0;
+            Debug.Log("RESULTADO: ¡Se acabó el tiempo! Perdiste.");
+            FinalizarPartida(false);
+        }
     }
     #endregion
 
     #region Lógica del Juego
     /// <summary>
-    /// Selecciona 5 puntos aleatorios y distribuye bandidos e inocentes según las reglas.
-    /// Indica si la partida ha finalizado para bloquear interacciones externas.
+    /// Centraliza la reproducción del sonido de disparo para evitar cortes al destruir objetos.
     /// </summary>
-    /// <returns>Verdadero si el juego ha terminado.</returns>
-    
-    public bool EstaJuegoTerminado()
+    private void ReproducirSonidoDisparo()
     {
-        return juegoTerminado;
+        if (sonidoDisparo != null)
+        {
+            // PlayClipAtPoint garantiza que el sonido sobreviva al cambio de frame o destrucción de objetos
+            AudioSource.PlayClipAtPoint(sonidoDisparo, Camera.main.transform.position);
+        }
     }
+
+    public bool EstaJuegoTerminado() => juegoTerminado;
+
     private void ConfigurarEscena()
     {
-        // Obtenemos todos los puntos disponibles del objeto padre
+        if (puntosRespawnParent == null) return;
+
         List<Transform> puntosDisponibles = new List<Transform>();
-        foreach (Transform t in puntosRespawnParent) puntosDisponibles.Add(t);
+        foreach (Transform punto in puntosRespawnParent) puntosDisponibles.Add(punto);
 
-        // Determinamos cuántos inocentes saldrán (mínimo 1, máximo 2)
+        int totalASpawnear = 5;
         int cantidadInocentes = Random.Range(1, 3); 
-        int cantidadBandidos = 5 - cantidadInocentes; // El resto hasta 5 son bandidos
-        bandidosRestantes = cantidadBandidos;
+        bandidosRestantes = totalASpawnear - cantidadInocentes;
 
-        // Spawneamos los personajes en posiciones aleatorias sin repetir punto
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < totalASpawnear; i++)
         {
+            if (puntosDisponibles.Count == 0) break;
+
             int randomIndex = Random.Range(0, puntosDisponibles.Count);
             Transform puntoElegido = puntosDisponibles[randomIndex];
             
-            // Decidimos qué prefab instanciar basándonos en el conteo restante
             GameObject prefabAErigir = (i < cantidadInocentes) ? inocentePrefab : bandidoPrefab;
             
             Instantiate(prefabAErigir, puntoElegido.position, Quaternion.identity);
-            puntosDisponibles.RemoveAt(randomIndex); // Eliminamos el punto para no repetir
-        }
-
-        Debug.Log($"SISTEMA: Han aparecido {cantidadBandidos} bandidos y {cantidadInocentes} inocentes.");
-    }
-
-    /// <summary>
-    /// Gestiona el tiempo límite de la partida.
-    /// </summary>
-    IEnumerator CronometroJuego()
-    {
-        yield return new WaitForSeconds(tiempoLimite);
-
-        if (!juegoTerminado)
-        {
-            Debug.Log("RESULTADO: ¡Se acabó el tiempo! Perdiste.");
-            FinalizarPartida(false);
+            puntosDisponibles.RemoveAt(randomIndex);
         }
     }
 
     /// <summary>
-    /// Registra la muerte de un bandido y finaliza si no quedan más.
+    /// Registra la muerte de un bandido, reproduce sonido y finaliza si no quedan más.
     /// </summary>
     public void BandidoEliminado()
     {
         if (juegoTerminado) return;
 
+        ReproducirSonidoDisparo();
         bandidosRestantes--;
+
         if (bandidosRestantes <= 0)
         {
             Debug.Log("RESULTADO: ¡Victoria! Todos los bandidos eliminados.");
-            FinalizarPartida(true);
+            StartCoroutine(RetrasoFinalizacion(true));
         }
     }
 
     /// <summary>
-    /// Finaliza la partida inmediatamente al disparar a un inocente.
+    /// Finaliza la partida inmediatamente al disparar a un inocente con sonido previo.
     /// </summary>
     public void InocenteDisparado()
     {
         if (juegoTerminado) return;
 
+        ReproducirSonidoDisparo();
         Debug.Log("RESULTADO: ¡Derrota! Has disparado a un inocente.");
-        FinalizarPartida(false);
+        StartCoroutine(RetrasoFinalizacion(false));
     }
 
     /// <summary>
-    /// Comunica el resultado al GameManager o termina la ejecución local.
+    /// Pequeña espera para asegurar que el motor de audio procese el disparo antes de cerrar la escena.
     /// </summary>
-    /// <param name="victoria">Indica si el jugador ganó la partida.</param>
+    private IEnumerator RetrasoFinalizacion(bool victoria)
+    {
+        juegoTerminado = true;
+        yield return new WaitForSeconds(0.3f);
+        FinalizarPartida(victoria);
+    }
+
     private void FinalizarPartida(bool victoria)
     {
         juegoTerminado = true;
-        StopAllCoroutines();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         
@@ -129,5 +145,10 @@ public class VaqueroLogic : MonoBehaviour
             else GameManager.instancia.Perder();
         }
     }
+    #endregion
+
+    #region Getters para UI
+    public float ObtenerTiempoLimite() => tiempoLimite;
+    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
     #endregion
 }

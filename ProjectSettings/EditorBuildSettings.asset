@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Random.unity
     guid: 7c1988439ee24414aabc911f2413fb9e
   - enabled: 1
-    path: Assets/Scenes/Topos.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/Scenes/Patos.unity
     guid: 18cba783bef14704e8530ca9f7e4fe1d
   - enabled: 1
@@ -30,11 +27,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Secuencia.unity
     guid: 345f339c102acc14e9e6536cc683804b
   - enabled: 1
-    path: Assets/Scenes/FinDEMO.unity
-    guid: 034609c628edec943b088f908e00a5a6
-  - enabled: 1
     path: Assets/Scenes/Balloon.unity
     guid: 1a37a67ff15cfdc4d93162c828c586d4
+  - enabled: 1
+    path: Assets/Scenes/Topos.unity
+    guid: 4d2295fa5f78e084b9f2e51bd36a0cda
+  - enabled: 1
+    path: Assets/Scenes/BuscarHaznarito.unity
+    guid: 23b742c7af24a1e4394c387b225340bf
+  - enabled: 1
+    path: Assets/Scenes/Bichos.unity
+    guid: 4460ab740252c95488797559bdccf38b
+  - enabled: 1
+    path: Assets/Scenes/FinDEMO.unity
+    guid: 034609c628edec943b088f908e00a5a6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -629,6 +629,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &906757731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1859891693601101825, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
+  m_PrefabInstance: {fileID: 983724209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &943221925
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,16 +757,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3889617247239464100, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889617247239464100, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889617247239464100, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1859891693601101825, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 983724211}
   m_SourcePrefab: {fileID: 100100000, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
 --- !u!224 &983724210 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3837086298339942926, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
   m_PrefabInstance: {fileID: 983724209}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &983724211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906757731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a422cd3e93a2f0847a58cbe1a3d73d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imagenPajita: {fileID: 983724212}
+  logicaPatos: {fileID: 1720400475}
+--- !u!114 &983724212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3889617247239464100, guid: 0162b0661cd639c4eb28c14c2342811f, type: 3}
+  m_PrefabInstance: {fileID: 983724209}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906757731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1331617835
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +980,7 @@ MonoBehaviour:
   contenedorPuntosSpawn: {fileID: 102579217}
   patosAGenerar: 4
   tiempoLimite: 7
+  sonidoDisparo: {fileID: 8300000, guid: 8c9d6148deead784999d6beb89e71788, type: 3}
 --- !u!4 &1720400476
 Transform:
   m_ObjectHideFlags: 0

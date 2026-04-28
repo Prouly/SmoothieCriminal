@@ -1,44 +1,46 @@
-using System;
-using UnityEngine;
-
 /**
  * Proyecto: Smoothie Criminal
- * Autor: Luismi Muñoz
- * Descripción: Gestiona la lógica de Jugador del minijuego de Carrera
- * Última modificación: 14/04/2026
+ * Autor: Luis Miguel Muñoz Vega
+ * Descripción: Gestiona el movimiento del jugador, bloqueándolo al terminar la carrera.
+ * Última modificación: 26/04/2026 (Álvaro Muñoz Adán)
  */
+using UnityEngine;
+
 public class PlayerCarrera : MonoBehaviour
 {
-    [SerializeField] private float distanciaPaso = 0.5f;   //Cuánto avanza por paso
-    private bool esperaD = true;//Empieza esperando D
+    #region Variables de Configuración
+    [SerializeField] private float distanciaPaso = 0.5f;
     [SerializeField] private Sprite spriteD;
     [SerializeField] private Sprite spriteA;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private CarreraLogic carreraLogic;
+    #endregion
 
-    private void Start()
-    {
-        ActualizarSprite();
-    }
+    #region Variables de Estado
+    private bool esperaD = true;
+    #endregion
+
+    private void Start() => ActualizarSprite();
 
     void Update()
     {
-        //Alterna entre presionar D y A para avanzar
+        if (carreraLogic != null && carreraLogic.EstaJuegoTerminado()) return;
+        
         if (esperaD && Input.GetKeyDown(KeyCode.D))
         {
-            transform.position += new Vector3(distanciaPaso, 0, 0);
-            esperaD = false; // Ahora espera A
+            Avanzar();
+            esperaD = false;
             ActualizarSprite();
         }
         else if (!esperaD && Input.GetKeyDown(KeyCode.A))
         {
-            transform.position += new Vector3(distanciaPaso, 0, 0);
-            esperaD = true; //Ahora espera D
+            Avanzar();
+            esperaD = true;
             ActualizarSprite();
         }
     }
     
-    void ActualizarSprite()
-    {
-        spriteRenderer.sprite = esperaD ? spriteD : spriteA;
-    }
+    void Avanzar() => transform.position += new Vector3(distanciaPaso, 0, 0);
+    
+    void ActualizarSprite() => spriteRenderer.sprite = esperaD ? spriteD : spriteA;
 }
