@@ -1,24 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-<<<<<<< HEAD
-public class BalloonPop : MonoBehaviour
-{
-    [SerializeField] private GameObject targetObject;    
-    [SerializeField] private float scaleIncrement = 0.1f;
-    [SerializeField] private int pressesToPop = 10;        
-    [SerializeField] private float timer = 7f;            
-    private int spaceCount = 0;  
-    private bool gameFinished = false;
-    private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite explosionSprite;
-    [SerializeField] private Sprite[] balloonSprites;
-    void Start()
-    {
-        StartCoroutine(TimerCoroutine());
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[0];
-=======
+
 /**
  * Proyecto: Smoothie Criminal
  * Descripción: Minijuego de inflar el globo con control de tiempo fluido para la UI.
@@ -54,12 +37,10 @@ public class BalloonPop : MonoBehaviour
         {
             targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[0];
         }
->>>>>>> 4783fef24e3419b985ad333cedda73547493c94a
     }
 
     void Update()
     {
-<<<<<<< HEAD
         if (Input.GetKeyDown(KeyCode.Space) && targetObject != null && !gameFinished)
         {
             spaceCount++;
@@ -99,67 +80,8 @@ public class BalloonPop : MonoBehaviour
             }
         }
     }
-}
-=======
-        if (gameFinished) return;
-
-        // 1. Gestión del Tiempo
-        tiempoRestante -= Time.deltaTime;
-        if (tiempoRestante <= 0)
-        {
-            tiempoRestante = 0;
-            FinalizarJuego(false);
-            return;
-        }
-
-        // 2. Lógica de Inflado
-        if (Input.GetKeyDown(KeyCode.Space) && targetObject != null)
-        {
-            InflarGlobo();
-        }
-    }
-
-    private void InflarGlobo()
-    {
-        spaceCount++;
-        targetObject.transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
-        
-        // Cambio de sprites basado en progreso
-        int totalSprites = balloonSprites.Length;
-        int index = Mathf.FloorToInt((float)spaceCount / pressesToPop * totalSprites);
-        index = Mathf.Clamp(index, 0, totalSprites - 1);
-        targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[index];
-        
-        if (spaceCount >= pressesToPop)
-        {
-            targetObject.GetComponent<SpriteRenderer>().sprite = explosionSprite;
-            FinalizarJuego(true);
-        }
-    }
-
-    private void FinalizarJuego(bool victoria)
-    {
-        if (gameFinished) return;
-        gameFinished = true;
-
-        if (GameManager.instancia != null)
-        {
-            if (victoria)
-            {
-                Debug.Log("¡Has ganado!");
-                GameManager.instancia.Ganar();
-            }
-            else
-            {
-                Debug.Log("¡Has perdido por tiempo!");
-                GameManager.instancia.Perder();
-            }
-        }
-    }
-
     #region Getters para UI
     public float ObtenerTiempoLimite() => timer;
     public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
     #endregion
 }
->>>>>>> 4783fef24e3419b985ad333cedda73547493c94a
