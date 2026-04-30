@@ -79,15 +79,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 5183593774468040647, guid: 2fc872e5acac1b34cabc222b5318dfa1, type: 3}
+  m_Sprite: {fileID: 4480457075580528304, guid: 0ee047f8cbdcb814dbfd46b7f428a0b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.06, y: 2.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3241431726554681738
@@ -103,6 +103,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
+  velocidadCaida: 8
+  spritesVuelo:
+  - {fileID: 21300000, guid: 0ee047f8cbdcb814dbfd46b7f428a0b9, type: 3}
+  - {fileID: 21300000, guid: f61e296e9b1b98c48852111ad3d23e8d, type: 3}
+  tiempoEntreFrames: 0.2
+  spriteAbatido: {fileID: 21300000, guid: 92e61b26c6cf3de4599a9f81eaaa7419, type: 3}
+  sonidoMuerte: {fileID: 8300000, guid: 42d46ec3c9e3a8346a54a4b47feeaebc, type: 3}
 --- !u!61 &1884400705543317308
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +148,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.624, y: 1.156}
+    oldSize: {x: 11.46, y: 8.83}
     newSize: {x: 4.06, y: 2.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

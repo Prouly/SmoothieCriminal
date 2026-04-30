@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1397940029338563239}
   - component: {fileID: 7900995842497680667}
   - component: {fileID: 2631699078397727119}
-  - component: {fileID: -7963318710605392969}
+  - component: {fileID: 2506669543558401935}
   m_Layer: 0
   m_Name: Bandito_Smoothie_Criminal
   m_TagString: Untagged
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a8085f6afc511264b810169e9698487d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21b7ad1d164a88d4588e835bbee628db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   esBandido: 1
---- !u!61 &-7963318710605392969
+--- !u!61 &2506669543558401935
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,15 +136,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.13954067, y: 1.7169569}
+  m_Offset: {x: -0.08189702, y: 1.8605132}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 3.1733334, y: 3.4933333}
+    pivot: {x: 0.5061867, y: 0.064961836}
+    oldSize: {x: 4.8766665, y: 4.2766666}
     newSize: {x: 3.1733334, y: 3.4933333}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.8529067, y: 3.318615}
+  m_Size: {x: 4.773213, y: 4.2766666}
   m_EdgeRadius: 0

@@ -6,7 +6,7 @@ using System.Collections.Generic;
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
  * Descripción: Gestiona el spawn de personajes y el control de tiempo fluido con sonido de disparo persistente.
- * Última modificación: 27/04/2026 (Blindaje de sonido en impactos y victoria)
+ * Última modificación: 30/04/2026 (Corrección de spawn y variable punto)
  */
 
 public class VaqueroLogic : MonoBehaviour
@@ -73,11 +73,19 @@ public class VaqueroLogic : MonoBehaviour
     {
         if (puntosRespawnParent == null) return;
 
+        // Llenamos la lista con todos los puntos de respawn hijos del padre[cite: 4]
         List<Transform> puntosDisponibles = new List<Transform>();
-        foreach (Transform punto in puntosRespawnParent) puntosDisponibles.Add(punto);
+        
+        // Aquí recorremos el padre para encontrar los puntos. 
+        // Si Unity no te detecta 'punto', es posible que necesite especificar el tipo explícitamente.
+        foreach (Transform puntoEncontrado in puntosRespawnParent) 
+        {
+            puntosDisponibles.Add(puntoEncontrado);
+        }
 
+        // Tal y como acordamos: 5 personajes en total y entre 1 y 2 inocentes[cite: 4]
         int totalASpawnear = 5;
-        int cantidadInocentes = Random.Range(1, 3); 
+        int cantidadInocentes = Random.Range(1, 3); // Esto devuelve 1 o 2
         bandidosRestantes = totalASpawnear - cantidadInocentes;
 
         for (int i = 0; i < totalASpawnear; i++)
@@ -87,9 +95,15 @@ public class VaqueroLogic : MonoBehaviour
             int randomIndex = Random.Range(0, puntosDisponibles.Count);
             Transform puntoElegido = puntosDisponibles[randomIndex];
             
+            // Elegimos si toca inocente o bandido[cite: 4]
             GameObject prefabAErigir = (i < cantidadInocentes) ? inocentePrefab : bandidoPrefab;
             
-            Instantiate(prefabAErigir, puntoElegido.position, Quaternion.identity);
+            if (prefabAErigir != null)
+            {
+                Instantiate(prefabAErigir, puntoElegido.position, Quaternion.identity);
+            }
+            
+            // Quitamos el punto usado para que no se repita[cite: 4]
             puntosDisponibles.RemoveAt(randomIndex);
         }
     }
