@@ -559,14 +559,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 611079600}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &611079598 stripped
 Transform:
@@ -578,23 +579,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 611079597}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &611079600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611079599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,14 +756,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 697155511}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!1 &697155509 stripped
 GameObject:
@@ -791,23 +776,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1576722971221266079, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 697155508}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &697155511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697155509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1 &725451765 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4628754103705522430, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
@@ -890,14 +858,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 860509076}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &860509074 stripped
 Transform:
@@ -909,23 +878,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 860509073}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &860509076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860509075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1001 &1005256075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -978,14 +930,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1005256078}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &1005256076 stripped
 Transform:
@@ -997,23 +950,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 1005256075}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1005256078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005256077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1 &1036496220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,14 +1131,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1208418182}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &1208418180 stripped
 Transform:
@@ -1214,23 +1151,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 1208418179}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1208418182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1208418181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1001 &1443411985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1283,14 +1203,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1443411988}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &1443411986 stripped
 Transform:
@@ -1302,23 +1223,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 1443411985}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1443411988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443411987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1 &1992969091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,14 +1362,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1999786662}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &1999786660 stripped
 Transform:
@@ -1477,23 +1382,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 1999786659}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1999786662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999786661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1 &2029316548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,14 +1538,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2043205745}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &2043205743 stripped
 Transform:
@@ -1669,23 +1558,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 2043205742}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2043205745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043205744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!224 &2047250803 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5417259156591053739, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
@@ -1743,14 +1615,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vaso 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2116887429}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &2116887427 stripped
 Transform:
@@ -1762,23 +1635,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 2116887426}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2116887429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116887428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

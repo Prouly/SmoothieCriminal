@@ -27,6 +27,7 @@ public class ClickableDuck : MonoBehaviour
     private bool estaAbatido = false;
     private int frameActual = 0;
     private float cronometroAnimacion;
+    private Collider2D collider;
     #endregion
 
     #region Métodos de Unity
@@ -35,7 +36,7 @@ public class ClickableDuck : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         logica = FindFirstObjectByType<DuckHuntLogic>();
-
+        collider = GetComponent<BoxCollider2D>();
         // Dirección inicial aleatoria
         float dirX = Random.Range(0, 2) == 0 ? -1 : 1;
         direccion = new Vector2(dirX, 1).normalized;
@@ -78,6 +79,7 @@ public class ClickableDuck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         // Si choca con el objeto "Down" mientras cae, desaparece
         if (estaAbatido && collision.gameObject.name == "Down")
         {
@@ -114,7 +116,7 @@ public class ClickableDuck : MonoBehaviour
     {
         estaAbatido = true;
         sr.sprite = spriteAbatido;
-
+        collider.enabled = false;
         // Reproducir sonido de muerte persistente siguiendo el estilo del juego
         if (sonidoMuerte != null)
         {

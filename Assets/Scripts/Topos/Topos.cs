@@ -16,7 +16,7 @@ public class Topos : MonoBehaviour
 {
     #region Variables de Configuración
     [SerializeField] private GameObject[] vasosTopos;
-    [SerializeField] private float number; // Cantidad de topos a salir
+    [SerializeField] private int number; // Cantidad de topos a salir
     [SerializeField] private float timer;  // Tiempo límite (máximo)
     [SerializeField] private Sprite newSpriteMole; 
     #endregion
@@ -58,6 +58,8 @@ public class Topos : MonoBehaviour
         {
             tiempoRestante = 0;
             FinalizarJuego(false);
+            Debug.Log("Lose");
+
         }
     }
     
@@ -89,6 +91,7 @@ public class Topos : MonoBehaviour
         if (clickeadosCount >= number)
         {
             FinalizarJuego(true);
+            Debug.Log("Win");
         }
     }
 
@@ -99,8 +102,14 @@ public class Topos : MonoBehaviour
 
         if (GameManager.instancia != null)
         {
-            if (victoria) GameManager.instancia.Ganar();
-            else GameManager.instancia.Perder();
+            if (victoria)
+            {
+                GameManager.instancia.Ganar();
+            }
+            else
+            {
+                GameManager.instancia.Perder();
+            }
         }
     }
 

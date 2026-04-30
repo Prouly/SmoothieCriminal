@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1576722971221266079}
   - component: {fileID: 4033418564080900738}
-  - component: {fileID: 9138642876292215156}
   - component: {fileID: 2808100649577168347}
+  - component: {fileID: 7330767284452684088}
   m_Layer: 0
   m_Name: Vaso
   m_TagString: Untagged
@@ -89,23 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9138642876292215156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6774886764910660255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5deda5307c0d71b438adfc65cef429ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable: 0
-  gameManager: {fileID: 0}
-  sprites:
-  - {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!61 &2808100649577168347
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,3 +135,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1.5639018}
   m_EdgeRadius: 0
+--- !u!114 &7330767284452684088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6774886764910660255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickable: 0
+  gameManager: {fileID: 0}
+  sprites:
+  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}

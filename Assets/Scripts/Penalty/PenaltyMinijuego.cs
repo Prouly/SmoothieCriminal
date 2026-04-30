@@ -180,8 +180,8 @@ public class PenaltyMinijuego : MonoBehaviour
         textoResultado.text = mensaje;
 
         // Más adelante, aquí irá la llamada al GameManager:
-        // if (gana) GameManager.instancia.Ganar();
-        // else GameManager.instancia.Perder();
+        if (gana) GameManager.instancia.Ganar();
+        else GameManager.instancia.Perder();
     }
 
     // Estos métodos sirven para que una UI de timer pueda leer el tiempo si lo necesita.

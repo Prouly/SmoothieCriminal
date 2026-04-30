@@ -572,7 +572,7 @@ Transform:
   m_GameObject: {fileID: 1700674405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.54, y: -0.24, z: 0}
+  m_LocalPosition: {x: -12.21, y: -0.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642d7f7f97299e74b898968579bc755d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoLimite: 8
+  tiempoLimite: 9
   xMeta: 7.91
   jugador: {fileID: 673874282}
   pezEnemigo: {fileID: 1700674407}
