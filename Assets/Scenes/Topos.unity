@@ -864,9 +864,13 @@ PrefabInstance:
       objectReference: {fileID: 1195368839}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+    - {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 860509076}
   m_SourcePrefab: {fileID: 100100000, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
 --- !u!4 &860509074 stripped
 Transform:
@@ -878,6 +882,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6774886764910660255, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
   m_PrefabInstance: {fileID: 860509073}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &860509076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860509075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc32409667f5e4438e3e00d158f610f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickable: 0
+  isAnimating: 0
+  gameManager: {fileID: 1195368839}
+  sprites:
+  - {fileID: -8918155897583115812, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: 2966627111659052768, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: -6197775518588579283, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: 7006141992846151204, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: -7672302246943954328, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: 6765150819860492587, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  - {fileID: -8816437492652142600, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
+  tiempoEntreFrames: 0.3
+  tiempoVulnerable: 1
 --- !u!1001 &1005256075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1078,7 +1108,6 @@ MonoBehaviour:
   - {fileID: 697155509}
   number: 3
   timer: 7
-  newSpriteMole: {fileID: -5679050648091720887, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
 --- !u!1001 &1208418179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1207,8 +1236,7 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
-    m_RemovedComponents:
-    - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

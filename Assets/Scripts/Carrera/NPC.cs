@@ -4,6 +4,7 @@
  * Descripción: Gestiona el avance del NPC, deteniéndolo al finalizar la carrera.
  * Última modificación: 26/04/2026 (Álvaro Muñoz Adán)
  */
+
 using UnityEngine;
 
 public class NPC : MonoBehaviour

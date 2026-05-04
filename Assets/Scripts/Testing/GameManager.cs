@@ -6,25 +6,25 @@ using UnityEngine.UI;
 
 /**
  * Proyecto: Smoothie Criminal
- * Autor: Luismi Muñoz
- * Descripción: Gestiona la lógica del Juego general desde Scene Random
- * Última modificación: 14/04/2026
+ * Autor: Luismi Muñoz / Álvaro Muñoz Adán
+ * Descripción: Gestiona la lógica general, evita minijuegos repetidos y formatea la UI.
+ * Última modificación: 04/05/2026
  */
 public class GameManager : MonoBehaviour
 {
     public static GameManager instancia;
 
-    public string escenaBase = "Random";      //Escena base donde se espera
-    public string[] minijuegos;               //Lista de minijuegos
+    public string escenaBase = "Random";      
+    public string[] minijuegos;               
     public int vidas = 4;
     [SerializeField] private float puntosPorIncrementoVelocidad = 3f;
     private float velocidadAnterior = 1f;
     public float puntos = 0;
     [SerializeField] private float puntosMaximos = 12f;
-    public float tiempoPantallaVictoriaDerrota = 1f; //Duración de la imagen
+    public float tiempoPantallaVictoriaDerrota = 1f; 
 
-    public float tiempoEspera = 1f;           //Espera tras ganar/perder
-    public float tiempoParaSiguiente = 2f;    //Tiempo antes de cargar un minijuego
+    public float tiempoEspera = 1f;           
+    public float tiempoParaSiguiente = 2f;    
 
     public Image imagenGanar;    
     public Image imagenPerder;
@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     private bool mostrarSpeedUp = false;
     public float puntosFinales;
 
+    // Variables para control de repetición y estado
+    private int ultimoIndiceMinijuego = -1; 
     private enum Resultado { Ninguno, Ganar, Perder }
     private Resultado ultimoResultado = Resultado.Ninguno;
     
@@ -45,42 +47,34 @@ public class GameManager : MonoBehaviour
         if (instancia == null)
         {
             instancia = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); //
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //
         }
     }
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == escenaBase) StartCoroutine(Temporizador());
+        // Mantenemos la escena base dinámica según el personaje elegido
+        escenaBase = SceneManager.GetActiveScene().name; 
+        if (SceneManager.GetActiveScene().name == escenaBase) StartCoroutine(Temporizador()); //
     }
 
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    //Evita duplicados
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    void OnEnable() { SceneManager.sceneLoaded += OnSceneLoaded; } //[cite: 5]
+    void OnDisable() { SceneManager.sceneLoaded -= OnSceneLoaded; } //[cite: 5]
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
         if (scene.name == "Main" || scene.name == "FinDEMO")
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //[cite: 5]
             return;
         }
         
         if (scene.name == escenaBase)
         {
-
             ManageUIOnReturn();
             StartCoroutine(MostrarPantallaYTemporizador());
         }
@@ -88,161 +82,160 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Temporizador()
     {
-        if (vidas <= 0 || puntos >= puntosMaximos) yield break;
-        yield return new WaitForSeconds(tiempoParaSiguiente);
-        if (vidas <= 0 || puntos >= puntosMaximos) yield break;
+        if (vidas <= 0 || puntos >= puntosMaximos) yield break; //[cite: 5]
+        yield return new WaitForSeconds(tiempoParaSiguiente); //[cite: 5]
+        if (vidas <= 0 || puntos >= puntosMaximos) yield break; //[cite: 5]
         CargarMinijuego();
     }
 
     public void Ganar()
     {
-        if (enTransicion) return;
+        if (enTransicion) return; //[cite: 5]
 
-        //Calcula el multiplicador en base a los puntos
-        float nuevoTimeScale = 1f + (Mathf.Floor(puntos / puntosPorIncrementoVelocidad) * 0.25f);
-        //Limitar a máximo x2
-        Time.timeScale = Mathf.Min(nuevoTimeScale, 2f);
+        float nuevoTimeScale = 1f + (Mathf.Floor(puntos / puntosPorIncrementoVelocidad) * 0.25f); //[cite: 5]
+        Time.timeScale = Mathf.Min(nuevoTimeScale, 2f); //[cite: 5]
         
-        //Detecta si ha habido un cambio de velocidad
-        bool speedUp = nuevoTimeScale > velocidadAnterior;
-        velocidadAnterior = nuevoTimeScale;
+        bool speedUp = nuevoTimeScale > velocidadAnterior; //[cite: 5]
+        velocidadAnterior = nuevoTimeScale; //[cite: 5]
 
-
-        ultimoResultado = Resultado.Ganar;
-        puntos++;
+        ultimoResultado = Resultado.Ganar; //[cite: 5]
+        puntos++; //[cite: 5]
         
-        if (speedUp) mostrarSpeedUp = true;
-        
-        
-        StartCoroutine(VolverAEscenaBase());
+        if (speedUp) mostrarSpeedUp = true; //[cite: 5]
+        StartCoroutine(VolverAEscenaBase()); //[cite: 5]
     }
 
     public void Perder()
     {
-        if (enTransicion) return;
-        
-        ultimoResultado = Resultado.Perder;
-        vidas--;
-        puntos++;
-        StartCoroutine(VolverAEscenaBase());
+        if (enTransicion) return; //[cite: 5]
+        ultimoResultado = Resultado.Perder; //[cite: 5]
+        vidas--; //[cite: 5]
+        puntos++; //[cite: 5]
+        StartCoroutine(VolverAEscenaBase()); //[cite: 5]
     }
 
     IEnumerator VolverAEscenaBase()
     {
-        enTransicion = true;
-        yield return new WaitForSeconds(tiempoEspera);
+        enTransicion = true; //[cite: 5]
+        yield return new WaitForSeconds(tiempoEspera); //[cite: 5]
 
-        bool gameOver = (vidas <= 0);
-        bool winOver = (puntos >= puntosMaximos);
-        puntosFinales = puntos;
+        bool gameOver = (vidas <= 0); //[cite: 5]
+        bool winOver = (puntos >= puntosMaximos); //[cite: 5]
+        puntosFinales = puntos; //[cite: 5]
 
-        SceneManager.LoadScene(escenaBase);
+        SceneManager.LoadScene(escenaBase); //[cite: 5]
 
-        yield return new WaitForSeconds(0.1f); // opcional
+        yield return new WaitForSeconds(0.1f); 
 
-        if (gameOver)
+        if (gameOver || winOver)
         {
-            Time.timeScale = 1f;
-            yield return new WaitForSeconds(5f);
-            vidas = 4;
-            puntos = 0;
-            SceneManager.LoadScene("FinDEMO");
-        } else if (winOver)
-        {
-            Time.timeScale = 1f;
-            yield return new WaitForSeconds(5f);
-            vidas = 4;
-            puntos = 0;
-            SceneManager.LoadScene("FinDEMO");
+            Time.timeScale = 1f; //[cite: 5]
+            yield return new WaitForSeconds(5f); //[cite: 5]
+            vidas = 4; //[cite: 5]
+            puntos = 0; //[cite: 5]
+            SceneManager.LoadScene("FinDEMO"); //[cite: 5]
         }
-
-        enTransicion = false;
+        enTransicion = false; //[cite: 5]
     }
 
+    /**
+     * CAMBIO: Implementación de lógica anti-repetición inmediata.
+     */
     void CargarMinijuego()
     {
-        if (minijuegos.Length == 0) return;
+        if (minijuegos.Length == 0) return; //[cite: 5]
 
-        int r = Random.Range(0, minijuegos.Length);
-        SceneManager.LoadScene(minijuegos[r]);
+        int r;
+        // Si hay más de un juego, nos aseguramos de que el nuevo no sea igual al último
+        if (minijuegos.Length > 1)
+        {
+            do
+            {
+                r = Random.Range(0, minijuegos.Length); //[cite: 5]
+            } while (r == ultimoIndiceMinijuego);
+        }
+        else
+        {
+            r = 0;
+        }
+
+        ultimoIndiceMinijuego = r;
+        SceneManager.LoadScene(minijuegos[r]); //[cite: 5]
     }
 
+    /**
+     * CAMBIO: El texto de puntos ahora incluye un salto de línea.
+     */
     void ManageUIOnReturn()
     {
-        GameObject canvasGO = GameObject.Find("Canvas");
+        GameObject canvasGO = GameObject.Find("Canvas"); //[cite: 5]
         if (canvasGO != null)
         {
-            // Buscar imágenes dentro del Canvas
-            imagenGanar = canvasGO.transform.Find("Win")?.GetComponent<Image>();
-            imagenPerder = canvasGO.transform.Find("Lose")?.GetComponent<Image>();
+            imagenGanar = canvasGO.transform.Find("Win")?.GetComponent<Image>(); //[cite: 5]
+            imagenPerder = canvasGO.transform.Find("Lose")?.GetComponent<Image>(); //[cite: 5]
+            textoPuntos = canvasGO.transform.Find("Puntos")?.GetComponent<TextMeshProUGUI>(); //[cite: 5]
+            textoVelocidad = canvasGO.transform.Find("SpeedWarning")?.GetComponent<TextMeshProUGUI>(); //[cite: 5]
             
-            textoPuntos = canvasGO.transform.Find("Puntos")?.GetComponent<TextMeshProUGUI>();
-            textoVelocidad = canvasGO.transform.Find("SpeedWarning")?.GetComponent<TextMeshProUGUI>();
-            
-            
-            if (textoPuntos != null) textoPuntos.text = "Puntos: " + puntos;
+            // Aplicamos el salto de línea solicitado (\n)
+            if (textoPuntos != null) textoPuntos.text = "Puntos:\n" + puntos; 
         }
-        imagenCargaMinijuego = GameObject.Find("TransicionNormal");
+        
+        imagenCargaMinijuego = GameObject.Find("TransicionNormal"); //[cite: 5]
             
-        Transform vidasParent = canvasGO.transform.Find("Vidas");
+        Transform vidasParent = canvasGO.transform.Find("Vidas"); //[cite: 5]
         if (vidasParent != null)
         {
-            imagenesVidas = new Image[vidasParent.childCount];
+            imagenesVidas = new Image[vidasParent.childCount]; //[cite: 5]
             for (int i = 0; i < vidasParent.childCount; i++)
             {
-                imagenesVidas[i] = vidasParent.GetChild(i).GetComponent<Image>();
+                imagenesVidas[i] = vidasParent.GetChild(i).GetComponent<Image>(); //[cite: 5]
             }
         }
     }
     
     IEnumerator MostrarPantallaYTemporizador()
     {
-        yield return null;
+        yield return null; //[cite: 5]
 
         if (imagenesVidas == null)
         {
-            StartCoroutine(Temporizador());
+            StartCoroutine(Temporizador()); //[cite: 5]
             yield break;
         }
 
         for (int i = 0; i < imagenesVidas.Length; i++)
         {
-            if (imagenesVidas[i] != null) imagenesVidas[i].gameObject.SetActive(i < vidas);
+            if (imagenesVidas[i] != null) imagenesVidas[i].gameObject.SetActive(i < vidas); //[cite: 5]
         }
 
-        if (vidas < 0)
-        {
-            yield break;
-        }
+        if (vidas < 0) yield break; //[cite: 5]
 
         if (ultimoResultado == Resultado.Ganar && imagenGanar != null)
         {
-            imagenGanar.gameObject.SetActive(true);  
-            imagenCargaMinijuego.SetActive(false);
-            yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
-            imagenGanar.gameObject.SetActive(false);
-            imagenCargaMinijuego.SetActive(true);
+            imagenGanar.gameObject.SetActive(true); //[cite: 5]
+            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); //[cite: 5]
+            yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota); //[cite: 5]
+            imagenGanar.gameObject.SetActive(false); //[cite: 5]
+            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); //[cite: 5]
             
             if (mostrarSpeedUp && textoVelocidad != null)
             {
-                textoVelocidad.gameObject.SetActive(true);
-                yield return new WaitForSeconds(1f);
-                textoVelocidad.gameObject.SetActive(false);
-
-                mostrarSpeedUp = false; // importante resetear
+                textoVelocidad.gameObject.SetActive(true); //[cite: 5]
+                yield return new WaitForSeconds(1f); //[cite: 5]
+                textoVelocidad.gameObject.SetActive(false); //[cite: 5]
+                mostrarSpeedUp = false; 
             }
         }
         else if (ultimoResultado == Resultado.Perder && imagenPerder != null)
         {
-            imagenPerder.gameObject.SetActive(true);
-            imagenCargaMinijuego.SetActive(false);
-            yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
-            imagenPerder.gameObject.SetActive(false);
-            imagenCargaMinijuego.SetActive(true);
+            imagenPerder.gameObject.SetActive(true); //[cite: 5]
+            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); //[cite: 5]
+            yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota); //[cite: 5]
+            imagenPerder.gameObject.SetActive(false); //[cite: 5]
+            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); //[cite: 5]
         }
 
-        ultimoResultado = Resultado.Ninguno;
-        
-        StartCoroutine(Temporizador());
+        ultimoResultado = Resultado.Ninguno; //[cite: 5]
+        StartCoroutine(Temporizador()); //[cite: 5]
     }
 }

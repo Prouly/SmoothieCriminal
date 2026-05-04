@@ -18,9 +18,20 @@ public class ChangeScene : MonoBehaviour
     public void SeleccionarOpcion(int o)
     {
         opcion = o;
-        Debug.Log("Has seleccionado: " + o);
+        if (o == 0)
+        {
+            Debug.Log("Has seleccionado el personaje Haznarito");
+        }
+        else if (o == 1)
+        {
+            Debug.Log("Has seleccionado el personaje J.A.M.");
+        }
+        else
+        {
+            Debug.Log("No has seleccionado ningún personaje");
+        }
         
-        //Activa el boton de ir a los minijuegos solo si ha seleccionado a uno (no aparece al inicio donde no hay seleccionado ninguno)
+        // Activa el boton de ir a los minijuegos solo si ha seleccionado a uno (no aparece al inicio donde no hay seleccionado ninguno)
         if (botonConfirmar != null) botonConfirmar.gameObject.SetActive(opcion == 0 || opcion == 1);
     }
     
@@ -28,13 +39,13 @@ public class ChangeScene : MonoBehaviour
     {
         if (opcion == 0)
         {
-            Debug.Log("Haznaritooooooooo");
-            SceneManager.LoadScene("Random");
+            Debug.Log("Cargando Scene Haznarito");
+            SceneManager.LoadScene("RandomHaznarito");
         }
         else
         {
-            Debug.Log("Jamon");
-            SceneManager.LoadScene("Random");
+            Debug.Log("Cargando Scene Haznarito JAM");
+            SceneManager.LoadScene("RandomJAM");
         }
     }
 }

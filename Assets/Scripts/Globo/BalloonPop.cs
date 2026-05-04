@@ -1,12 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-
 /**
  * Proyecto: Smoothie Criminal
  * Descripción: Minijuego de inflar el globo con control de tiempo fluido para la UI.
  * Autor: Luis Miguel Muñoz Vega
- * Última modificación: 26/04/2026 (Álvaro Muñoz Adán)
+ * Última modificación: 04/05/2026 (Álvaro Muñoz Adán) -> Corrección Timer
  */
 
 public class BalloonPop : MonoBehaviour
@@ -26,7 +25,7 @@ public class BalloonPop : MonoBehaviour
     #region Variables de Estado
     private int spaceCount = 0;  
     private bool gameFinished = false;
-    private float tiempoRestante; // Control para la pajita UI
+    private float tiempoRestante; 
     #endregion
 
     void Start()
@@ -41,45 +40,53 @@ public class BalloonPop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && targetObject != null && !gameFinished)
+        if (gameFinished) return;
+
+        // Restar el tiempo real cada frame
+        tiempoRestante -= Time.deltaTime;
+
+        // Comprobar si se acabó el tiempo
+        if (tiempoRestante <= 0)
+        {
+            tiempoRestante = 0;
+            FinalizarJuego(false);
+            return;
+        }
+
+        // Lógica de inflar el globo
+        if (Input.GetKeyDown(KeyCode.Space) && targetObject != null)
         {
             spaceCount++;
-            
             targetObject.transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
             
-            // Calcular en qué tercio estamos (cambio de sprites)
             int totalSprites = balloonSprites.Length;
             int index = Mathf.FloorToInt((float)spaceCount / pressesToPop * totalSprites);
-
-            // Asegurar que no se pase del índice máximo
             index = Mathf.Clamp(index, 0, totalSprites - 1);
-
             targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[index];
             
             if (spaceCount >= pressesToPop)
             {
-                targetObject.GetComponent<SpriteRenderer>().sprite = explosionSprite;
-                gameFinished = true;
-                GameManager.instancia.Ganar();
-                Debug.Log("¡Has ganado!");
+                FinalizarJuego(true);
             }
         }
     }
 
-    private IEnumerator TimerCoroutine()
+    private void FinalizarJuego(bool victoria)
     {
-        yield return new WaitForSeconds(timer);
-
-        if (!gameFinished)
+        gameFinished = true;
+        if (victoria)
         {
-            gameFinished = true;
-            if (targetObject != null && targetObject.activeSelf)
-            {
-                GameManager.instancia.Perder();
-                Debug.Log("¡Has perdido!");
-            }
+            targetObject.GetComponent<SpriteRenderer>().sprite = explosionSprite;
+            GameManager.instancia.Ganar();
+            Debug.Log("¡Has ganado!");
+        }
+        else
+        {
+            GameManager.instancia.Perder();
+            Debug.Log("¡Has perdido por tiempo!");
         }
     }
+
     #region Getters para UI
     public float ObtenerTiempoLimite() => timer;
     public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);

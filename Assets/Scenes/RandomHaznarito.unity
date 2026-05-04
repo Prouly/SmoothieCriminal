@@ -1461,12 +1461,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escenaBase: Random
   minijuegos:
-  - Topos
   - Balloon
   - Patos
-  - Trileros
   - Vaquero
-  - Carrera
   - Bichos
   - BuscarHaznarito
   - Natacion
