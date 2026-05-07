@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 377a2f653cc6bf0468a55598750551a9
+guid: 5363e0573adaa1a4a9112fa6f18c2590
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4340932709685814586
-    second: Globo3_0
+      213: 527659046258725021
+    second: Sprites_Carta_Framberry_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Globo3_0
+      name: Sprites_Carta_Framberry_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 14
-        width: 694
-        height: 650
+        x: 0
+        y: 0
+        width: 314
+        height: 338
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ca9d4523b8e1c3c0800000000000000
-      internalID: -4340932709685814586
+      spriteID: d90d5ce5b1f925700800000000000000
+      internalID: 527659046258725021
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Globo3_0: -4340932709685814586
+      Sprites_Carta_Framberry_0: 527659046258725021
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

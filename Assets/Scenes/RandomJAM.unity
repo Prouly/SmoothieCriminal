@@ -1474,6 +1474,7 @@ MonoBehaviour:
   - Carrera
   - Bichos
   - BuscarHaznarito
+  - Cartas
   vidas: 4
   puntosPorIncrementoVelocidad: 2
   puntos: 0

@@ -12,7 +12,7 @@ public class BalloonPop : MonoBehaviour
 {
     #region Variables de Configuración
     [Header("Ajustes del Globo")]
-    [SerializeField] private GameObject targetObject;    
+    [SerializeField] private GameObject Balloon;    
     [SerializeField] private float scaleIncrement = 0.1f;
     [SerializeField] private int pressesToPop = 10;        
     [SerializeField] private Sprite explosionSprite;
@@ -32,9 +32,9 @@ public class BalloonPop : MonoBehaviour
     {
         tiempoRestante = timer;
         
-        if (targetObject != null && balloonSprites.Length > 0)
+        if (Balloon != null && balloonSprites.Length > 0)
         {
-            targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[0];
+            Balloon.GetComponent<SpriteRenderer>().sprite = balloonSprites[0];
         }
     }
 
@@ -54,15 +54,15 @@ public class BalloonPop : MonoBehaviour
         }
 
         // Lógica de inflar el globo
-        if (Input.GetKeyDown(KeyCode.Space) && targetObject != null)
+        if (Input.GetKeyDown(KeyCode.Space) && Balloon != null)
         {
             spaceCount++;
-            targetObject.transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
+            Balloon.transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
             
             int totalSprites = balloonSprites.Length;
             int index = Mathf.FloorToInt((float)spaceCount / pressesToPop * totalSprites);
             index = Mathf.Clamp(index, 0, totalSprites - 1);
-            targetObject.GetComponent<SpriteRenderer>().sprite = balloonSprites[index];
+            Balloon.GetComponent<SpriteRenderer>().sprite = balloonSprites[index];
             
             if (spaceCount >= pressesToPop)
             {
@@ -76,7 +76,7 @@ public class BalloonPop : MonoBehaviour
         gameFinished = true;
         if (victoria)
         {
-            targetObject.GetComponent<SpriteRenderer>().sprite = explosionSprite;
+            Balloon.GetComponent<SpriteRenderer>().sprite = explosionSprite;
             GameManager.instancia.Ganar();
             Debug.Log("¡Has ganado!");
         }

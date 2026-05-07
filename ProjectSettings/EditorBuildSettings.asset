@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Natacion.unity
     guid: 00272a225eb28344a88404d455cdae43
   - enabled: 1
+    path: Assets/Scenes/Cartas.unity
+    guid: d042c3fe5e6c5134ab1580a0caf49ee1
+  - enabled: 1
     path: Assets/Scenes/Penalti.unity
     guid: d316214777159f644a5fe19099b87823
   - enabled: 1
