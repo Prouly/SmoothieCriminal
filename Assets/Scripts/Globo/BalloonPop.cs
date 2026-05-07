@@ -5,7 +5,7 @@ using UnityEngine;
  * Proyecto: Smoothie Criminal
  * Descripción: Minijuego de inflar el globo con control de tiempo fluido para la UI.
  * Autor: Luis Miguel Muñoz Vega
- * Última modificación: 04/05/2026 (Álvaro Muñoz Adán) -> Corrección Timer
+ * Última modificación: 07/05/2026 (Álvaro Muñoz Adán) -> Agregado efectos de sonido para inflado y explosion
  */
 
 public class BalloonPop : MonoBehaviour
@@ -20,18 +20,30 @@ public class BalloonPop : MonoBehaviour
 
     [Header("Ajustes de Tiempo")]
     [SerializeField] private float timer = 7f; 
+
+    [Header("Ajustes de Sonido")]
+    [SerializeField] private AudioClip inflateSound; // Sonido al pulsar espacio
+    [SerializeField] private AudioClip popSound;     // Sonido al explotar
     #endregion
 
     #region Variables de Estado
     private int spaceCount = 0;  
     private bool gameFinished = false;
     private float tiempoRestante; 
+    private AudioSource audioSource; // Referencia interna al componente
     #endregion
 
     void Start()
     {
         tiempoRestante = timer;
         
+        // Obtenemos o añadimos el componente AudioSource automáticamente
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         if (Balloon != null && balloonSprites.Length > 0)
         {
             Balloon.GetComponent<SpriteRenderer>().sprite = balloonSprites[0];
@@ -42,10 +54,8 @@ public class BalloonPop : MonoBehaviour
     {
         if (gameFinished) return;
 
-        // Restar el tiempo real cada frame
         tiempoRestante -= Time.deltaTime;
 
-        // Comprobar si se acabó el tiempo
         if (tiempoRestante <= 0)
         {
             tiempoRestante = 0;
@@ -53,10 +63,16 @@ public class BalloonPop : MonoBehaviour
             return;
         }
 
-        // Lógica de inflar el globo
         if (Input.GetKeyDown(KeyCode.Space) && Balloon != null)
         {
             spaceCount++;
+            
+            // --- EFECTO DE SONIDO: INFLAR ---
+            if (inflateSound != null)
+            {
+                audioSource.PlayOneShot(inflateSound);
+            }
+
             Balloon.transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
             
             int totalSprites = balloonSprites.Length;
@@ -76,6 +92,12 @@ public class BalloonPop : MonoBehaviour
         gameFinished = true;
         if (victoria)
         {
+            // --- EFECTO DE SONIDO: EXPLOSIÓN ---
+            if (popSound != null)
+            {
+                audioSource.PlayOneShot(popSound);
+            }
+
             Balloon.GetComponent<SpriteRenderer>().sprite = explosionSprite;
             GameManager.instancia.Ganar();
             Debug.Log("¡Has ganado!");

@@ -786,6 +786,8 @@ MonoBehaviour:
   - {fileID: -4340932709685814586, guid: 377a2f653cc6bf0468a55598750551a9, type: 3}
   - {fileID: -5794030183063270689, guid: bd06df875b1e5a343a0cc53786251ca7, type: 3}
   timer: 5
+  inflateSound: {fileID: 8300000, guid: 79bb03e4c6384d443b97be4a95279208, type: 3}
+  popSound: {fileID: 8300000, guid: f3c906ee7f1b3b84ab9d3f751ae26c88, type: 3}
 --- !u!4 &2146166264
 Transform:
   m_ObjectHideFlags: 0

@@ -1090,6 +1090,9 @@ MonoBehaviour:
   tiempoMezcla: 5
   tiempoDecision: 3
   duracionIntercambio: 0.5
+  sonidoMovimiento: {fileID: 8300000, guid: 799116e956436984286162094a9de3d3, type: 3}
+  sonidoAcierto: {fileID: 8300000, guid: fbfd1c332bb57ec42bff77e623fec426, type: 3}
+  sonidoFallo: {fileID: 8300000, guid: 25920ff9156cad94fba4485d6d1727f3, type: 3}
 --- !u!4 &2092874959
 Transform:
   m_ObjectHideFlags: 0

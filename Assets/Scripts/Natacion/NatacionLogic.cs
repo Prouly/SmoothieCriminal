@@ -15,24 +15,33 @@ public class NatacionLogic : MonoBehaviour
     [SerializeField] private float tiempoLimite = 7f;
 
     [Header("Ajustes de Carrera")]
-    [SerializeField] private float xMeta = 8.5f; // Posición X donde están las boyas de "Finish"
+    [SerializeField] private float xMeta = 8.5f; 
     [SerializeField] private Transform jugador;
     [SerializeField] private Transform pezEnemigo;
 
     [Header("Efectos de Sonido")]
     [SerializeField] private AudioClip sonidoChapoteo;
+    [SerializeField] private AudioClip sonidoVictoria; // Nuevo: Sonido al ganar
+    [SerializeField] private AudioClip sonidoDerrota;  // Nuevo: Sonido al perder
     #endregion
 
     #region Variables de Estado
     private float tiempoRestante;
     private bool juegoTerminado = false;
+    private AudioSource audioSource; // Referencia interna
     #endregion
 
     #region Métodos de Unity
     void Start()
     {
+        // Configuramos el AudioSource automáticamente
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         tiempoRestante = tiempoLimite;
-        // Ocultar cursor como en los otros juegos
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
@@ -60,17 +69,13 @@ public class NatacionLogic : MonoBehaviour
 
     private void VerificarCondiciones()
     {
-        // Victoria: El jugador cruza la meta
         if (jugador.position.x >= xMeta)
         {
-            Debug.Log("SISTEMA: ¡Libre de peligro! Has ganado.");
             FinalizarPartida(true);
         }
 
-        // Derrota: El pez alcanza la posición del jugador
         if (pezEnemigo.position.x >= jugador.position.x)
         {
-            Debug.Log("SISTEMA: El pez te alcanzó.");
             FinalizarPartida(false);
         }
     }
@@ -79,8 +84,8 @@ public class NatacionLogic : MonoBehaviour
     {
         if (sonidoChapoteo != null)
         {
-            // Sonido persistente estilo Smoothie Criminal
-            AudioSource.PlayClipAtPoint(sonidoChapoteo, Camera.main.transform.position);
+            // Mantenemos el método original por si lo usas desde animaciones
+            audioSource.PlayOneShot(sonidoChapoteo);
         }
     }
 
@@ -88,6 +93,16 @@ public class NatacionLogic : MonoBehaviour
     {
         if (juegoTerminado) return;
         juegoTerminado = true;
+
+        // --- LÓGICA DE SONIDO FINAL ---
+        if (victoria && sonidoVictoria != null)
+        {
+            audioSource.PlayOneShot(sonidoVictoria);
+        }
+        else if (!victoria && sonidoDerrota != null)
+        {
+            audioSource.PlayOneShot(sonidoDerrota);
+        }
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

@@ -2,7 +2,7 @@
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
  * Descripción: Gestión de trileros con soporte para temporizador visual en la fase de decisión.
- * Última modificación: 26/04/2026
+ * Última modificación: 07/05/2026 -> Implementados sonidos de movimiento y de ganar/perder.
  */
 
 using UnityEngine;
@@ -18,21 +18,32 @@ public class ShellGameLogic : MonoBehaviour
     [Header("Ajustes de Tiempos y Velocidad")]
     [SerializeField] private float alturaLevantado = 2f;
     [SerializeField] private float tiempoMezcla = 5f;
-    [SerializeField] private float tiempoDecision = 3f; // Este es el tiempo que mostrará la barra
-    
+    [SerializeField] private float tiempoDecision = 3f; 
     [SerializeField] private float duracionIntercambio = 0.5f; 
+
+    [Header("Ajustes de Sonido")]
+    [SerializeField] private AudioClip sonidoMovimiento; // Sonido mientras se mezclan
+    [SerializeField] private AudioClip sonidoAcierto;    // Sonido al ganar
+    [SerializeField] private AudioClip sonidoFallo;      // Sonido al perder
     #endregion
 
     #region Variables de Estado
     private int indiceGanador;
     private bool puedeElegir = false;
     private bool juegoTerminado = false;
-    private float tiempoRestante; // Variable para la UI
+    private float tiempoRestante; 
+    private AudioSource audioSource; // Referencia al emisor de sonido
     #endregion
 
     void Start()
     {
-        // Inicializamos el tiempo restante al máximo para que la barra empiece llena
+        // Configuramos el AudioSource automáticamente
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         tiempoRestante = tiempoDecision; 
         StartCoroutine(SecuenciaJuego());
     }
@@ -61,15 +72,15 @@ public class ShellGameLogic : MonoBehaviour
             int b = Random.Range(0, vasos.Length);
             while (a == b) b = Random.Range(0, vasos.Length);
 
+            // REPRODUCIR SONIDO DE MOVIMIENTO
+            if (sonidoMovimiento != null) audioSource.PlayOneShot(sonidoMovimiento);
+
             yield return IntercambiarVasos(a, b);
             tiempoPasado += duracionIntercambio; 
         }
 
-        // 4. Fase de Selección (ACTUALIZADO PARA TIMER)
+        // 4. Fase de Selección
         puedeElegir = true;
-        Debug.Log("SISTEMA: Elige un vaso...");
-
-        // Reemplazamos el WaitForSeconds por un bucle manual para descontar tiempo
         while (tiempoRestante > 0 && !juegoTerminado)
         {
             tiempoRestante -= Time.deltaTime;
@@ -78,12 +89,10 @@ public class ShellGameLogic : MonoBehaviour
 
         if (!juegoTerminado)
         {
-            Debug.Log("RESULTADO: Tiempo agotado.");
             FinalizarJuego(false);
         }
     }
 
-    // (Los métodos IntercambiarVasos y MoverVaso se mantienen igual que en tu script original)
     IEnumerator IntercambiarVasos(int idxA, int idxB)
     {
         Vector3 posA = vasos[idxA].position;
@@ -123,6 +132,12 @@ public class ShellGameLogic : MonoBehaviour
         juegoTerminado = true;
         bool esCorrecto = (vasoClickeado == vasos[indiceGanador]);
 
+        // REPRODUCIR SONIDO SEGÚN EL RESULTADO
+        if (esCorrecto && sonidoAcierto != null) 
+            audioSource.PlayOneShot(sonidoAcierto);
+        else if (!esCorrecto && sonidoFallo != null) 
+            audioSource.PlayOneShot(sonidoFallo);
+
         if (esCorrecto) bolita.transform.SetParent(null); 
 
         StartCoroutine(MoverVaso(vasoClickeado, vasoClickeado.position + new Vector3(0, alturaLevantado, 0), 0.3f));
@@ -138,7 +153,6 @@ public class ShellGameLogic : MonoBehaviour
         }
     }
 
-    // Métodos para que el script de UI pueda leer los datos
     public float ObtenerTiempoLimite() => tiempoDecision;
     public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
     #endregion

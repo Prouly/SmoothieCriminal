@@ -311,6 +311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoLimite: 7
+  sonidoPaso: {fileID: 8300000, guid: 9b2f0b70ed1d1b644b129d9eb4b19c81, type: 3}
+  sonidoVictoria: {fileID: 8300000, guid: 49b2426b77a1e8347ae0c70603e4938c, type: 3}
+  sonidoDerrota: {fileID: 8300000, guid: 057bda9b126113a49aca56cc6dbf7326, type: 3}
 --- !u!4 &222957324
 Transform:
   m_ObjectHideFlags: 0

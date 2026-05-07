@@ -667,6 +667,8 @@ MonoBehaviour:
   jugador: {fileID: 673874282}
   pezEnemigo: {fileID: 1700674407}
   sonidoChapoteo: {fileID: 8300000, guid: b6ab757abdd1ca6458b758b9ebdd442e, type: 3}
+  sonidoVictoria: {fileID: 8300000, guid: 5e9b44335dc7a394081d0ebada1243ee, type: 3}
+  sonidoDerrota: {fileID: 8300000, guid: 6fcae49e878a21b4ba628049aafab17d, type: 3}
 --- !u!4 &1719258887
 Transform:
   m_ObjectHideFlags: 0
