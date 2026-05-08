@@ -2056,8 +2056,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Haznarito
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7ffe9706b429ce24d842a4221d1596ee, type: 2}
-  m_sharedMaterial: {fileID: -5222993151663408319, guid: 7ffe9706b429ce24d842a4221d1596ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2de84ef3e9bd1474b983098c9621c623, type: 2}
+  m_sharedMaterial: {fileID: -5222993151663408319, guid: 2de84ef3e9bd1474b983098c9621c623, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -1294,8 +1294,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1467,6 +1467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcead568126eae498e7a5708ed6bb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escenaMinijuego: 
   escenaBase: Random
   minijuegos:
   - Topos
@@ -1475,6 +1476,8 @@ MonoBehaviour:
   - Bichos
   - BuscarHaznarito
   - Cartas
+  - BasketBall
+  - SimonDice
   vidas: 4
   puntosPorIncrementoVelocidad: 2
   puntos: 0

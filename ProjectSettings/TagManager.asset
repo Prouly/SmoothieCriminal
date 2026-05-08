@@ -7,14 +7,16 @@ TagManager:
   - NPC
   - Porteria
   - Portero
+  - Canasta
+  - FosaNasal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Balon
   - 
   - 
   - 

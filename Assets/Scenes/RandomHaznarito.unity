@@ -154,7 +154,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 486, y: 337}
+  m_SizeDelta: {x: 303.8, y: 268.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &86630248
 MonoBehaviour:
@@ -322,8 +322,9 @@ GameObject:
   - component: {fileID: 523098609}
   - component: {fileID: 523098608}
   - component: {fileID: 523098607}
+  - component: {fileID: 523098610}
   m_Layer: 0
-  m_Name: TransicionNormal
+  m_Name: TransicionGanar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,7 +340,7 @@ Animator:
   m_GameObject: {fileID: 523098606}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 538bd6ae0f685bd4782f4c413094e47b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6e6a3e852418166439ca5a0ba8aca06d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -395,7 +396,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5706012869357991561, guid: b89534a557eed8c4e8c80475ef0e0a6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 642d708c7e1bfa549b35934e7ec4b9e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -406,14 +407,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &523098609
-Transform:
+--- !u!224 &523098609
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523098606}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -421,6 +421,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 17.777779, y: 13.333333}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &523098610
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523098606}
+  m_CullTransparentMesh: 1
 --- !u!1001 &543372976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,8 +830,8 @@ Camera:
   m_GameObject: {fileID: 790497174}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.3046903, g: 0.33661893, b: 0.38679248, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -943,16 +956,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321544461}
-  m_LocalRotation: {x: 0, y: 0, z: -0.067754045, w: 0.99770206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.0998, y: 2.1997, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 723676119}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.77}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.99, y: 27.7}
+  m_AnchoredPosition: {x: 1.99, y: -407}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1321544463
@@ -986,8 +999,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288167845
-  m_fontColor: {r: 0.64705884, g: 0.24705884, b: 0.59607846, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1092,7 +1105,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 486, y: 337}
+  m_SizeDelta: {x: 315.3, y: 261.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1518506469
 MonoBehaviour:
@@ -1177,6 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcead568126eae498e7a5708ed6bb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escenaMinijuego: 
   escenaBase: Random
   minijuegos:
   - Balloon
@@ -1185,6 +1199,7 @@ MonoBehaviour:
   - BuscarHaznarito
   - Natacion
   - Penalti
+  - Nariz
   vidas: 4
   puntosPorIncrementoVelocidad: 2
   puntos: 0

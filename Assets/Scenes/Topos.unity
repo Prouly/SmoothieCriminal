@@ -563,6 +563,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
@@ -760,6 +764,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
@@ -906,7 +914,7 @@ MonoBehaviour:
   - {fileID: -7672302246943954328, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
   - {fileID: 6765150819860492587, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
   - {fileID: -8816437492652142600, guid: 40aa4397608dc2d4ea8ecd94e300b6e9, type: 3}
-  tiempoEntreFrames: 0.3
+  tiempoEntreFrames: 0.2
   tiempoVulnerable: 1
 --- !u!1001 &1005256075
 PrefabInstance:
@@ -964,6 +972,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
@@ -1164,6 +1176,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
@@ -1236,6 +1252,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1394,6 +1414,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
@@ -1570,6 +1594,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
@@ -1647,6 +1675,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1195368839}
+    - target: {fileID: 7330767284452684088, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
+      propertyPath: tiempoEntreFrames
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9138642876292215156, guid: 9fc93d427db3bf048abe145fcccad99c, type: 3}
     m_RemovedGameObjects: []
