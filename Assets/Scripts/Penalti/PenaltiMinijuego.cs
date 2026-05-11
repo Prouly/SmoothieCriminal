@@ -1,6 +1,14 @@
 using UnityEngine;
 using TMPro;
 
+/**
+ * Proyecto: Smoothie Criminal
+ * Autor: Yeray
+ * Descripción: Minijuego de penaltis con sonidos, mensajes de consola y cambio de sprites.
+ * Última modificación: 10/05/2026 (Álvaro Muñoz Adán) -> Implementado cambio de Sprites en caso de Victoria o Derrota, agregados console.log y sonidos
+ */
+
+[RequireComponent(typeof(AudioSource))]
 public class PenaltiMinijuego : MonoBehaviour
 {
     private enum EstadoJuego
@@ -12,19 +20,30 @@ public class PenaltiMinijuego : MonoBehaviour
 
     private EstadoJuego estadoActual;
 
-    [Header("Referencias")]
-    public Rigidbody2D rbPelota;
-    public Transform pelota;
-    public Transform flechaDireccion;
-    public Transform portero;
+    [Header("Referencias UI")]
     public TMP_Text textoInstruccion;
     public TMP_Text textoResultado;
 
-    [Header("Dirección")]
+    [Header("Referencias Objetos")]
+    public Rigidbody2D rbPelota;
+    public Transform pelota;
+    public Transform flechaDireccion;
+    public SpriteRenderer porteroRenderer;
+
+    [Header("Configuración Visual (Sprites)")]
+    public Sprite spritePorteroNormal;
+    public Sprite spritePorteroVictoria; 
+    public Sprite spritePorteroDerrota;  
+
+    [Header("Audio (AudioClips Directos)")]
+    private AudioSource miAudioSource;
+    public AudioClip clipDisparo;
+    public AudioClip clipVictoria;
+    public AudioClip clipDerrota;
+
+    [Header("Configuración de Juego")]
     public float anguloMaximo = 55f;
     public float velocidadFlecha = 120f;
-
-    [Header("Disparo")]
     public float potenciaFija = 10f;
     public float tiempoParaComprobarFuera = 1.5f;
 
@@ -41,150 +60,143 @@ public class PenaltiMinijuego : MonoBehaviour
 
     private float tiempoRestante;
     private float anguloActual;
-    private float anguloSeleccionado;
     private int direccionFlecha = 1;
+    private bool terminado = false;
 
-    private bool terminado;
-    private Vector2 posicionInicialPelota;
+    #region Getters para UI
+    public float ObtenerTiempoLimite() => tiempoLimite;
+    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
+    #endregion
+
+    void Awake()
+    {
+        miAudioSource = GetComponent<AudioSource>();
+        miAudioSource.playOnAwake = false;
+    }
 
     void Start()
     {
-        posicionInicialPelota = pelota.position;
-        IniciarJuego();
-    }
-
-    void IniciarJuego()
-    {
         estadoActual = EstadoJuego.ElegirDireccion;
-        terminado = false;
-
         tiempoRestante = tiempoLimite;
-
-        pelota.position = posicionInicialPelota;
-        rbPelota.linearVelocity = Vector2.zero;
-        rbPelota.angularVelocity = 0f;
-        rbPelota.bodyType = RigidbodyType2D.Kinematic;
-
         anguloActual = 0f;
-        direccionFlecha = 1;
-
-        flechaDireccion.gameObject.SetActive(true);
-
-        textoResultado.text = "";
-        textoInstruccion.text = "Pulsa ESPACIO para disparar";
+        
+        if(spritePorteroNormal != null) porteroRenderer.sprite = spritePorteroNormal;
+        
+        if(textoInstruccion != null) textoInstruccion.text = "¡ESPACIO PARA DISPARAR!";
+        if(textoResultado != null) textoResultado.text = "";
     }
 
     void Update()
     {
-        if (estadoActual == EstadoJuego.Finalizado)
-            return;
+        // Si el juego ha terminado, no hacemos nada más
+        if (terminado) return;
 
-        ActualizarTimer();
+        // 1. Manejar el tiempo (siempre corre mientras no termine)
+        ManejarTiempo();
 
-        if (estadoActual == EstadoJuego.Finalizado)
-            return;
-
+        // 2. MOVER PORTERO (Ahora está fuera del switch, se mueve SIEMPRE)
         MoverPortero();
 
-        if (estadoActual == EstadoJuego.ElegirDireccion)
-            ActualizarDireccion();
+        // 3. Lógica según el estado
+        switch (estadoActual)
+        {
+            case EstadoJuego.ElegirDireccion:
+                OscilarFlecha();
+                if (Input.GetKeyDown(KeyCode.Space)) Disparar();
+                break;
+
+            case EstadoJuego.Disparando:
+                // Aquí ya no hace falta poner MoverPortero porque está arriba
+                break;
+        }
     }
 
-    void ActualizarTimer()
+    void ManejarTiempo()
     {
         tiempoRestante -= Time.deltaTime;
-
-        if (tiempoRestante <= 0f)
+        if (tiempoRestante <= 0)
         {
-            tiempoRestante = 0f;
-            Finalizar(false, "¡TIEMPO!");
+            Debug.Log("PERDIDO: Se agotó el tiempo.");
+            Finalizar(false, "¡TIEMPO AGOTADO!");
         }
     }
 
-    void ActualizarDireccion()
+    void OscilarFlecha()
     {
-        anguloActual += velocidadFlecha * direccionFlecha * Time.deltaTime;
-
-        if (anguloActual >= anguloMaximo)
+        anguloActual += direccionFlecha * velocidadFlecha * Time.deltaTime;
+        if (Mathf.Abs(anguloActual) >= anguloMaximo)
         {
-            anguloActual = anguloMaximo;
-            direccionFlecha = -1;
+            direccionFlecha *= -1;
+            anguloActual = Mathf.Clamp(anguloActual, -anguloMaximo, anguloMaximo);
         }
-        else if (anguloActual <= -anguloMaximo)
-        {
-            anguloActual = -anguloMaximo;
-            direccionFlecha = 1;
-        }
-
-        flechaDireccion.rotation = Quaternion.Euler(0, 0, anguloActual + rotacionBaseFlecha);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            anguloSeleccionado = anguloActual;
-            Disparar();
-        }
+        flechaDireccion.localRotation = Quaternion.Euler(0, 0, anguloActual + rotacionBaseFlecha);
     }
 
     void Disparar()
     {
         estadoActual = EstadoJuego.Disparando;
+        if (clipDisparo != null) miAudioSource.PlayOneShot(clipDisparo);
 
-        flechaDireccion.gameObject.SetActive(false);
-        textoInstruccion.text = "";
-
-        rbPelota.bodyType = RigidbodyType2D.Dynamic;
-
-        Vector2 direccion = Quaternion.Euler(0, 0, anguloSeleccionado) * Vector2.up;
+        Vector2 direccion = Quaternion.Euler(0, 0, anguloActual) * Vector2.up;
         rbPelota.linearVelocity = direccion.normalized * potenciaFija;
 
-        Invoke(nameof(ComprobarResultado), tiempoParaComprobarFuera);
+        Invoke(nameof(ComprobarResultadoFuera), tiempoParaComprobarFuera);
     }
 
     void MoverPortero()
     {
-        Vector3 pos = portero.position;
+        Vector3 pos = porteroRenderer.transform.position;
         pos.x = Mathf.PingPong(Time.time * velocidadPortero, limiteDerecho - limiteIzquierdo) + limiteIzquierdo;
-        portero.position = pos;
+        porteroRenderer.transform.position = pos;
     }
 
-    void ComprobarResultado()
+    void ComprobarResultadoFuera()
     {
         if (!terminado)
+        {
+            Debug.Log("PERDIDO: El balón se fue fuera.");
             Finalizar(false, "¡FUERA!");
+        }
     }
 
     public void Gol()
     {
+        Debug.Log("GANADO: ¡Gol marcado!");
         Finalizar(true, "¡GOOOL!");
     }
 
     public void Parada()
     {
+        Debug.Log("PERDIDO: El portero ha parado el balón.");
         Finalizar(false, "¡PARADA!");
     }
 
     void Finalizar(bool gana, string mensaje)
     {
         if (terminado) return;
-
         terminado = true;
         estadoActual = EstadoJuego.Finalizado;
 
-        CancelInvoke(nameof(ComprobarResultado));
+        CancelInvoke(nameof(ComprobarResultadoFuera));
 
         rbPelota.linearVelocity = Vector2.zero;
         rbPelota.angularVelocity = 0f;
-
         flechaDireccion.gameObject.SetActive(false);
-        textoInstruccion.text = "";
-        textoResultado.text = mensaje;
+        
+        if(textoInstruccion != null) textoInstruccion.text = "";
+        if(textoResultado != null) textoResultado.text = mensaje;
 
-        // Más adelante, aquí irá la llamada al GameManager:
-        if (gana) GameManager.instancia.Ganar();
-        else GameManager.instancia.Perder();
+        if (gana)
+        {
+            if (clipVictoria != null) miAudioSource.PlayOneShot(clipVictoria);
+            if (spritePorteroVictoria != null) porteroRenderer.sprite = spritePorteroVictoria;
+            if (GameManager.instancia != null) GameManager.instancia.Ganar();
+        }
+        else
+        {
+            if (clipDerrota != null) miAudioSource.PlayOneShot(clipDerrota);
+            if (spritePorteroDerrota != null) porteroRenderer.sprite = spritePorteroDerrota;
+            if (GameManager.instancia != null) GameManager.instancia.Perder();
+        }
     }
-
-    // Estos métodos sirven para que una UI de timer pueda leer el tiempo si lo necesita.
-    public float ObtenerTiempoLimite() => tiempoLimite;
-    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
 }

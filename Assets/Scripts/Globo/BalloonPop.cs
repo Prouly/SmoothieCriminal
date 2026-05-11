@@ -24,6 +24,7 @@ public class BalloonPop : MonoBehaviour
     [Header("Ajustes de Sonido")]
     [SerializeField] private AudioClip inflateSound; // Sonido al pulsar espacio
     [SerializeField] private AudioClip popSound;     // Sonido al explotar
+    [SerializeField] private AudioClip loseSound;    // Sonido al perder por tiempo (AÑADIDO)
     #endregion
 
     #region Variables de Estado
@@ -43,30 +44,31 @@ public class BalloonPop : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-
-        if (Balloon != null && balloonSprites.Length > 0)
-        {
-            Balloon.GetComponent<SpriteRenderer>().sprite = balloonSprites[0];
-        }
     }
 
     void Update()
     {
         if (gameFinished) return;
 
-        tiempoRestante -= Time.deltaTime;
+        ManejarTiempo();
+        ManejarEntrada();
+    }
 
+    private void ManejarTiempo()
+    {
+        tiempoRestante -= Time.deltaTime;
         if (tiempoRestante <= 0)
         {
-            tiempoRestante = 0;
             FinalizarJuego(false);
-            return;
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space) && Balloon != null)
+    private void ManejarEntrada()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             spaceCount++;
-            
+
             // --- EFECTO DE SONIDO: INFLAR ---
             if (inflateSound != null)
             {
@@ -104,6 +106,12 @@ public class BalloonPop : MonoBehaviour
         }
         else
         {
+            // --- EFECTO DE SONIDO: DERROTA (AÑADIDO) ---
+            if (loseSound != null)
+            {
+                audioSource.PlayOneShot(loseSound);
+            }
+
             GameManager.instancia.Perder();
             Debug.Log("¡Has perdido por tiempo!");
         }

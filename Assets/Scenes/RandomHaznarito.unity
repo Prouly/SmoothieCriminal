@@ -1196,10 +1196,11 @@ MonoBehaviour:
   - Balloon
   - Patos
   - Vaquero
-  - BuscarHaznarito
   - Natacion
   - Penalti
   - Nariz
+  - Martillo
+  - Plataforma
   vidas: 4
   puntosPorIncrementoVelocidad: 2
   puntos: 0

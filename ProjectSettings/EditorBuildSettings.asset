@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 45a506a62c620484f961aeb54101844e
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: c5c8b0633ac93cd4a82da360f383ccf2
   - enabled: 1
@@ -39,7 +42,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Topos.unity
     guid: 4d2295fa5f78e084b9f2e51bd36a0cda
   - enabled: 1
-    path: Assets/Scenes/BuscarHaznarito.unity
+    path: Assets/Scenes/BuscarJam.unity
     guid: 23b742c7af24a1e4394c387b225340bf
   - enabled: 1
     path: Assets/Scenes/Bichos.unity
@@ -66,14 +69,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Martillo.unity
     guid: 0e1ac559cb823194c977cf3aa11d656f
   - enabled: 1
-    path: Assets/Scenes/Ski.unity
-    guid: cc16808d3424a294e8e484e324206a57
-  - enabled: 1
     path: Assets/Scenes/Plataforma.unity
     guid: 384ddcaf54cb76d479243806d98f5720
   - enabled: 1
     path: Assets/Scenes/FinDEMO.unity
     guid: 034609c628edec943b088f908e00a5a6
+  - enabled: 1
+    path: Assets/Scenes/Ski.unity
+    guid: cc16808d3424a294e8e484e324206a57
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
