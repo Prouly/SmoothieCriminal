@@ -1,91 +1,134 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
- * Descripción: Lógica del minijuego Busca a JAM con sorting dinámico y gestión de contenedor de spawns.
- * Última modificación: 10/05/2026 -> Agregados sonidos en victoria o derrota
+ * Descripción: Lógica del minijuego Busca a JAM con fase de presentación y selección de prefabs individuales.
+ * Última modificación: 12/05/2026 -> Creado Panel de los 3 posibles personajes a buscar adaptado para usar Prefabs específicos por personaje.
  */
-using UnityEngine;
-using System.Collections.Generic;
 
 public class FindJamLogic : MonoBehaviour
 {
     #region Variables de Configuración
     [Header("Ajustes de Tiempo")]
     [SerializeField] private float tiempoLimite = 7f;
+    [SerializeField] private float tiempoPresentacion = 4f;
 
-    [Header("Referencias de Personajes")]
-    [SerializeField] private GameObject prefabHaznarito; 
-    [SerializeField] private GameObject[] prefabsRivales; // Los otros 10 personajes
-    
+    [Header("Pool de Personajes (Prefabs)")]
+    public GameObject[] prefabsPosiblesObjetivos; 
+    public Sprite[] spritesParaUI; // Sprites para UI (en el mismo orden que los prefabs)
+    public GameObject[] prefabsRivales; 
+
+    [Header("Referencias de UI Intro")]
+    public GameObject panelPresentacion;
+    public Image imagenObjetivoUI;
+
     [Header("Puntos de Spawn")]
-    [SerializeField] private Transform contenedorSpawns; // Objeto padre que contiene los 41 puntos
+    public Transform contenedorSpawns; 
 
     [Header("Ajustes de Sonido")]
-    [SerializeField] private AudioClip winSound; // Sonido al ganar
-    [SerializeField] private AudioClip loseSound; // Sonido al perder por tiempo
+    public AudioClip winSound; 
+    public AudioClip loseSound; 
     #endregion
 
-    #region Variables de Estado
     private bool juegoTerminado = false;
+    private bool juegoIniciado = false;
     private float tiempoRestante;
     private List<Transform> puntosDisponibles = new List<Transform>();
-    private AudioSource audioSource; // Referencia interna
-    #endregion
+    private AudioSource audioSource;
+    
+    private GameObject prefabSeleccionadoObjetivo;
+    private Sprite spriteParaMostrarEnUI;
 
     void Start()
     {
         tiempoRestante = tiempoLimite;
-
-        // Configuración de audio
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
 
         ObtenerPuntosDeSpawn();
-        ConfigurarEscena();
+        ElegirObjetivoAleatorio();
+        StartCoroutine(SecuenciaIntro());
     }
 
     void Update()
     {
-        if (juegoTerminado) return;
+        if (!juegoIniciado || juegoTerminado) return;
 
         tiempoRestante -= Time.deltaTime;
-        if (tiempoRestante <= 0)
+        if (tiempoRestante <= 0) FinalizarJuego(false);
+    }
+
+    private void ElegirObjetivoAleatorio()
+    {
+        if (prefabsPosiblesObjetivos.Length > 0)
         {
-            FinalizarJuego(false);
+            int index = Random.Range(0, prefabsPosiblesObjetivos.Length);
+            prefabSeleccionadoObjetivo = prefabsPosiblesObjetivos[index];
+            
+            // Usamos el array de sprites para evitar errores de lectura del prefab
+            if (index < spritesParaUI.Length)
+            {
+                spriteParaMostrarEnUI = spritesParaUI[index];
+                if (imagenObjetivoUI != null)
+                {
+                    imagenObjetivoUI.sprite = spriteParaMostrarEnUI;
+                    // Forzamos que la imagen sea visible
+                    imagenObjetivoUI.enabled = true;
+                }
+            }
         }
     }
 
-    private void ObtenerPuntosDeSpawn()
+    IEnumerator SecuenciaIntro()
     {
-        if (contenedorSpawns == null) return;
-        foreach (Transform t in contenedorSpawns)
+        // Aseguramos que el panel esté activo
+        if (panelPresentacion != null) panelPresentacion.SetActive(true);
+        juegoIniciado = false;
+
+        yield return new WaitForSeconds(tiempoPresentacion);
+
+        if (panelPresentacion != null) panelPresentacion.SetActive(false);
+        ConfigurarEscena(); 
+        juegoIniciado = true;
+    }
+
+    void ObtenerPuntosDeSpawn()
+    {
+        puntosDisponibles.Clear();
+        foreach (Transform hijo in contenedorSpawns)
         {
-            puntosDisponibles.Add(t);
+            puntosDisponibles.Add(hijo);
         }
     }
 
-    private void ConfigurarEscena()
+    void ConfigurarEscena()
     {
-        if (puntosDisponibles.Count == 0) return;
+        if (puntosDisponibles.Count == 0 || prefabSeleccionadoObjetivo == null) return;
 
-        // Spawn Haznarito
-        int indiceAzar = Random.Range(0, puntosDisponibles.Count);
-        SpawnPersonaje(prefabHaznarito, puntosDisponibles[indiceAzar], true);
-        puntosDisponibles.RemoveAt(indiceAzar);
+        // 1. Elegir UN solo punto para el objetivo
+        int indiceAleatorio = Random.Range(0, puntosDisponibles.Count);
+        Transform puntoObjetivo = puntosDisponibles[indiceAleatorio];
+        puntosDisponibles.RemoveAt(indiceAleatorio);
 
-        // Spawn Rivales
+        InstanciarPersonaje(puntoObjetivo, prefabSeleccionadoObjetivo, true);
+
+        // 2. Rellenar el RESTO de puntos con rivales aleatorios
         foreach (Transform punto in puntosDisponibles)
         {
             GameObject prefabRival = prefabsRivales[Random.Range(0, prefabsRivales.Length)];
-            SpawnPersonaje(prefabRival, punto, false);
+            InstanciarPersonaje(punto, prefabRival, false);
         }
     }
 
-    private void SpawnPersonaje(GameObject prefab, Transform punto, bool esObjetivo)
+    void InstanciarPersonaje(Transform punto, GameObject prefab, bool esObjetivo)
     {
-        GameObject nuevoPersonaje = Instantiate(prefab, punto.position, Quaternion.identity, punto);
+        GameObject nuevo = Instantiate(prefab, punto.position, Quaternion.identity, punto);
         
-        SpriteRenderer sr = nuevoPersonaje.GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = nuevo.GetComponent<SpriteRenderer>();
         if (sr != null)
         {
             sr.sortingOrder = Mathf.RoundToInt(punto.position.y * -100f);
@@ -93,8 +136,16 @@ public class FindJamLogic : MonoBehaviour
 
         if (esObjetivo)
         {
-            JamTarget target = nuevoPersonaje.AddComponent<JamTarget>();
+            // Solo el objetivo recibe el script de click
+            JamTarget target = nuevo.GetComponent<JamTarget>();
+            if(target == null) target = nuevo.AddComponent<JamTarget>();
             target.Configurar(this);
+        }
+        else
+        {
+            // Opcional: Asegurarnos de que los rivales no tengan el script JamTarget por error
+            JamTarget targetInadecuado = nuevo.GetComponent<JamTarget>();
+            if(targetInadecuado != null) Destroy(targetInadecuado);
         }
     }
 
@@ -105,30 +156,16 @@ public class FindJamLogic : MonoBehaviour
 
         if (ganado)
         {
-            // --- EFECTO DE SONIDO: VICTORIA ---
-            if (winSound != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(winSound);
-            }
-
-            Debug.Log("SISTEMA: ¡GANASTE! Haznarito encontrado.");
-            if (GameManager.instancia != null) GameManager.instancia.Ganar();
+            if (winSound != null) audioSource.PlayOneShot(winSound);
+            GameManager.instancia?.Ganar();
         }
         else
         {
-            // --- EFECTO DE SONIDO: DERROTA POR TIEMPO ---
-            if (loseSound != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(loseSound);
-            }
-
-            Debug.Log("SISTEMA: ¡PERDISTE! Se agotó el tiempo.");
-            if (GameManager.instancia != null) GameManager.instancia.Perder();
+            if (loseSound != null) audioSource.PlayOneShot(loseSound);
+            GameManager.instancia?.Perder();
         }
     }
-    
-    #region Getters Públicos para UI
+
     public float ObtenerTiempoLimite() => tiempoLimite;
     public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
-    #endregion
 }

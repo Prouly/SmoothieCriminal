@@ -1,2 +1,26 @@
 fileFormatVersion: 2
 guid: 6a859e681750f084892716d8931154f9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rbJugador: {instanceID: 0}
+  - rbBalon: {instanceID: 0}
+  - jugador: {instanceID: 0}
+  - balon: {instanceID: 0}
+  - jugadorRenderer: {instanceID: 0}
+  - textoInstruccion: {instanceID: 0}
+  - textoResultado: {instanceID: 0}
+  - spriteNormal: {fileID: 3527145003854689897, guid: 1668c4b72f702624f834577d7db57612, type: 3}
+  - spriteSalto: {instanceID: 0}
+  - spriteLanzamiento: {instanceID: 0}
+  - spriteCaida: {instanceID: 0}
+  - clipVictoria: {instanceID: 0}
+  - clipDerrota: {instanceID: 0}
+  - clipCanasta: {instanceID: 0}
+  - clipTablero: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

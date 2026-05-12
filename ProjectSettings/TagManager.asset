@@ -9,6 +9,7 @@ TagManager:
   - Portero
   - Canasta
   - FosaNasal
+  - Tablero
   layers:
   - Default
   - TransparentFX

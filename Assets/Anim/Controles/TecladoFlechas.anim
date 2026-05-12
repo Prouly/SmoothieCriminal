@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Teclado
+  m_Name: TecladoFlechas
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -2858972714157475937, guid: 7ec8cf64f217bab4ab01516efe1d8e6a, type: 3}
+      value: {fileID: -6855224829488432864, guid: d41dfe4cb392b3344938672f2d0a3b0e, type: 3}
     - time: 0.5
-      value: {fileID: -2159852647512245975, guid: 7ec8cf64f217bab4ab01516efe1d8e6a, type: 3}
+      value: {fileID: -6250009607401011493, guid: d41dfe4cb392b3344938672f2d0a3b0e, type: 3}
     - time: 1
-      value: {fileID: -2858972714157475937, guid: 7ec8cf64f217bab4ab01516efe1d8e6a, type: 3}
+      value: {fileID: -6855224829488432864, guid: d41dfe4cb392b3344938672f2d0a3b0e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -2858972714157475937, guid: 7ec8cf64f217bab4ab01516efe1d8e6a, type: 3}
-    - {fileID: -2159852647512245975, guid: 7ec8cf64f217bab4ab01516efe1d8e6a, type: 3}
-    - {fileID: -2858972714157475937, guid: 7ec8cf64f217bab4ab01516efe1d8e6a, type: 3}
+    - {fileID: -6855224829488432864, guid: d41dfe4cb392b3344938672f2d0a3b0e, type: 3}
+    - {fileID: -6250009607401011493, guid: d41dfe4cb392b3344938672f2d0a3b0e, type: 3}
+    - {fileID: -6855224829488432864, guid: d41dfe4cb392b3344938672f2d0a3b0e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

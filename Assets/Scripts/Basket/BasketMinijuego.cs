@@ -1,16 +1,17 @@
 using UnityEngine;
 using TMPro;
 
+/**
+ * Proyecto: Smoothie Criminal
+ * Autor: Yeray Jimenez Fernández
+ * Descripción: Minijuego de Basket con sistema de 4 frames y audio avanzado.
+ * Última modificación: 12/05/2026 (Álvaro Muñoz Adán) -> Retraso de sonido de victoria y ocultación de texto.
+ */
+
+[RequireComponent(typeof(AudioSource))]
 public class BasketMinijuego : MonoBehaviour
 {
-    private enum EstadoJuego
-    {
-        EsperandoSalto,
-        Saltando,
-        Tirando,
-        Finalizado
-    }
-
+    private enum EstadoJuego { EsperandoSalto, Saltando, Tirando, Finalizado }
     private EstadoJuego estadoActual;
 
     [Header("Referencias")]
@@ -18,165 +19,142 @@ public class BasketMinijuego : MonoBehaviour
     public Rigidbody2D rbBalon;
     public Transform jugador;
     public Transform balon;
-    public TMP_Text textoInstruccion;
-    public TMP_Text textoResultado;
+    public Transform objetivoAro;
+    public SpriteRenderer jugadorRenderer;
+    public Collider2D colJugador; 
+    public Collider2D colBalon;   
+    public TMP_Text textoInstruccion, textoResultado;
 
-    [Header("Salto")]
-    public float fuerzaSalto = 9f;
-    public float alturaPerfecta = -0.8f;
-    public float margenPerfecto = 0.7f;
+    [Header("Sprites del Jugador (4 Frames)")]
+    public Sprite spriteNormal;      
+    public Sprite spriteSalto;       
+    public Sprite spriteLanzamiento; 
+    public Sprite spriteCaida;       
 
-    [Header("Tiro")]
-    public float fuerzaTiroX = 7f;
-    public float fuerzaTiroY = 7f;
-    public float tiempoParaComprobarFallo = 2f;
+    [Header("Audio")]
+    private AudioSource miAudioSource;
+    public AudioClip clipVictoria;
+    public AudioClip clipDerrota;
+    public AudioClip clipCanasta;
+    public AudioClip clipTablero;
+
+    [Header("Ajustes de Parábola")]
+    public float fuerzaSalto = 10f;
+    public float arcoVertical = 12f;  
+    public float fuerzaHorizontal = 6f; 
+    public float alturaIdealTiro = 1.5f;
+    [Range(0.1f, 1f)] public float sensibilidadTiming = 0.5f;
 
     [Header("Timer")]
     public float tiempoLimite = 7f;
-
     private float tiempoRestante;
     private bool terminado;
 
-    private Vector2 posicionInicialJugador;
-    private Vector2 posicionInicialBalon;
+    #region Getters para UI
+    public float ObtenerTiempoLimite() => tiempoLimite;
+    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
+    #endregion
 
-    void Start()
-    {
-        posicionInicialJugador = jugador.position;
-        posicionInicialBalon = balon.position;
+    void Awake() => miAudioSource = GetComponent<AudioSource>();
+
+    void Start() {
+        if (colJugador != null && colBalon != null) {
+            Physics2D.IgnoreCollision(colJugador, colBalon, true);
+        }
         IniciarJuego();
     }
 
-    void IniciarJuego()
-    {
+    void IniciarJuego() {
         estadoActual = EstadoJuego.EsperandoSalto;
         terminado = false;
-        tiempoRestante = tiempoLimite;
-
-        jugador.position = posicionInicialJugador;
-        balon.position = posicionInicialBalon;
-
-        rbJugador.linearVelocity = Vector2.zero;
-        rbJugador.angularVelocity = 0f;
-        rbJugador.bodyType = RigidbodyType2D.Dynamic;
-
-        rbBalon.linearVelocity = Vector2.zero;
-        rbBalon.angularVelocity = 0f;
-        rbBalon.bodyType = RigidbodyType2D.Kinematic;
-        rbBalon.gravityScale = 0f;
-
+        tiempoRestante = 7f;
+        balon.gameObject.SetActive(false);
+        if (jugadorRenderer != null) jugadorRenderer.sprite = spriteNormal;
+        textoInstruccion.text = "PULSA ESPACIO PARA SALTAR Y TIRAR";
         textoResultado.text = "";
-        textoInstruccion.text = "Pulsa ESPACIO para saltar";
     }
 
-    void Update()
-    {
-        if (estadoActual == EstadoJuego.Finalizado)
-            return;
-
-        ActualizarTimer();
-
-        if (estadoActual == EstadoJuego.Finalizado)
-            return;
-
-        MantenerBalonConJugador();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (estadoActual == EstadoJuego.EsperandoSalto)
-            {
-                Saltar();
-            }
-            else if (estadoActual == EstadoJuego.Saltando)
-            {
-                Tirar();
-            }
-        }
-    }
-
-    void ActualizarTimer()
-    {
-        tiempoRestante -= Time.deltaTime;
-
-        if (tiempoRestante <= 0f)
-        {
-            tiempoRestante = 0f;
-            Finalizar(false, "¡TIEMPO!");
-        }
-    }
-
-    void MantenerBalonConJugador()
-    {
-        if (estadoActual == EstadoJuego.Tirando)
-            return;
-
-        balon.position = new Vector2(jugador.position.x + 0.45f, jugador.position.y + 0.45f);
-    }
-
-    void Saltar()
-    {
-        estadoActual = EstadoJuego.Saltando;
-
-        rbJugador.linearVelocity = Vector2.zero;
-        rbJugador.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-
-        textoInstruccion.text = "Pulsa ESPACIO otra vez para tirar";
-    }
-
-    void Tirar()
-    {
-        estadoActual = EstadoJuego.Tirando;
-        textoInstruccion.text = "";
-
-        float diferenciaAltura = Mathf.Abs(jugador.position.y - alturaPerfecta);
-
-        float precision = 1f - Mathf.Clamp01(diferenciaAltura / margenPerfecto);
-
-        float ajusteVertical = Mathf.Lerp(-2f, 2f, precision);
-        float ajusteHorizontal = Mathf.Lerp(-1.5f, 0f, precision);
-
-        rbBalon.bodyType = RigidbodyType2D.Dynamic;
-        rbBalon.gravityScale = 1.5f;
-
-        Vector2 fuerzaFinal = new Vector2(fuerzaTiroX + ajusteHorizontal, fuerzaTiroY + ajusteVertical);
-        rbBalon.linearVelocity = fuerzaFinal;
-
-        Invoke(nameof(ComprobarFallo), tiempoParaComprobarFallo);
-    }
-
-    void ComprobarFallo()
-    {
-        if (!terminado)
-            Finalizar(false, "¡FALLO!");
-    }
-
-    public void Canasta()
-    {
-        Finalizar(true, "¡CANASTA!");
-    }
-
-    void Finalizar(bool gana, string mensaje)
-    {
+    void Update() {
         if (terminado) return;
+        tiempoRestante -= Time.deltaTime;
+        if (tiempoRestante <= 0) Finalizar(false, "TIEMPO AGOTADO");
 
-        terminado = true;
-        estadoActual = EstadoJuego.Finalizado;
-
-        CancelInvoke(nameof(ComprobarFallo));
-
-        rbJugador.linearVelocity = Vector2.zero;
-        rbBalon.linearVelocity = Vector2.zero;
-
-        textoInstruccion.text = "";
-        textoResultado.text = mensaje; 
-        
-        
-        if (gana) GameManager.instancia.Ganar();
-        else GameManager.instancia.Perder();
+        if (estadoActual == EstadoJuego.EsperandoSalto && Input.GetKeyDown(KeyCode.Space)) Saltar();
+        else if (estadoActual == EstadoJuego.Saltando && Input.GetKeyDown(KeyCode.Space)) Tirar();
     }
-    
-   
 
-    public float ObtenerTiempoLimite() => tiempoLimite;
-    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
+    void Saltar() {
+        estadoActual = EstadoJuego.Saltando;
+        rbJugador.linearVelocity = Vector2.up * fuerzaSalto;
+        if (jugadorRenderer != null) jugadorRenderer.sprite = spriteSalto;
+    }
+
+    void Tirar() {
+        estadoActual = EstadoJuego.Tirando;
+        if (jugadorRenderer != null) jugadorRenderer.sprite = spriteLanzamiento;
+        
+        // El texto de instrucción desaparece al tirar
+        if (textoInstruccion != null) textoInstruccion.text = ""; 
+
+        balon.position = jugador.position + new Vector3(0.5f, 0.5f, 0); 
+        balon.gameObject.SetActive(true);
+        rbBalon.bodyType = RigidbodyType2D.Dynamic;
+
+        float direccionX = (objetivoAro.position.x > balon.position.x) ? 1 : -1;
+        float diferenciaY = Mathf.Abs(jugador.position.y - alturaIdealTiro);
+        float error = diferenciaY * sensibilidadTiming;
+
+        Vector2 impulsoFinal = new Vector2(
+            (fuerzaHorizontal * direccionX) - (error * 0.5f), 
+            arcoVertical - error 
+        );
+
+        rbBalon.linearVelocity = impulsoFinal;
+        rbBalon.angularVelocity = -500f; 
+
+        Invoke(nameof(ComprobarFallo), 2.5f);
+    }
+
+    // --- NUEVA LÓGICA DE CANASTA CON RETRASO ---
+    public void Canasta() { 
+        if(!terminado) { 
+            terminado = true; // Bloqueamos inmediatamente para evitar múltiples detecciones
+            CancelInvoke(nameof(ComprobarFallo)); // Cancelamos el posible fallo por tiempo
+            
+            if(clipCanasta != null) miAudioSource.PlayOneShot(clipCanasta); 
+            
+            // Llamamos a la victoria tras retraso de 0.7s
+            Invoke(nameof(EjecutarVictoriaRetrasada), 0.7f);
+        } 
+    }
+
+    void EjecutarVictoriaRetrasada() {
+        FinalizarProceso(true, "CANASTA");
+    }
+
+    public void ReproducirTablero() { if(clipTablero != null) miAudioSource.PlayOneShot(clipTablero); }
+    
+    void ComprobarFallo() { if(!terminado) Finalizar(false, "FALLASTE"); }
+
+    // Método estándar para casos de fallo o tiempo agotado
+    void Finalizar(bool gana, string mensaje) {
+        if (terminado) return;
+        terminado = true;
+        FinalizarProceso(gana, mensaje);
+    }
+
+    // Núcleo de la finalización (donde ocurre lo visual y sonoro)
+    void FinalizarProceso(bool gana, string mensaje) {
+        if (textoInstruccion != null) textoInstruccion.text = "";
+        if (jugadorRenderer != null) jugadorRenderer.sprite = spriteCaida;
+        textoResultado.text = mensaje;
+
+        if (gana) {
+            if (clipVictoria != null) miAudioSource.PlayOneShot(clipVictoria);
+            GameManager.instancia?.Ganar();
+        } else {
+            if (clipDerrota != null) miAudioSource.PlayOneShot(clipDerrota);
+            GameManager.instancia?.Perder();
+        }
+    }
 }
