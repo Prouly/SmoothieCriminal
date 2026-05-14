@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &380461346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4564111298659332216, guid: fc08f35aabefe1e41ae9abe584ca75ff, type: 3}
+  m_PrefabInstance: {fileID: 1180577502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &423777674
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +422,8 @@ MonoBehaviour:
   tiempoLimite: 7
   clipAcierto: {fileID: 8300000, guid: 49b2426b77a1e8347ae0c70603e4938c, type: 3}
   clipFallo: {fileID: 8300000, guid: 057bda9b126113a49aca56cc6dbf7326, type: 3}
+  panelControles: {fileID: 380461346}
+  tiempoEsperaIntro: 4
 --- !u!4 &1107308002
 Transform:
   m_ObjectHideFlags: 0
@@ -443,8 +450,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: 9c76b824efc458d4eba54deeb2891816, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlataformaGameManager : MonoBehaviour
@@ -8,6 +9,11 @@ public class PlataformaGameManager : MonoBehaviour
     [Header("Layouts disponibles")]
     [SerializeField] private GameObject[] layouts;
     
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+    
     #region Variables de Estado
     private bool gameFinished = false;
     private float tiempoRestante; 
@@ -16,12 +22,21 @@ public class PlataformaGameManager : MonoBehaviour
     private void Start()
     {
         tiempoRestante = timer;
-        ActivarLayoutAleatorio();
+        
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
     }
 
     private void Update()
     {
-        if (gameFinished) return;
+        if (!introFinalizada || gameFinished) return;
         
         tiempoRestante -= Time.deltaTime;
         
@@ -31,6 +46,19 @@ public class PlataformaGameManager : MonoBehaviour
             FinalizarJuego(false);
         }
         
+    }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        ActivarLayoutAleatorio();
     }
     
     private void ActivarLayoutAleatorio()
@@ -79,6 +107,8 @@ public class PlataformaGameManager : MonoBehaviour
             GameManager.instancia.Perder();
         }
     }
+    
+    public bool ObtenerIntroFinalizada() => introFinalizada;
     
     #region Getters para UI
     public float ObtenerTiempoLimite() => timer;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /**
  * Proyecto: Smoothie Criminal
@@ -12,6 +13,11 @@ public class CarreraLogic : MonoBehaviour
     #region Variables de Configuración
     [Header("Ajustes de Tiempo")]
     [SerializeField] private float tiempoLimite = 7f;
+
+    [Header("Panel de Inicio")]
+    public GameObject panelControles; // Arrastra el Panel desde el Inspector
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
 
     [Header("Ajustes de Sonido")]
     [SerializeField] private AudioClip sonidoPaso;      // Sonido al pulsar A o D
@@ -35,24 +41,33 @@ public class CarreraLogic : MonoBehaviour
         }
 
         tiempoRestante = tiempoLimite;
+
+        // --- LÓGICA DE PANEL DE CONTROLES ---
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
     }
 
     void Update()
     {
-        if (juegoTerminado) return;
+        // Bloqueamos todo el Update hasta que la intro termine o si el juego ya acabó
+        if (!introFinalizada || juegoTerminado) return;
 
         // --- LÓGICA DE SONIDO AL CORRER ---
-        // Detecta si se pulsa la tecla A o la tecla D en este frame
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
             if (sonidoPaso != null)
             {
-                // Usamos PlayOneShot para que los sonidos puedan solaparse si se pulsa muy rápido
                 audioSource.PlayOneShot(sonidoPaso);
             }
         }
 
-        // Descuento de tiempo fluido
+        // Descuento de tiempo fluido (solo ocurre tras la intro)
         tiempoRestante -= Time.deltaTime;
 
         if (tiempoRestante <= 0)
@@ -61,6 +76,19 @@ public class CarreraLogic : MonoBehaviour
             Debug.Log("RESULTADO: ¡Tiempo agotado! Perdiste la carrera.");
             FinalizarCarrera(false);
         }
+    }
+
+    // Corrutina para gestionar la espera inicial
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        // Espera de 4 segundos antes de empezar
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
     }
 
     #region Control de Partida
@@ -87,10 +115,11 @@ public class CarreraLogic : MonoBehaviour
     }
 
     public bool EstaJuegoTerminado() => juegoTerminado;
-    #endregion
-
-    #region Getters para UI
-    public float ObtenerTiempoLimite() => tiempoLimite;
+    
     public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
+    
+    public float ObtenerTiempoLimite() => tiempoLimite;
+    
+    public bool ObtenerIntroFinalizada() => introFinalizada;
     #endregion
 }

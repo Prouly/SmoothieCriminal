@@ -301,7 +301,6 @@ GameObject:
   - component: {fileID: 158759952}
   - component: {fileID: 158759951}
   - component: {fileID: 158759950}
-  - component: {fileID: 158759949}
   m_Layer: 0
   m_Name: CartasGameLogic
   m_TagString: Untagged
@@ -309,103 +308,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &158759949
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158759948}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: b5b9d834440151b48973fd76ecb257b2, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!82 &158759950
 AudioSource:
   m_ObjectHideFlags: 0
@@ -417,8 +319,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: abc027c0974ab354fb184245f3357cdd, type: 3}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: 5c0c651472b7bb24e8d41c06bef88ed3, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -528,8 +430,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c1c4b9dc41a59ac479c62a1f2f19cb68, type: 3}
   tiempoMemorizacion: 3
   tiempoLimite: 7
-  audioCorrecto: {fileID: 158759950}
-  audioIncorrecto: {fileID: 158759949}
+  panelControles: {fileID: 694907702}
+  tiempoEsperaIntro: 4
+  audioCorrecto: {fileID: 8300000, guid: abc027c0974ab354fb184245f3357cdd, type: 3}
+  audioIncorrecto: {fileID: 8300000, guid: b5b9d834440151b48973fd76ecb257b2, type: 3}
 --- !u!4 &158759952
 Transform:
   m_ObjectHideFlags: 0
@@ -725,6 +629,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba2ea503ed0e1c44a85fb5efe520955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &694907702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4564111298659332216, guid: a62c2455053105b4f87bffff56363bcc, type: 3}
+  m_PrefabInstance: {fileID: 700496093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &700496093
 PrefabInstance:
   m_ObjectHideFlags: 0

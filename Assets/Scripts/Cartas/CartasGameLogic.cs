@@ -9,6 +9,7 @@ using UnityEngine;
  * Última modificación: 07/05/2026
  */
 
+[RequireComponent(typeof(AudioSource))]
 public class CartasGameLogic : MonoBehaviour
 {
     [Header("Configuración")]
@@ -17,9 +18,15 @@ public class CartasGameLogic : MonoBehaviour
     [SerializeField] private float tiempoMemorizacion = 3f;
     [SerializeField] private float tiempoLimite = 7f;
 
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+    
     [Header("Audio")]
-    [SerializeField] private AudioSource audioCorrecto;
-    [SerializeField] private AudioSource audioIncorrecto;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip audioCorrecto;
+    [SerializeField] private AudioClip audioIncorrecto;
 
     private float tiempoRestante;
     private bool juegoIniciado = false;
@@ -33,8 +40,28 @@ public class CartasGameLogic : MonoBehaviour
     private void Start()
     {
         tiempoRestante = tiempoLimite;
-        ConfigurarTablero();
-        StartCoroutine(SecuenciaInicial());
+        audioSource = GetComponent<AudioSource>();
+        
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
+    }
+    
+    private void Update()
+    {
+        if (!introFinalizada || !juegoIniciado || juegoFinalizado) return;
+
+        tiempoRestante -= Time.deltaTime;
+        if (tiempoRestante <= 0)
+        {
+            FinalizarJuego(false);
+        }
     }
 
     private void ConfigurarTablero()
@@ -58,6 +85,19 @@ public class CartasGameLogic : MonoBehaviour
         }
     }
 
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        ConfigurarTablero();
+        StartCoroutine(SecuenciaInicial());
+    }
+    
     private IEnumerator SecuenciaInicial()
     {
         // 1. Mostrar cartas durante X segundos
@@ -71,18 +111,7 @@ public class CartasGameLogic : MonoBehaviour
         juegoIniciado = true;
         Debug.Log("¡Empieza el tiempo! Encuentra las parejas.");
     }
-
-    private void Update()
-    {
-        if (!juegoIniciado || juegoFinalizado) return;
-
-        tiempoRestante -= Time.deltaTime;
-        if (tiempoRestante <= 0)
-        {
-            FinalizarJuego(false);
-        }
-    }
-
+    
     public void CartaSeleccionada(Carta carta)
     {
         if (primeraCarta == null)
@@ -104,7 +133,7 @@ public class CartasGameLogic : MonoBehaviour
         {
             // ACIERTO
             Debug.Log("<color=green>¡Pareja Correcta!</color>");
-            if (audioCorrecto != null) audioCorrecto.Play();
+            if (audioCorrecto != null) audioSource.PlayOneShot(audioCorrecto);
             parejasEncontradas++;
 
             if (parejasEncontradas >= 3)
@@ -116,7 +145,7 @@ public class CartasGameLogic : MonoBehaviour
         {
             // FALLO
             Debug.Log("<color=red>Pareja Incorrecta...</color>");
-            if (audioIncorrecto != null) audioIncorrecto.Play();
+            if (audioIncorrecto != null) audioSource.PlayOneShot(audioIncorrecto);
             
             yield return new WaitForSeconds(0.6f); // Pequeña espera para ver la carta
             primeraCarta.Ocultar();

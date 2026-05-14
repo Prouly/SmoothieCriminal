@@ -28,6 +28,11 @@ public class NarizGameLogic : MonoBehaviour
     [Header("Audio (AudioClips)")]
     [SerializeField] private AudioClip clipAcierto;
     [SerializeField] private AudioClip clipFallo;
+    
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
 
     private AudioSource miAudioSource;
     private float tiempoRestante;
@@ -45,11 +50,22 @@ public class NarizGameLogic : MonoBehaviour
     {
         tiempoRestante = tiempoLimite;
         posicionInicialMano = mano.position;
+        
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
     }
+    
 
     private void Update()
     {
-        if (juegoFinalizado) return;
+        if (!introFinalizada || juegoFinalizado) return;
 
         ManejarTiempo();
 
@@ -61,6 +77,18 @@ public class NarizGameLogic : MonoBehaviour
                 StartCoroutine(SecuenciaUnicoIntento());
             }
         }
+    }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
     }
 
     private void ManejarTiempo()
@@ -147,7 +175,7 @@ public class NarizGameLogic : MonoBehaviour
     {
         if (mano != null)
         {
-            Gizmos.color = Color.green; // Cambiado a verde para diferenciar
+            Gizmos.color = Color.green;
             Vector3 posicionGizmo = mano.position + (Vector3)offsetDedo;
             Gizmos.DrawSphere(posicionGizmo, 0.1f);
         }

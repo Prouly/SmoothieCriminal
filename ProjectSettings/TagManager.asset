@@ -10,6 +10,7 @@ TagManager:
   - Canasta
   - FosaNasal
   - Tablero
+  - Bicho
   layers:
   - Default
   - TransparentFX

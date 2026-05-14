@@ -21,6 +21,11 @@ public class BalloonPop : MonoBehaviour
     [Header("Ajustes de Tiempo")]
     [SerializeField] private float timer = 7f; 
 
+    [Header("Panel de Inicio")]
+    public GameObject panelControles; // Arrastra el Panel desde el Inspector
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+
     [Header("Ajustes de Sonido")]
     [SerializeField] private AudioClip inflateSound; // Sonido al pulsar espacio
     [SerializeField] private AudioClip popSound;     // Sonido al explotar
@@ -37,39 +42,56 @@ public class BalloonPop : MonoBehaviour
     void Start()
     {
         tiempoRestante = timer;
-        
-        // Obtenemos o añadimos el componente AudioSource automáticamente
+
+        // Inicialización del AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
+    }
+
+    // Corrutina para gestionar la espera inicial
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
     }
 
     void Update()
     {
-        if (gameFinished) return;
+        // Bloqueo hasta que termine la intro o el juego
+        if (!introFinalizada || gameFinished) return;
 
-        ManejarTiempo();
-        ManejarEntrada();
-    }
-
-    private void ManejarTiempo()
-    {
+        // Gestión del tiempo
         tiempoRestante -= Time.deltaTime;
+
         if (tiempoRestante <= 0)
         {
+            tiempoRestante = 0;
             FinalizarJuego(false);
         }
-    }
 
-    private void ManejarEntrada()
-    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             spaceCount++;
 
-            // --- EFECTO DE SONIDO: INFLAR ---
+            // --- EFECTO DE SONIDO: INFLADO ---
             if (inflateSound != null)
             {
                 audioSource.PlayOneShot(inflateSound);
@@ -91,7 +113,9 @@ public class BalloonPop : MonoBehaviour
 
     private void FinalizarJuego(bool victoria)
     {
+        if (gameFinished) return; // Evita llamadas múltiples
         gameFinished = true;
+
         if (victoria)
         {
             // --- EFECTO DE SONIDO: EXPLOSIÓN ---
@@ -119,6 +143,10 @@ public class BalloonPop : MonoBehaviour
 
     #region Getters para UI
     public float ObtenerTiempoLimite() => timer;
-    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
+
+    public float ObtenerTiempoRestante()
+    {
+        return Mathf.Max(0f, tiempoRestante);
+    }
     #endregion
 }

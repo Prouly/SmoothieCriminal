@@ -25,6 +25,11 @@ public class BichosLogic : MonoBehaviour
     [Header("Configuración de Tiempo")]
     [SerializeField] private float tiempoLimite = 7f;
 
+    [Header("Panel de Inicio")]
+    public GameObject panelControles; // Arrastra el Panel desde el Inspector
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+    
     private float tiempoRestante;
     private int bichosAplastados = 0;
     private bool juegoTerminado = false;
@@ -37,14 +42,22 @@ public class BichosLogic : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         posOriginalCamara = Camera.main.transform.localPosition;
 
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true; // Si olvidas asignar el panel, el juego empieza igual
+        }
+        
         Cursor.visible = false; 
         Cursor.lockState = CursorLockMode.Confined;
-        SpawnBichos();
     }
 
     void Update()
     {
-        if (juegoTerminado) return;
+        if (!introFinalizada || juegoTerminado) return;
 
         tiempoRestante -= Time.deltaTime;
         if (tiempoRestante <= 0)
@@ -55,6 +68,19 @@ public class BichosLogic : MonoBehaviour
         }
     }
 
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+    
+        // Espera real de tiempo (no le afecta el Time.timeScale)
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+    
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        SpawnBichos();
+    }
+    
     public void RegistrarBaja()
     {
         if (juegoTerminado) return;

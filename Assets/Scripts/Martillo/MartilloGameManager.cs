@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,6 +20,11 @@ public class MartilloGameManager : MonoBehaviour
     [SerializeField] private RectTransform zonaVerde;
     [SerializeField] private float dimensionZona = 0.2f; //20% de barra
 
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+
     [Header("Referencias UI")]
     [SerializeField] private TextMeshProUGUI textoIndicaciones; // El texto que cambia
 
@@ -33,69 +39,72 @@ public class MartilloGameManager : MonoBehaviour
     [SerializeField] private AudioClip clipVictoria;
     [SerializeField] private AudioClip clipDerrota;
 
-    private float zonaMin;
-    private float zonaMax;
-    
-    #region Variables de Estado
-    private bool gameFinished = false;
-    private float tiempoRestante; 
-    private bool subiendo = true;
+    private float tiempoRestante;
     private float valorFuerza = 0f;
-    #endregion
+    private bool subiendo = true;
+    private float zonaMin, zonaMax;
+    private bool gameFinished = false;
 
-    #region Getters para UI
-    public float ObtenerTiempoLimite() => timer;
-    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
-    #endregion
-
-    private void Awake()
+    void Start()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
         tiempoRestante = timer;
-        gameFinished = false;
         
-        // Estado inicial
-        if (textoIndicaciones != null) textoIndicaciones.text = "Para la barra en la zona verde";
-        if (imagenJugador != null && spriteNormal != null) imagenJugador.sprite = spriteNormal;
+        if (imagenJugador != null && spriteNormal != null)
+            imagenJugador.sprite = spriteNormal;
 
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
+    }
+    
+    void Update()
+    {
+        // Bloqueo total hasta que termine la intro o el juego
+        if (!introFinalizada || gameFinished) return;
+
+        ManejarTiempo();
+        ManejarBarra();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ValidarGolpe();
+        }
+    }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
         GenerarZona();
     }
 
-    private void Update()
+    private void ManejarTiempo()
     {
-        if (gameFinished) return;
-        
-        ActualizarBarra();
-        ManejarEntrada();
-        
         tiempoRestante -= Time.deltaTime;
-        
-        if (tiempoRestante <= 0f)
+        if (tiempoRestante <= 0)
         {
-            tiempoRestante = 0f;
-            FinalizarJuego(false, true); // Perder por tiempo
+            FinalizarJuego(false, true);
         }
     }
 
-    private void ManejarEntrada()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Comprobar si el valor está dentro de la zona verde
-            bool acierto = (valorFuerza >= zonaMin && valorFuerza <= zonaMax);
-            FinalizarJuego(acierto, false);
-        }
-    }
-
-    private void ActualizarBarra()
+    private void ManejarBarra()
     {
         if (subiendo)
         {
-            valorFuerza += velocidad * Time.deltaTime;
+            valorFuerza += Time.deltaTime * velocidad;
             if (valorFuerza >= 1f)
             {
                 valorFuerza = 1f;
@@ -104,7 +113,7 @@ public class MartilloGameManager : MonoBehaviour
         }
         else
         {
-            valorFuerza -= velocidad * Time.deltaTime;
+            valorFuerza -= Time.deltaTime * velocidad;
             if (valorFuerza <= 0f)
             {
                 valorFuerza = 0f;
@@ -124,6 +133,18 @@ public class MartilloGameManager : MonoBehaviour
         zonaVerde.anchorMin = new Vector2(zonaMin, 0f);
         zonaVerde.anchorMax = new Vector2(zonaMax, 1f);
     }
+
+    private void ValidarGolpe()
+    {
+        if (valorFuerza >= zonaMin && valorFuerza <= zonaMax)
+        {
+            FinalizarJuego(true, false);
+        }
+        else
+        {
+            FinalizarJuego(false, false);
+        }
+    }
     
     private void FinalizarJuego(bool victoria, bool porTiempo)
     {
@@ -132,7 +153,7 @@ public class MartilloGameManager : MonoBehaviour
 
         if (victoria)
         {
-            Debug.Log("SISTEMA: ¡Ganaste!");
+            Debug.Log("<color=green>¡Has ganado! Golpeaste con el martillo.</color>");
             if (textoIndicaciones != null) textoIndicaciones.text = "GANASTE";
             if (imagenJugador != null && spriteVictoria != null) imagenJugador.sprite = spriteVictoria;
             if (clipVictoria != null) audioSource.PlayOneShot(clipVictoria);
@@ -141,7 +162,7 @@ public class MartilloGameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("SISTEMA: Perdiste");
+            Debug.Log("<color=red>¡Perdiste!.</color>");
             
             // Cambiar texto según el motivo
             if (textoIndicaciones != null)
@@ -153,4 +174,9 @@ public class MartilloGameManager : MonoBehaviour
             GameManager.instancia.Perder();
         }
     }
+
+    #region Getters para UI
+    public float ObtenerTiempoLimite() => timer;
+    public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);
+    #endregion
 }

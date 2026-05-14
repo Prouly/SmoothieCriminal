@@ -14,10 +14,24 @@ public class NPC : MonoBehaviour
     private CarreraLogic carreraLogic;
     #endregion
 
+    void Start()
+    {
+        // Buscamos la referencia al core del juego para saber cuándo empezar
+        carreraLogic = Object.FindFirstObjectByType<CarreraLogic>();
+    }
+
     void Update()
     {
-        if (carreraLogic != null && carreraLogic.EstaJuegoTerminado()) return;
-        // Solo movemos el NPC si la carrera sigue activa
+        // 1. Si no hay referencia a la lógica, no nos movemos por seguridad
+        if (carreraLogic == null) return;
+
+        // 2. Si la intro NO ha finalizado, no nos movemos
+        if (!carreraLogic.ObtenerIntroFinalizada()) return;
+
+        // 3. Si el juego ya terminó, nos detenemos
+        if (carreraLogic.EstaJuegoTerminado()) return;
+
+        // Movimiento normal
         transform.Translate(Vector2.right * velocidad * Time.deltaTime);
     }
 }

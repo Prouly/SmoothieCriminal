@@ -27,10 +27,18 @@ public class EnemyFish : MonoBehaviour
 
     void Update()
     {
-        if (logica != null && logica.EstaJuegoTerminado()) return;
+        // 1. Si no hay referencia a la lógica, no nos movemos por seguridad
+        if (logica == null) return;
+
+        // 2. Si la intro NO ha finalizado, no nos movemos
+        if (!logica.ObtenerIntroFinalizada()) return;
+
+        // 3. Si el juego ya terminó, nos detenemos
+        if (logica.EstaJuegoTerminado()) return;
 
         // Movimiento constante hacia el jugador
         transform.Translate(Vector3.right * velocidadBase * Time.deltaTime);
+        
     }
 
     void AnimarPez()

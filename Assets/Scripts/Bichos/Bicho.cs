@@ -12,7 +12,9 @@ public class Bicho : MonoBehaviour
     [SerializeField] private Sprite[] framesAnimacion; 
     [SerializeField] private float velocidadAnimacion = 0.1f;
     [SerializeField] private float velocidadMovimiento = 2.5f;
-    [SerializeField] private GameObject prefabMancha; // Prefab con el script Mancha.cs
+    
+    [Header("Efecto de Muerte")]
+    [SerializeField] private GameObject prefabManchaEspecifica; // prefab de la mancha para ESTE bicho
     
     private SpriteRenderer sr;
     private int frameActual;
@@ -52,12 +54,25 @@ public class Bicho : MonoBehaviour
     {
         if (logica == null || logica.EstaJuegoTerminado()) return;
 
-        if (prefabMancha != null)
+        if (prefabManchaEspecifica != null)
         {
-            Instantiate(prefabMancha, transform.position, transform.rotation);
+            Instantiate(prefabManchaEspecifica, transform.position, transform.rotation);
         }
 
         logica.RegistrarBaja();
+        Destroy(gameObject);
+    }
+    
+    public void Morir()
+    {
+        // Instanciamos la mancha configurada para este bicho concreto
+        if (prefabManchaEspecifica != null)
+        {
+            Instantiate(prefabManchaEspecifica, transform.position, Quaternion.identity);
+        }
+
+        if (logica != null) logica.RegistrarBaja();
+        
         Destroy(gameObject);
     }
 }

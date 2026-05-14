@@ -1,0 +1,334 @@
+fileFormatVersion: 2
+guid: 695272d651c387548b0f28d5f083e601
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6398945620356432413
+    second: Vidas_Haznarito_Sheet_0
+  - first:
+      213: -7764144791129161305
+    second: Vidas_Haznarito_Sheet_1
+  - first:
+      213: 5288168325891221498
+    second: Vidas_Haznarito_Sheet_2
+  - first:
+      213: -520654713518939649
+    second: Vidas_Haznarito_Sheet_3
+  - first:
+      213: -3014189205806193481
+    second: Vidas_Haznarito_Sheet_4
+  - first:
+      213: 2244382509985575089
+    second: Vidas_Haznarito_Sheet_5
+  - first:
+      213: 3833111914791251378
+    second: Vidas_Haznarito_Sheet_6
+  - first:
+      213: 8217983879734849795
+    second: Vidas_Haznarito_Sheet_7
+  - first:
+      213: 5038657704696676250
+    second: Vidas_Haznarito_Sheet_8
+  - first:
+      213: -6452846386340882706
+    second: Vidas_Haznarito_Sheet_9
+  - first:
+      213: -5817003914870944849
+    second: Vidas_Haznarito_Sheet_10
+  - first:
+      213: 8438609184740841897
+    second: Vidas_Haznarito_Sheet_11
+  - first:
+      213: -5305890956981109499
+    second: Vidas_Haznarito_Sheet_12
+  - first:
+      213: 8289316558109660315
+    second: Vidas_Haznarito_Sheet_13
+  - first:
+      213: -6699098301365909164
+    second: Vidas_Haznarito_Sheet_14
+  - first:
+      213: 1982050040980033118
+    second: Vidas_Haznarito_Sheet_15
+  - first:
+      213: 690237096909666200
+    second: Vidas_Haznarito_Sheet_16
+  - first:
+      213: 2369096785999844043
+    second: Vidas_Haznarito_Sheet_17
+  - first:
+      213: 8580339893805754860
+    second: Vidas_Haznarito_Sheet_18
+  - first:
+      213: 6660926138025886088
+    second: Vidas_Haznarito_Sheet_19
+  - first:
+      213: 4893182721518017306
+    second: Vidas_Haznarito_Sheet_20
+  - first:
+      213: -9024927210819383131
+    second: Vidas_Haznarito_Sheet_21
+  - first:
+      213: -4362216330326001037
+    second: Vidas_Haznarito_Sheet_22
+  - first:
+      213: 3760665904856614632
+    second: Vidas_Haznarito_Sheet_23
+  - first:
+      213: -8766522904588211086
+    second: Vidas_Haznarito_Sheet_24
+  - first:
+      213: 2308561277197704728
+    second: Vidas_Haznarito_Sheet_25
+  - first:
+      213: 3753557617199486661
+    second: Vidas_Haznarito_Sheet_26
+  - first:
+      213: 1852079097185987191
+    second: Vidas_Haznarito_Sheet_27
+  - first:
+      213: 2838087824998814421
+    second: Vidas_Haznarito_Sheet_28
+  - first:
+      213: -6461849815355923805
+    second: Vidas_Haznarito_Sheet_29
+  - first:
+      213: -3371474933692021757
+    second: Vidas_Haznarito_Sheet_30
+  - first:
+      213: 6808129659588335466
+    second: Vidas_Haznarito_Sheet_31
+  - first:
+      213: 9187466329625183771
+    second: Vidas_Haznarito_Sheet_32
+  - first:
+      213: -108940102947217678
+    second: Vidas_Haznarito_Sheet_33
+  - first:
+      213: 7850109654013063177
+    second: Vidas_Haznarito_Sheet_34
+  - first:
+      213: -9190311120896071507
+    second: Vidas_Haznarito_Sheet_35
+  - first:
+      213: 6968953125087825421
+    second: Vidas_Haznarito_Sheet_36
+  - first:
+      213: 3118172072675611398
+    second: Vidas_Haznarito_Sheet_37
+  - first:
+      213: -8359504627255370280
+    second: Vidas_Haznarito_Sheet_38
+  - first:
+      213: -6621160712667860614
+    second: Vidas_Haznarito_Sheet_39
+  - first:
+      213: -684420229663999990
+    second: Vidas_Haznarito_Sheet_40
+  - first:
+      213: -138046776041689401
+    second: Vidas_Haznarito_Sheet_41
+  - first:
+      213: -8118665176308439027
+    second: Vidas_Haznarito_Sheet_42
+  - first:
+      213: -8931941658035545243
+    second: Vidas_Haznarito_Sheet_43
+  - first:
+      213: -5064275874365690026
+    second: Vidas_Haznarito_Sheet_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Vidas_Haznarito_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 317
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b42df569f9624fa45a317642b93df389
+      internalID: -6398945620356432413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vidas_Haznarito_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 0
+        width: 317
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baa90f986ecddcc418aa924010703852
+      internalID: -7764144791129161305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vidas_Haznarito_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 0
+        width: 317
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5bf985e0791934c858b08608100927
+      internalID: 5288168325891221498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 034ca52aae529a643adf5e1a6f536f63
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Vidas_Haznarito_Sheet_0: -6398945620356432413
+      Vidas_Haznarito_Sheet_1: -7764144791129161305
+      Vidas_Haznarito_Sheet_2: 5288168325891221498
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

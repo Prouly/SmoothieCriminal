@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5687679899750469078}
   - component: {fileID: 2369222787949717379}
-  - component: {fileID: 1639560826020389841}
   - component: {fileID: 5117048135198516150}
+  - component: {fileID: 4524413466031999350}
   m_Layer: 0
   m_Name: Carta
   m_TagString: Untagged
@@ -89,7 +89,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1639560826020389841
+--- !u!114 &5117048135198516150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949480030471810089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba2ea503ed0e1c44a85fb5efe520955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idPareja: 0
+  spriteReverso: {fileID: 21300000, guid: a3382b836ea0dc14a916a4c4a2f46755, type: 3}
+  tiempoGiro: 0.2
+--- !u!61 &4524413466031999350
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,26 +142,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.9083333, y: 4.25}
+    oldSize: {x: 2.6846154, y: 3.9230769}
     newSize: {x: 3.16, y: 3.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.2, y: 3.42}
+  m_Size: {x: 2.6846154, y: 3.9230769}
   m_EdgeRadius: 0
---- !u!114 &5117048135198516150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949480030471810089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba2ea503ed0e1c44a85fb5efe520955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idPareja: 0
-  spriteReverso: {fileID: 21300000, guid: be475e9b8b0dd1b4f82715019d65830c, type: 3}
-  tiempoGiro: 0.2

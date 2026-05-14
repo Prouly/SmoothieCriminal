@@ -9,6 +9,7 @@ using System.Collections.Generic;
  * Última modificación: 30/04/2026 (Corrección de spawn y variable punto)
  */
 
+[RequireComponent(typeof(AudioSource))]
 public class VaqueroLogic : MonoBehaviour
 {
     #region Variables de Configuración
@@ -20,8 +21,16 @@ public class VaqueroLogic : MonoBehaviour
     [SerializeField] private Transform puntosRespawnParent;
     [SerializeField] private float tiempoLimite = 7f;
 
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+    
     [Header("Efectos de Sonido")]
+    private AudioSource audioSource;
     [SerializeField] private AudioClip sonidoDisparo;
+    [SerializeField] private AudioClip clipVictoria;
+    [SerializeField] private AudioClip clipDerrota;
     #endregion
 
     #region Variables de Estado
@@ -33,14 +42,28 @@ public class VaqueroLogic : MonoBehaviour
     #region Métodos de Unity
     void Start()
     {
+        // Configuración inicial del cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        
+        audioSource = GetComponent<AudioSource>();
         // Inicializamos el tiempo al límite configurado
-        tiempoRestante = tiempoLimite; 
-        ConfigurarEscena();
+        tiempoRestante = tiempoLimite;
+        
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
     }
 
     void Update()
     {
-        if (juegoTerminado) return;
+        if (!introFinalizada || juegoTerminado) return;
 
         // Descontamos el tiempo cada frame para que la barra de UI se mueva suavemente
         tiempoRestante -= Time.deltaTime;
@@ -51,6 +74,19 @@ public class VaqueroLogic : MonoBehaviour
             Debug.Log("RESULTADO: ¡Se acabó el tiempo! Perdiste.");
             FinalizarPartida(false);
         }
+    }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        ConfigurarEscena();
     }
     #endregion
 
@@ -63,7 +99,7 @@ public class VaqueroLogic : MonoBehaviour
         if (sonidoDisparo != null)
         {
             // PlayClipAtPoint garantiza que el sonido sobreviva al cambio de frame o destrucción de objetos
-            AudioSource.PlayClipAtPoint(sonidoDisparo, Camera.main.transform.position);
+            audioSource.PlayOneShot(sonidoDisparo);
         }
     }
 
@@ -143,7 +179,18 @@ public class VaqueroLogic : MonoBehaviour
     private IEnumerator RetrasoFinalizacion(bool victoria)
     {
         juegoTerminado = true;
-        yield return new WaitForSeconds(0.3f);
+
+        // 1. Reproducimos el sonido AQUÍ, mientras el objeto aún existe
+        if (victoria)
+        {
+            if (clipVictoria != null) audioSource.PlayOneShot(clipVictoria);
+        }
+        else
+        {
+            if (clipDerrota != null) audioSource.PlayOneShot(clipDerrota);
+        }
+        // Esperamos un tiempo suficiente para que se escuche el audio
+        yield return new WaitForSeconds(1.5f); 
         FinalizarPartida(victoria);
     }
 
@@ -152,7 +199,7 @@ public class VaqueroLogic : MonoBehaviour
         juegoTerminado = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        
+    
         if (GameManager.instancia != null)
         {
             if (victoria) GameManager.instancia.Ganar();

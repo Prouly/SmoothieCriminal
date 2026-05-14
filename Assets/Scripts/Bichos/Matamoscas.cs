@@ -14,8 +14,12 @@ public class Matamoscas : MonoBehaviour
     [SerializeField] private Sprite[] framesMatamoscas; 
     
     [Header("Referencias de Límites")]
-    [SerializeField] private Transform objetoLimits; // Arrastra aquí el padre "Limits"
+    [SerializeField] private Transform objetoLimits; // Objeto padre "Limits"
 
+    [Header("Detección de Golpe")]
+    [SerializeField] private Transform puntoImpacto; // Objeto hijo que esté en la red
+    [SerializeField] private float radioGolpe = 0.6f; // Tamaño del área de golpeo
+        
     private float minX, maxX, minY, maxY;
     private SpriteRenderer sr;
     private BichosLogic logica;
@@ -72,13 +76,43 @@ public class Matamoscas : MonoBehaviour
             StartCoroutine(SecuenciaGolpe());
         }
     }
+    
+    private IEnumerator SecuenciaGolpe()
+    {
+    sr.sprite = framesMatamoscas[1]; // Frame de golpe
 
-    IEnumerator SecuenciaGolpe()
+    // CAMBIO AQUÍ: Detectamos en el círculo del punto de impacto, no en el ratón
+    Collider2D[] hits = Physics2D.OverlapCircleAll(puntoImpacto.position, radioGolpe);
+    
+    foreach (Collider2D hit in hits)
+    {
+        if (hit.CompareTag("Bicho"))
+        {
+            Bicho bicho = hit.GetComponent<Bicho>();
+            if (bicho != null) bicho.Morir();
+        }
+    }
+
+    yield return new WaitForSeconds(0.1f);
+    sr.sprite = framesMatamoscas[0]; // Volver a normal
+    }
+    
+    // Para que puedas ver el área de golpe en el Editor
+    private void OnDrawGizmosSelected()
+    {
+        if (puntoImpacto != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(puntoImpacto.position, radioGolpe);
+        }
+    }
+
+    /*IEnumerator SecuenciaGolpe()
     {
         sr.sprite = framesMatamoscas[1]; // Levantado
         yield return new WaitForSeconds(0.05f);
         sr.sprite = framesMatamoscas[2]; // Aplastado
         yield return new WaitForSeconds(0.15f);
         sr.sprite = framesMatamoscas[0]; // Reposo
-    }
+    }*/
 }

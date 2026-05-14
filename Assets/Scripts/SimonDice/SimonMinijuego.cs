@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,6 +41,11 @@ public class SimonMinijuego : MonoBehaviour
     private AudioSource miAudioSource;
     public AudioClip sonidoVictoria;
     public AudioClip sonidoDerrota;
+    
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
 
     [Header("Configuración")]
     public int longitudSecuencia = 4;
@@ -57,7 +63,37 @@ public class SimonMinijuego : MonoBehaviour
 
     void Awake() => miAudioSource = GetComponent<AudioSource>();
 
-    void Start() => IniciarJuego();
+    void Start()
+    {
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
+    }
+    
+    void Update()
+    {
+        if (terminado) return;
+        ManejarTiempo();
+        if (estadoActual == EstadoJuego.EsperandoInput) ManejarEntrada();
+    }
+    
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        IniciarJuego();
+    }
 
     void IniciarJuego()
     {
@@ -113,17 +149,13 @@ public class SimonMinijuego : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (terminado) return;
-        ManejarTiempo();
-        if (estadoActual == EstadoJuego.EsperandoInput) ManejarEntrada();
-    }
-
     void ManejarTiempo()
     {
-        tiempoRestante -= Time.deltaTime;
-        if (tiempoRestante <= 0) Finalizar(false, "TIEMPO AGOTADO");
+        if (estadoActual == EstadoJuego.EsperandoInput && introFinalizada)
+        {
+            tiempoRestante -= Time.deltaTime;
+            if (tiempoRestante <= 0) Finalizar(false, "TIEMPO AGOTADO");
+        }
     }
 
     void ManejarEntrada()

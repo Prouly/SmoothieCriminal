@@ -15,15 +15,20 @@ public class FindJamLogic : MonoBehaviour
     #region Variables de Configuración
     [Header("Ajustes de Tiempo")]
     [SerializeField] private float tiempoLimite = 7f;
-    [SerializeField] private float tiempoPresentacion = 4f;
+    [SerializeField] private float tiempoPresentacionPersonaje = 4f;
+
+    [Header("Panel de Controles")]
+    public GameObject panelControles; 
+    public float tiempoEsperaControles = 4f;
+    private bool introFinalizada = false;
 
     [Header("Pool de Personajes (Prefabs)")]
     public GameObject[] prefabsPosiblesObjetivos; 
-    public Sprite[] spritesParaUI; // Sprites para UI (en el mismo orden que los prefabs)
+    public Sprite[] spritesParaUI; 
     public GameObject[] prefabsRivales; 
 
-    [Header("Referencias de UI Intro")]
-    public GameObject panelPresentacion;
+    [Header("Referencias de UI Intro Personaje")]
+    public GameObject panelPresentacionPersonaje;
     public Image imagenObjetivoUI;
 
     [Header("Puntos de Spawn")]
@@ -35,7 +40,6 @@ public class FindJamLogic : MonoBehaviour
     #endregion
 
     private bool juegoTerminado = false;
-    private bool juegoIniciado = false;
     private float tiempoRestante;
     private List<Transform> puntosDisponibles = new List<Transform>();
     private AudioSource audioSource;
@@ -51,12 +55,15 @@ public class FindJamLogic : MonoBehaviour
 
         ObtenerPuntosDeSpawn();
         ElegirObjetivoAleatorio();
-        StartCoroutine(SecuenciaIntro());
+
+        // Iniciamos la secuencia que encadena ambos paneles
+        StartCoroutine(SecuenciaCompletaIntro());
     }
 
     void Update()
     {
-        if (!juegoIniciado || juegoTerminado) return;
+        // El juego solo corre cuando AMBAS intros han terminado
+        if (!introFinalizada || juegoTerminado) return;
 
         tiempoRestante -= Time.deltaTime;
         if (tiempoRestante <= 0) FinalizarJuego(false);
@@ -69,31 +76,42 @@ public class FindJamLogic : MonoBehaviour
             int index = Random.Range(0, prefabsPosiblesObjetivos.Length);
             prefabSeleccionadoObjetivo = prefabsPosiblesObjetivos[index];
             
-            // Usamos el array de sprites para evitar errores de lectura del prefab
             if (index < spritesParaUI.Length)
             {
                 spriteParaMostrarEnUI = spritesParaUI[index];
                 if (imagenObjetivoUI != null)
                 {
                     imagenObjetivoUI.sprite = spriteParaMostrarEnUI;
-                    // Forzamos que la imagen sea visible
                     imagenObjetivoUI.enabled = true;
                 }
             }
         }
     }
 
-    IEnumerator SecuenciaIntro()
+    // NUEVA CORRUTINA: Encadena el Panel de Controles y luego el del Personaje
+    IEnumerator SecuenciaCompletaIntro()
     {
-        // Aseguramos que el panel esté activo
-        if (panelPresentacion != null) panelPresentacion.SetActive(true);
-        juegoIniciado = false;
+        introFinalizada = false;
 
-        yield return new WaitForSeconds(tiempoPresentacion);
+        // 1. Fase de Controles
+        if (panelControles != null)
+        {
+            panelControles.SetActive(true);
+            yield return new WaitForSeconds(tiempoEsperaControles);
+            panelControles.SetActive(false);
+        }
 
-        if (panelPresentacion != null) panelPresentacion.SetActive(false);
+        // 2. Fase de Personaje a encontrar
+        if (panelPresentacionPersonaje != null)
+        {
+            panelPresentacionPersonaje.SetActive(true);
+            yield return new WaitForSeconds(tiempoPresentacionPersonaje);
+            panelPresentacionPersonaje.SetActive(false);
+        }
+
+        // 3. Generar Spawns (Solo cuando todo lo visual ha terminado)
         ConfigurarEscena(); 
-        juegoIniciado = true;
+        introFinalizada = true;
     }
 
     void ObtenerPuntosDeSpawn()
@@ -109,14 +127,12 @@ public class FindJamLogic : MonoBehaviour
     {
         if (puntosDisponibles.Count == 0 || prefabSeleccionadoObjetivo == null) return;
 
-        // 1. Elegir UN solo punto para el objetivo
         int indiceAleatorio = Random.Range(0, puntosDisponibles.Count);
         Transform puntoObjetivo = puntosDisponibles[indiceAleatorio];
         puntosDisponibles.RemoveAt(indiceAleatorio);
 
         InstanciarPersonaje(puntoObjetivo, prefabSeleccionadoObjetivo, true);
 
-        // 2. Rellenar el RESTO de puntos con rivales aleatorios
         foreach (Transform punto in puntosDisponibles)
         {
             GameObject prefabRival = prefabsRivales[Random.Range(0, prefabsRivales.Length)];
@@ -136,14 +152,12 @@ public class FindJamLogic : MonoBehaviour
 
         if (esObjetivo)
         {
-            // Solo el objetivo recibe el script de click
             JamTarget target = nuevo.GetComponent<JamTarget>();
             if(target == null) target = nuevo.AddComponent<JamTarget>();
             target.Configurar(this);
         }
         else
         {
-            // Opcional: Asegurarnos de que los rivales no tengan el script JamTarget por error
             JamTarget targetInadecuado = nuevo.GetComponent<JamTarget>();
             if(targetInadecuado != null) Destroy(targetInadecuado);
         }

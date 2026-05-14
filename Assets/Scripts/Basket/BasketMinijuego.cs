@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -49,6 +50,11 @@ public class BasketMinijuego : MonoBehaviour
     public float tiempoLimite = 7f;
     private float tiempoRestante;
     private bool terminado;
+    
+    [Header("Panel de Inicio")]
+    public GameObject panelControles; // Arrastra el Panel desde el Inspector
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
 
     #region Getters para UI
     public float ObtenerTiempoLimite() => tiempoLimite;
@@ -60,6 +66,14 @@ public class BasketMinijuego : MonoBehaviour
     void Start() {
         if (colJugador != null && colBalon != null) {
             Physics2D.IgnoreCollision(colJugador, colBalon, true);
+        }
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true; // Si olvidas asignar el panel, el juego empieza igual
         }
         IniciarJuego();
     }
@@ -75,12 +89,26 @@ public class BasketMinijuego : MonoBehaviour
     }
 
     void Update() {
+        if (!introFinalizada) return;
         if (terminado) return;
         tiempoRestante -= Time.deltaTime;
         if (tiempoRestante <= 0) Finalizar(false, "TIEMPO AGOTADO");
 
         if (estadoActual == EstadoJuego.EsperandoSalto && Input.GetKeyDown(KeyCode.Space)) Saltar();
         else if (estadoActual == EstadoJuego.Saltando && Input.GetKeyDown(KeyCode.Space)) Tirar();
+    }
+    
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+    
+        // Espera real de tiempo (no le afecta el Time.timeScale)
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+    
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        
     }
 
     void Saltar() {

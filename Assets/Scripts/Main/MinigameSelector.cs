@@ -5,10 +5,16 @@ public class MinigameSelector : MonoBehaviour
 {
     public static string escenaPendiente;
 
-    public void OnClickPlay(string escenaMinijuego)
+    public void OnClickPlayJAM(string escenaMinijuego)
     {
         escenaPendiente = escenaMinijuego;
-        SceneManager.LoadScene("GameManagerSelectorMinijuego");
+        SceneManager.LoadScene("JAMSelectorMinijuego");
+    }
+    
+    public void OnClickPlayHaznarito(string escenaMinijuego)
+    {
+        escenaPendiente = escenaMinijuego;
+        SceneManager.LoadScene("HaznaritoSelectorMinijuego");
     }
     
     public void OnClickMainMenu()

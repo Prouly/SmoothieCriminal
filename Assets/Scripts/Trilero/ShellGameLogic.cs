@@ -8,6 +8,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class ShellGameLogic : MonoBehaviour
 {
     #region Variables de Configuración
@@ -21,6 +22,11 @@ public class ShellGameLogic : MonoBehaviour
     [SerializeField] private float tiempoDecision = 3f; 
     [SerializeField] private float duracionIntercambio = 0.5f; 
 
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+    
     [Header("Ajustes de Sonido")]
     [SerializeField] private AudioClip sonidoMovimiento; // Sonido mientras se mezclan
     [SerializeField] private AudioClip sonidoAcierto;    // Sonido al ganar
@@ -43,8 +49,30 @@ public class ShellGameLogic : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+        
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
 
         tiempoRestante = tiempoDecision; 
+    }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
         StartCoroutine(SecuenciaJuego());
     }
 

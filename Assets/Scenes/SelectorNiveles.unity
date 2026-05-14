@@ -179,7 +179,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -387,7 +387,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -412,7 +412,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -657,7 +657,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -682,7 +682,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1188,6 +1188,7 @@ RectTransform:
   - {fileID: 16521326}
   - {fileID: 457304968}
   - {fileID: 1166830700}
+  - {fileID: 1351036324}
   m_Father: {fileID: 1971287173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1370,6 +1371,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442147338}
   m_CullTransparentMesh: 1
+--- !u!1 &453403461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453403463}
+  - component: {fileID: 453403462}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &453403462
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453403461}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: cdfb791ee2aee0a48902a0830ee390cf, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &453403463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453403461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7606173, y: -0.005832672, z: -0.036801003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &457304967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,7 +1518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &457304968
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1404,10 +1534,10 @@ RectTransform:
   - {fileID: 300316718}
   m_Father: {fileID: 415464918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1263.45, y: -819.1}
+  m_SizeDelta: {x: 160, y: 74.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &457304969
 MonoBehaviour:
@@ -1455,7 +1585,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1563,7 +1693,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1588,7 +1718,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2223,7 +2353,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2248,7 +2378,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2356,7 +2486,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2381,7 +2511,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2763,7 +2893,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2788,7 +2918,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2896,7 +3026,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2921,7 +3051,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2951,7 +3081,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8706628639152080694, guid: 9de5d7782e7fb6142899a95cc2cecc4f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 357dc3c5090e6b94d89afc5695ba27a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3179,14 +3309,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.06474723, g: 0.85435504, b: 0.9150943, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2ee74fe6d9e5ead489177d1b35d40c03, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc8c491f0918c184693b2fc1b3609437, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3834,8 +3964,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1756523605}
   m_HandleRect: {fileID: 1756523604}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.8390285
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3938,7 +4068,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3963,7 +4093,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4108,7 +4238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1166830700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4124,10 +4254,10 @@ RectTransform:
   - {fileID: 1237225198}
   m_Father: {fileID: 415464918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1263.45, y: -819.1}
+  m_SizeDelta: {x: 160, y: 74.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166830701
 MonoBehaviour:
@@ -4175,7 +4305,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4283,7 +4413,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8235294, g: 0.77254903, b: 0.77254903, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4308,7 +4438,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4692,7 +4822,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4717,7 +4847,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4962,7 +5092,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4987,7 +5117,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5173,6 +5303,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276293991}
+  m_CullTransparentMesh: 1
+--- !u!1 &1351036323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351036324}
+  - component: {fileID: 1351036326}
+  - component: {fileID: 1351036325}
+  m_Layer: 5
+  m_Name: Logo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1351036324
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351036323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.78, y: 2.13, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 415464918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1351036325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351036323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -9027660024019000588, guid: 18f530b5b09912d488052d534c11cbb9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1351036326
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351036323}
   m_CullTransparentMesh: 1
 --- !u!1 &1559503911
 GameObject:
@@ -5371,7 +5576,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5396,7 +5601,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5754,7 +5959,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5779,7 +5984,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayJAM
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5887,7 +6092,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8207547, g: 0.7704254, b: 0.7704254, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5912,7 +6117,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567252552}
         m_TargetAssemblyTypeName: MinigameSelector, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickPlayHaznarito
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6093,3 +6298,4 @@ SceneRoots:
   - {fileID: 380041636}
   - {fileID: 567252551}
   - {fileID: 1163079586}
+  - {fileID: 453403463}

@@ -7,14 +7,18 @@ public class PlataformaPlayer : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
+    private PlataformaGameManager plataformaLogic;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        plataformaLogic = Object.FindFirstObjectByType<PlataformaGameManager>();
     }
 
     void Update()
     {
+        // BLOQUEO: Si no hay manager o la intro no ha terminado, no puede saltar
+        if (plataformaLogic == null || !plataformaLogic.ObtenerIntroFinalizada()) return;
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
@@ -23,6 +27,20 @@ public class PlataformaPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (plataformaLogic == null || !plataformaLogic.ObtenerIntroFinalizada())
+        {
+            // SOLUCIÓN DEFINITIVA: 
+            // 1. Ponemos velocidad a 0
+            rb.linearVelocity = Vector2.zero;
+            // 2. Congelamos la posición para que el Physics Material no lo deslice
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            return;
+        }
+
+        // Cuando la intro termina, restauramos las restricciones (solo congelamos rotación)
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        
+        // Movimiento normal
         rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
     }
 

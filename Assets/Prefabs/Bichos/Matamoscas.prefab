@@ -77,10 +77,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 999
-  m_Sprite: {fileID: 5064661904417488193, guid: 1954df478f863d34ab1f4e3a46a128a0, type: 3}
+  m_Sprite: {fileID: 3986141785230379836, guid: c349600cdaa6dc44e9b2229cf2d9170a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 2.71, y: 0.97}
   m_AdaptiveModeThreshold: 0.5
@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   framesMatamoscas:
-  - {fileID: 5064661904417488193, guid: 1954df478f863d34ab1f4e3a46a128a0, type: 3}
-  - {fileID: -6246091644322125942, guid: 1954df478f863d34ab1f4e3a46a128a0, type: 3}
-  - {fileID: -1086341849624523872, guid: 1954df478f863d34ab1f4e3a46a128a0, type: 3}
+  - {fileID: 3986141785230379836, guid: c349600cdaa6dc44e9b2229cf2d9170a, type: 3}
+  - {fileID: -7858785177890525174, guid: c349600cdaa6dc44e9b2229cf2d9170a, type: 3}
+  - {fileID: 7070830261553387699, guid: c349600cdaa6dc44e9b2229cf2d9170a, type: 3}
   objetoLimits: {fileID: 0}
+  puntoImpacto: {fileID: 0}
+  radioGolpe: 0.6

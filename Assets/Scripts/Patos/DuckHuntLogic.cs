@@ -1,3 +1,7 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 /**
  * Proyecto: Smoothie Criminal
  * Autor: Álvaro Muñoz Adán
@@ -5,10 +9,7 @@
  * Última modificación: 27/04/2026 (Corrección definitiva de sonido en último pato)
  */
 
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
+[RequireComponent(typeof(AudioSource))]
 public class DuckHuntLogic : MonoBehaviour
 {
     #region Variables de Configuración
@@ -21,7 +22,15 @@ public class DuckHuntLogic : MonoBehaviour
     [SerializeField] private float tiempoLimite = 7f;
 
     [Header("Efectos de Sonido")]
+    private AudioSource audioSource;
     [SerializeField] private AudioClip sonidoDisparo;
+    [SerializeField] private AudioClip clipVictoria;
+    [SerializeField] private AudioClip clipDerrota;
+    
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
     #endregion
 
     #region Variables de Estado
@@ -37,15 +46,25 @@ public class DuckHuntLogic : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
+        audioSource = GetComponent<AudioSource>();
         // Inicializamos el tiempo para que el TimerUI lo detecte desde el segundo 0
         tiempoRestante = tiempoLimite; 
 
-        GenerarPatos();
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
+        
     }
 
     void Update()
     {
-        if (juegoTerminado) return;
+        if (!introFinalizada || juegoTerminado) return;
 
         // Gestión de disparo general (cuando el jugador falla o dispara al aire)
         if (Input.GetMouseButtonDown(0))
@@ -65,6 +84,19 @@ public class DuckHuntLogic : MonoBehaviour
             FinalizarJuego(false);
         }
     }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        GenerarPatos();
+    }
     #endregion
 
     #region Lógica del Juego
@@ -76,7 +108,7 @@ public class DuckHuntLogic : MonoBehaviour
         if (sonidoDisparo != null)
         {
             // PlayClipAtPoint permite que el sonido no se corte si el objeto que dispara el código desaparece
-            AudioSource.PlayClipAtPoint(sonidoDisparo, Camera.main.transform.position);
+            audioSource.PlayOneShot(sonidoDisparo);
         }
     }
 
@@ -120,8 +152,19 @@ public class DuckHuntLogic : MonoBehaviour
     /// </summary>
     private IEnumerator RetrasoFinalizacion(bool victoria)
     {
-        juegoTerminado = true; // Bloqueamos nuevas acciones inmediatamente
-        yield return new WaitForSeconds(0.3f); // Tiempo suficiente para iniciar el sonido de 2.3s
+        juegoTerminado = true;
+
+        // 1. Reproducimos el sonido AQUÍ, mientras el objeto aún existe
+        if (victoria)
+        {
+            if (clipVictoria != null) audioSource.PlayOneShot(clipVictoria);
+        }
+        else
+        {
+            if (clipDerrota != null) audioSource.PlayOneShot(clipDerrota);
+        }
+        // Esperamos un tiempo suficiente para que se escuche el audio
+        yield return new WaitForSeconds(1.5f); 
         FinalizarJuego(victoria);
     }
 

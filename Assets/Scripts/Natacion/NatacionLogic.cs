@@ -23,6 +23,11 @@ public class NatacionLogic : MonoBehaviour
     [SerializeField] private AudioClip sonidoChapoteo;
     [SerializeField] private AudioClip sonidoVictoria; // Nuevo: Sonido al ganar
     [SerializeField] private AudioClip sonidoDerrota;  // Nuevo: Sonido al perder
+    
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
     #endregion
 
     #region Variables de Estado
@@ -40,7 +45,17 @@ public class NatacionLogic : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-
+        
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
+        
         tiempoRestante = tiempoLimite;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
@@ -48,10 +63,22 @@ public class NatacionLogic : MonoBehaviour
 
     void Update()
     {
-        if (juegoTerminado) return;
+        if (!introFinalizada || juegoTerminado) return;
 
         ManejarCronometro();
         VerificarCondiciones();
+    }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
     }
     #endregion
 
@@ -113,6 +140,8 @@ public class NatacionLogic : MonoBehaviour
             else GameManager.instancia.Perder();
         }
     }
+    
+    public bool ObtenerIntroFinalizada() => introFinalizada;
     #endregion
 
     #region Getters para UI

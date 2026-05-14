@@ -298,6 +298,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &475812468 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4564111298659332216, guid: 4f3aa06fcc689984ca46970105f43ca1, type: 3}
+  m_PrefabInstance: {fileID: 1229808226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &527269483
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +443,7 @@ MonoBehaviour:
   spritesAbajo:
   - {fileID: 3424446691210073782, guid: 632e22142f682b045bca9af0a2b475b6, type: 3}
   - {fileID: -3947163735971881493, guid: 632e22142f682b045bca9af0a2b475b6, type: 3}
-  - {fileID: -1059098881846737897, guid: 355012c59b2511c4f86055376ecb4a66, type: 3}
+  - {fileID: -7255299645535257628, guid: 632e22142f682b045bca9af0a2b475b6, type: 3}
   spritesIzquierda:
   - {fileID: -1580040477388667563, guid: a9d0d75418214d444b94a920d1af91ac, type: 3}
   - {fileID: -6683253753314192615, guid: a9d0d75418214d444b94a920d1af91ac, type: 3}
@@ -459,10 +464,12 @@ MonoBehaviour:
   - {fileID: -2159090941446783750, guid: 5885cdf70e5a06d45ac45fe270fb16df, type: 3}
   - {fileID: 6255761929639691222, guid: 5885cdf70e5a06d45ac45fe270fb16df, type: 3}
   - {fileID: -452667375544937103, guid: 5885cdf70e5a06d45ac45fe270fb16df, type: 3}
-  textoIntroduccion: {fileID: 0}
+  textoIntroduccion: {fileID: 1317366357}
   textoResultado: {fileID: 1717694072}
   sonidoVictoria: {fileID: 8300000, guid: abc027c0974ab354fb184245f3357cdd, type: 3}
   sonidoDerrota: {fileID: 8300000, guid: b5b9d834440151b48973fd76ecb257b2, type: 3}
+  panelControles: {fileID: 475812468}
+  tiempoEsperaIntro: 4
   longitudSecuencia: 4
   tiempoLimite: 7
 --- !u!82 &546759154
@@ -476,8 +483,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: 5c0c651472b7bb24e8d41c06bef88ed3, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1970,5 +1977,5 @@ SceneRoots:
   - {fileID: 1888846420}
   - {fileID: 830311104}
   - {fileID: 1995294703}
-  - {fileID: 527269486}
   - {fileID: 2024050924}
+  - {fileID: 527269486}

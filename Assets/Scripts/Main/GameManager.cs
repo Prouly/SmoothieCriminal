@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
     public float tiempoEspera = 1f;           
     public float tiempoParaSiguiente = 2f;    
 
-    public Image imagenGanar;    
-    public Image imagenPerder;
+    public GameObject imagenGanar;
+    public GameObject imagenPerder;
     public GameObject imagenCargaMinijuego;
     public Image[] imagenesVidas;
     public TextMeshProUGUI textoPuntos;
@@ -180,16 +180,16 @@ public class GameManager : MonoBehaviour
         GameObject canvasGO = GameObject.Find("Canvas"); 
         if (canvasGO != null)
         {
-            imagenGanar = canvasGO.transform.Find("Win")?.GetComponent<Image>(); 
-            imagenPerder = canvasGO.transform.Find("Lose")?.GetComponent<Image>(); 
-            textoPuntos = canvasGO.transform.Find("Puntos")?.GetComponent<TextMeshProUGUI>(); 
+            textoPuntos = canvasGO.transform.Find("Ronda")?.GetComponent<TextMeshProUGUI>(); 
             textoVelocidad = canvasGO.transform.Find("SpeedWarning")?.GetComponent<TextMeshProUGUI>(); 
             
             // Aplicamos texto Puntos + salto de línea (\n)
-            if (textoPuntos != null) textoPuntos.text = "Puntos\n" + puntos; 
+            if (textoPuntos != null) textoPuntos.text = "Ronda\n" + puntos; 
         }
         
-        imagenCargaMinijuego = GameObject.Find("TransicionNormal"); 
+        imagenCargaMinijuego = GameObject.Find("TransicionNormal");
+        imagenGanar = GameObject.Find("TransicionGanar")?.gameObject; 
+        imagenPerder = GameObject.Find("TransicionPerder")?.gameObject; 
             
         Transform vidasParent = canvasGO.transform.Find("Vidas"); 
         if (vidasParent != null)
@@ -221,10 +221,10 @@ public class GameManager : MonoBehaviour
 
         if (ultimoResultado == Resultado.Ganar && imagenGanar != null)
         {
-            imagenGanar.gameObject.SetActive(true); 
+            imagenGanar.SetActive(true); 
             if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); 
             yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota); 
-            imagenGanar.gameObject.SetActive(false); 
+            imagenGanar.SetActive(false); 
             if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); 
             
             if (mostrarSpeedUp && textoVelocidad != null)
@@ -237,10 +237,10 @@ public class GameManager : MonoBehaviour
         }
         else if (ultimoResultado == Resultado.Perder && imagenPerder != null)
         {
-            imagenPerder.gameObject.SetActive(true); 
+            imagenPerder.SetActive(true); 
             if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); 
             yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
-            imagenPerder.gameObject.SetActive(false); 
+            imagenPerder.SetActive(false); 
             if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); 
         }
 

@@ -816,6 +816,8 @@ MonoBehaviour:
   alturaIdealTiro: 1.5
   sensibilidadTiming: 1
   tiempoLimite: 7
+  panelControles: {fileID: 1745926992}
+  tiempoEsperaIntro: 4
 --- !u!4 &950607613
 Transform:
   m_ObjectHideFlags: 0
@@ -842,7 +844,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 5c0c651472b7bb24e8d41c06bef88ed3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1487,6 +1489,11 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &1745926992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4564111298659332216, guid: fc08f35aabefe1e41ae9abe584ca75ff, type: 3}
+  m_PrefabInstance: {fileID: 7698172757965519359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1755980590
 GameObject:
   m_ObjectHideFlags: 0

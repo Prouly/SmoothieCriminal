@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -57,6 +58,11 @@ public class PenaltiMinijuego : MonoBehaviour
 
     [Header("Ajuste visual de la flecha")]
     public float rotacionBaseFlecha = 90f;
+    
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
 
     private float tiempoRestante;
     private float anguloActual;
@@ -84,20 +90,24 @@ public class PenaltiMinijuego : MonoBehaviour
         
         if(textoInstruccion != null) textoInstruccion.text = "¡ESPACIO PARA DISPARAR!";
         if(textoResultado != null) textoResultado.text = "";
+        
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
     }
 
     void Update()
     {
         // Si el juego ha terminado, no hacemos nada más
-        if (terminado) return;
-
-        // 1. Manejar el tiempo (siempre corre mientras no termine)
-        ManejarTiempo();
-
-        // 2. MOVER PORTERO (Ahora está fuera del switch, se mueve SIEMPRE)
-        MoverPortero();
-
-        // 3. Lógica según el estado
+        if (!introFinalizada || terminado) return;
+        
+        // Lógica según el estado
         switch (estadoActual)
         {
             case EstadoJuego.ElegirDireccion:
@@ -109,6 +119,24 @@ public class PenaltiMinijuego : MonoBehaviour
                 // Aquí ya no hace falta poner MoverPortero porque está arriba
                 break;
         }
+    }
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
+    {
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        
+        // Manejar el tiempo (siempre corre mientras no termine)
+        ManejarTiempo();
+
+        // MOVER PORTERO
+        MoverPortero();
     }
 
     void ManejarTiempo()

@@ -12,12 +12,23 @@ using UnityEngine.UI;
  * Última modificación: 04/04/2026 (Álvaro Muñoz Adán) -> Utilización de todos los frames de animación y aceleración del spawn de siguiente topo
  */
 
+[RequireComponent(typeof(AudioSource))]
 public class Topos : MonoBehaviour
 {
     [SerializeField] private GameObject[] vasosTopos;
     [SerializeField] private int number; 
     [SerializeField] private float timer;
 
+    [Header("Panel de Inicio")]
+    public GameObject panelControles;
+    public float tiempoEsperaIntro = 4f;
+    private bool introFinalizada = false;
+    
+    [Header("Audio")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip clipVictoria;
+    [SerializeField] private AudioClip clipDerrota;
+    
     private List<GameObject> seleccionados;
     private int clickeadosCount = 0;
     private bool gameFinished = false;
@@ -27,8 +38,24 @@ public class Topos : MonoBehaviour
     private void Start()
     {
         tiempoRestante = timer;
-        ConfigurarSeleccion();
-        StartCoroutine(GestionarOleada());
+        // Lógica de inicio con panel
+        if (panelControles != null)
+        {
+            StartCoroutine(SecuenciaIntro());
+        }
+        else
+        {
+            introFinalizada = true;
+        }
+    }
+    
+    private void Update()
+    {
+        // Bloqueo total hasta que termine la intro o el juego
+        if (!introFinalizada ||gameFinished) return;
+        tiempoRestante -= Time.deltaTime;
+
+        if (tiempoRestante <= 0) FinalizarJuego(false);
     }
 
     private void ConfigurarSeleccion()
@@ -43,13 +70,19 @@ public class Topos : MonoBehaviour
             copia.RemoveAt(index);
         }
     }
-
-    private void Update()
+    
+    // Corrutina para gestionar la espera inicial de 4 segundos
+    IEnumerator SecuenciaIntro()
     {
-        if (gameFinished) return;
-        tiempoRestante -= Time.deltaTime;
-
-        if (tiempoRestante <= 0) FinalizarJuego(false);
+        introFinalizada = false;
+        panelControles.SetActive(true);
+        
+        yield return new WaitForSeconds(tiempoEsperaIntro);
+        
+        panelControles.SetActive(false);
+        introFinalizada = true;
+        ConfigurarSeleccion();
+        StartCoroutine(GestionarOleada());
     }
     
     private IEnumerator GestionarOleada()
@@ -100,12 +133,14 @@ public class Topos : MonoBehaviour
 
         if (victoria)
         {
+            if (clipVictoria != null) audioSource.PlayOneShot(clipVictoria);
             // LOG: Victoria por puntos
             Debug.Log("<color=green>¡Has ganado! Todos los topos han sido golpeados.</color>");
             if (GameManager.instancia != null) GameManager.instancia.Ganar();
         }
         else
         {
+            if (clipDerrota != null) audioSource.PlayOneShot(clipDerrota);
             // LOG: Derrota por tiempo
             Debug.Log("<color=red>¡Se ha acabado el tiempo! Has perdido el minijuego.</color>");
             if (GameManager.instancia != null) GameManager.instancia.Perder();
