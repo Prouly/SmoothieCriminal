@@ -10,7 +10,7 @@ public class FinDEMOUI : MonoBehaviour
     {
         if (GameManager.instancia != null)
         {
-            textoPuntosFinales.text = "Puntos: " + GameManager.instancia.puntosFinales;
+            textoPuntosFinales.text = "Rondas: " + GameManager.instancia.puntosFinales;
         }
     }
     

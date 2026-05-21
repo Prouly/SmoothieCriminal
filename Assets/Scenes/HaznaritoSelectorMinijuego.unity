@@ -1149,7 +1149,7 @@ MonoBehaviour:
   vidas: 4
   puntosPorIncrementoVelocidad: 2
   puntos: 0
-  puntosMaximos: 18
+  puntosMaximos: 99
   tiempoPantallaVictoriaDerrota: 1.5
   tiempoEspera: 2
   tiempoParaSiguiente: 3.4

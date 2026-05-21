@@ -13,18 +13,24 @@ public class PlayerCarrera : MonoBehaviour
     [SerializeField] private Sprite spriteD;
     [SerializeField] private Sprite spriteA;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    private CarreraLogic carreraLogic;
+    private CarreraLogic carreraLogic; // Referencia a la lógica
     #endregion
 
     #region Variables de Estado
     private bool esperaD = true;
     #endregion
 
-    private void Start() => ActualizarSprite();
+    private void Start() 
+    {
+        // ASIGNACIÓN: Buscamos el script de lógica en la escena
+        carreraLogic = Object.FindFirstObjectByType<CarreraLogic>();
+        ActualizarSprite();
+    }
 
     void Update()
     {
-        if (carreraLogic != null && carreraLogic.EstaJuegoTerminado()) return;
+        // CAMBIO CLAVE: Si no hay lógica o aún no se puede jugar, salimos
+        if (carreraLogic == null || !carreraLogic.PuedeMoverse()) return;
         
         if (esperaD && Input.GetKeyDown(KeyCode.D))
         {
@@ -42,5 +48,9 @@ public class PlayerCarrera : MonoBehaviour
     
     void Avanzar() => transform.position += new Vector3(distanciaPaso, 0, 0);
     
-    void ActualizarSprite() => spriteRenderer.sprite = esperaD ? spriteD : spriteA;
+    void ActualizarSprite() 
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = esperaD ? spriteD : spriteA;
+    }
 }

@@ -37,6 +37,7 @@ public class Topos : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         tiempoRestante = timer;
         // Lógica de inicio con panel
         if (panelControles != null)
@@ -52,7 +53,7 @@ public class Topos : MonoBehaviour
     private void Update()
     {
         // Bloqueo total hasta que termine la intro o el juego
-        if (!introFinalizada ||gameFinished) return;
+        if (!introFinalizada || gameFinished) return;
         tiempoRestante -= Time.deltaTime;
 
         if (tiempoRestante <= 0) FinalizarJuego(false);

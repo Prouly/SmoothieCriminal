@@ -119,6 +119,8 @@ public class PenaltiMinijuego : MonoBehaviour
                 // Aquí ya no hace falta poner MoverPortero porque está arriba
                 break;
         }
+        ManejarTiempo();
+        MoverPortero();
     }
     
     // Corrutina para gestionar la espera inicial de 4 segundos
@@ -131,12 +133,6 @@ public class PenaltiMinijuego : MonoBehaviour
         
         panelControles.SetActive(false);
         introFinalizada = true;
-        
-        // Manejar el tiempo (siempre corre mientras no termine)
-        ManejarTiempo();
-
-        // MOVER PORTERO
-        MoverPortero();
     }
 
     void ManejarTiempo()

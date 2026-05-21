@@ -898,7 +898,7 @@ Transform:
   m_GameObject: {fileID: 1413142639}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.13, y: -1.14, z: 0}
+  m_LocalPosition: {x: -1.02, y: -1.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1677,7 +1677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2187258213279899734, guid: a5c4f2f1c5218c74bb49316f2e9b2bef, type: 3}
       propertyPath: radioGolpe
-      value: 1.26
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2187258213279899734, guid: a5c4f2f1c5218c74bb49316f2e9b2bef, type: 3}
       propertyPath: objetoLimits

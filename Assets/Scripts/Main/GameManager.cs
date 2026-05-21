@@ -22,10 +22,10 @@ public class GameManager : MonoBehaviour
     private float velocidadAnterior = 1f;
     public float puntos = 0;
     [SerializeField] private float puntosMaximos = 12f;
-    public float tiempoPantallaVictoriaDerrota = 1f; 
+    public float tiempoPantallaVictoriaDerrota = 2.5f; 
 
-    public float tiempoEspera = 1f;           
-    public float tiempoParaSiguiente = 2f;    
+    public float tiempoEspera = 2f;           
+    public float tiempoParaSiguiente = 3.4f;    
 
     public GameObject imagenGanar;
     public GameObject imagenPerder;
@@ -176,75 +176,88 @@ public class GameManager : MonoBehaviour
     }
     
     void ManageUIOnReturn()
+{
+    // RESET de referencias: Muy importante al usar DontDestroyOnLoad
+    // Evitamos usar objetos "viejos" de la escena anterior
+    imagenGanar = null;
+    imagenPerder = null;
+    imagenCargaMinijuego = null;
+
+    GameObject canvasGO = GameObject.Find("Canvas");
+    if (canvasGO != null)
     {
-        GameObject canvasGO = GameObject.Find("Canvas"); 
-        if (canvasGO != null)
-        {
-            textoPuntos = canvasGO.transform.Find("Ronda")?.GetComponent<TextMeshProUGUI>(); 
-            textoVelocidad = canvasGO.transform.Find("SpeedWarning")?.GetComponent<TextMeshProUGUI>(); 
-            
-            // Aplicamos texto Puntos + salto de línea (\n)
-            if (textoPuntos != null) textoPuntos.text = "Ronda\n" + puntos; 
-        }
-        
-        imagenCargaMinijuego = GameObject.Find("TransicionNormal");
-        imagenGanar = GameObject.Find("TransicionGanar")?.gameObject; 
-        imagenPerder = GameObject.Find("TransicionPerder")?.gameObject; 
-            
-        Transform vidasParent = canvasGO.transform.Find("Vidas"); 
+        textoPuntos = canvasGO.transform.Find("Ronda")?.GetComponent<TextMeshProUGUI>();
+        textoVelocidad = canvasGO.transform.Find("SpeedWarning")?.GetComponent<TextMeshProUGUI>();
+        if (textoPuntos != null) textoPuntos.text = "Ronda\n" + puntos;
+    }
+
+    // Buscamos en la raíz de la nueva escena
+    GameObject[] rootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+    foreach (GameObject go in rootObjects)
+    {
+        // Usamos nombres exactos. Asegúrate de que en Unity se llamen ASÍ exactamente.
+        if (go.name == "TransicionGanar") imagenGanar = go;
+        else if (go.name == "TransicionPerder") imagenPerder = go;
+        else if (go.name == "TransicionNormal") imagenCargaMinijuego = go;
+    }
+
+    // Depuración: Si alguna sigue siendo null, te avisará en la consola
+    if (imagenGanar == null) Debug.LogWarning("¡OJO! No se encontró TransicionGanar en esta escena.");
+    if (imagenPerder == null) Debug.LogWarning("¡OJO! No se encontró TransicionPerder en esta escena.");
+
+    if (canvasGO != null)
+    {
+        Transform vidasParent = canvasGO.transform.Find("Vidas");
         if (vidasParent != null)
         {
-            imagenesVidas = new Image[vidasParent.childCount]; 
+            imagenesVidas = new Image[vidasParent.childCount];
             for (int i = 0; i < vidasParent.childCount; i++)
             {
-                imagenesVidas[i] = vidasParent.GetChild(i).GetComponent<Image>(); 
+                imagenesVidas[i] = vidasParent.GetChild(i).GetComponent<Image>();
             }
         }
     }
-    
-    IEnumerator MostrarPantallaYTemporizador()
+}
+
+IEnumerator MostrarPantallaYTemporizador()
+{
+    yield return null; 
+
+    // Debug para saber qué resultado tiene el GameManager antes de mostrar nada
+    Debug.Log("Mostrando pantalla. Resultado actual: " + ultimoResultado);
+
+    if (imagenesVidas != null)
     {
-        yield return null; 
-
-        if (imagenesVidas == null)
-        {
-            StartCoroutine(Temporizador()); 
-            yield break;
-        }
-
         for (int i = 0; i < imagenesVidas.Length; i++)
         {
             if (imagenesVidas[i] != null) imagenesVidas[i].gameObject.SetActive(i < vidas); 
         }
-
-        if (vidas < 0) yield break; 
-
-        if (ultimoResultado == Resultado.Ganar && imagenGanar != null)
-        {
-            imagenGanar.SetActive(true); 
-            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); 
-            yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota); 
-            imagenGanar.SetActive(false); 
-            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); 
-            
-            if (mostrarSpeedUp && textoVelocidad != null)
-            {
-                textoVelocidad.gameObject.SetActive(true); 
-                yield return new WaitForSeconds(1f); 
-                textoVelocidad.gameObject.SetActive(false); 
-                mostrarSpeedUp = false; 
-            }
-        }
-        else if (ultimoResultado == Resultado.Perder && imagenPerder != null)
-        {
-            imagenPerder.SetActive(true); 
-            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); 
-            yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
-            imagenPerder.SetActive(false); 
-            if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); 
-        }
-
-        ultimoResultado = Resultado.Ninguno; 
-        StartCoroutine(Temporizador()); 
     }
+
+    if (vidas < 0) yield break; 
+
+    if (ultimoResultado == Resultado.Ganar && imagenGanar != null)
+    {
+        Debug.Log("Activando objeto: " + imagenGanar.name);
+        imagenGanar.SetActive(true); 
+        if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); 
+        yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota); 
+        imagenGanar.SetActive(false); 
+        if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); 
+        // ... resto del código de SpeedUp
+    }
+    else if (ultimoResultado == Resultado.Perder && imagenPerder != null)
+    {
+        Debug.Log("Activando objeto: " + imagenPerder.name);
+        imagenPerder.SetActive(true); 
+        if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(false); 
+        yield return new WaitForSeconds(tiempoPantallaVictoriaDerrota);
+        imagenPerder.SetActive(false); 
+        if (imagenCargaMinijuego != null) imagenCargaMinijuego.SetActive(true); 
+    }
+
+    ultimoResultado = Resultado.Ninguno; 
+    StartCoroutine(Temporizador()); 
+}
 }

@@ -1,37 +1,10 @@
 fileFormatVersion: 2
-guid: c349600cdaa6dc44e9b2229cf2d9170a
+guid: 56e2e563d2c3df245b71dd2a5d948208
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3986141785230379836
-    second: Sprites_Bichos_Matamoscas_Sheet_3_0
-  - first:
-      213: -7858785177890525174
-    second: Sprites_Bichos_Matamoscas_Sheet_3_1
-  - first:
-      213: 3339780364663480128
-    second: Sprites_Bichos_Matamoscas_Sheet_3_2
-  - first:
-      213: 5786999040358723121
-    second: Sprites_Bichos_Matamoscas_Sheet_3_3
-  - first:
-      213: 308469002527195393
-    second: Sprites_Bichos_Matamoscas_Sheet_3_4
-  - first:
-      213: 7070830261553387699
-    second: Sprites_Bichos_Matamoscas_Sheet_3_5
-  - first:
-      213: -7332940467059311751
-    second: Sprites_Bichos_Matamoscas_Sheet_3_6
-  - first:
-      213: -6509382334632016974
-    second: Sprites_Bichos_Matamoscas_Sheet_3_7
-  - first:
-      213: 1900036594858017417
-    second: Sprites_Bichos_Matamoscas_Sheet_3_8
-  - first:
-      213: 7504121649178699450
-    second: Sprites_Bichos_Matamoscas_Sheet_3_9
+      213: -1116467045509144464
+    second: Menu_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -78,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 140
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -140,67 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprites_Bichos_Matamoscas_Sheet_3_0
+      name: Menu_2_0
       rect:
         serializedVersion: 2
-        x: 92
-        y: 37
-        width: 628
-        height: 631
+        x: 22
+        y: 23
+        width: 1590
+        height: 1396
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3b8ffc85de915730800000000000000
-      internalID: 3986141785230379836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprites_Bichos_Matamoscas_Sheet_3_1
-      rect:
-        serializedVersion: 2
-        x: 1512
-        y: 36
-        width: 720
-        height: 682
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a00fab1b48cffe290800000000000000
-      internalID: -7858785177890525174
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprites_Bichos_Matamoscas_Sheet_3_5
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 37
-        width: 580
-        height: 589
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b8d8f6f8a2a02260800000000000000
-      internalID: 7070830261553387699
+      spriteID: 0706ffc23238180f0800000000000000
+      internalID: -1116467045509144464
       vertices: []
       indices: 
       edges: []
@@ -209,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 67e095bdd1fcca04f8e5f59bc4aa6270
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -219,16 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sprites_Bichos_Matamoscas_Sheet_3_0: 3986141785230379836
-      Sprites_Bichos_Matamoscas_Sheet_3_1: -7858785177890525174
-      Sprites_Bichos_Matamoscas_Sheet_3_2: 3339780364663480128
-      Sprites_Bichos_Matamoscas_Sheet_3_3: 5786999040358723121
-      Sprites_Bichos_Matamoscas_Sheet_3_4: 308469002527195393
-      Sprites_Bichos_Matamoscas_Sheet_3_5: 7070830261553387699
-      Sprites_Bichos_Matamoscas_Sheet_3_6: -7332940467059311751
-      Sprites_Bichos_Matamoscas_Sheet_3_7: -6509382334632016974
-      Sprites_Bichos_Matamoscas_Sheet_3_8: 1900036594858017417
-      Sprites_Bichos_Matamoscas_Sheet_3_9: 7504121649178699450
+      Menu_2_0: -1116467045509144464
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

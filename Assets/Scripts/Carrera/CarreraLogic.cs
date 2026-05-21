@@ -114,6 +114,11 @@ public class CarreraLogic : MonoBehaviour
         }
     }
 
+    public bool PuedeMoverse()
+    {
+        return introFinalizada && !juegoTerminado;
+    }
+    
     public bool EstaJuegoTerminado() => juegoTerminado;
     
     public float ObtenerTiempoRestante() => Mathf.Max(0f, tiempoRestante);

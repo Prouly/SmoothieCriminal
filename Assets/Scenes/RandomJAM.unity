@@ -1440,7 +1440,7 @@ GameObject:
   - component: {fileID: 1321544464}
   - component: {fileID: 1321544463}
   m_Layer: 5
-  m_Name: Puntos
+  m_Name: Ronda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1691,9 +1691,9 @@ MonoBehaviour:
   vidas: 4
   puntosPorIncrementoVelocidad: 2
   puntos: 0
-  puntosMaximos: 18
-  tiempoPantallaVictoriaDerrota: 1.5
-  tiempoEspera: 2
+  puntosMaximos: 99
+  tiempoPantallaVictoriaDerrota: 2.5
+  tiempoEspera: 2.5
   tiempoParaSiguiente: 3.4
   imagenGanar: {fileID: 781013316}
   imagenPerder: {fileID: 1297334823}

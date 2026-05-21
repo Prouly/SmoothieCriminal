@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 163263560}
   - component: {fileID: 163263561}
   m_Layer: 0
-  m_Name: Jup2
+  m_Name: Afi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2159090941446783750, guid: 5885cdf70e5a06d45ac45fe270fb16df, type: 3}
+  m_Sprite: {fileID: -3383054473981314117, guid: 8749fcc4be85f4a449e62465d15a248e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -461,9 +461,9 @@ MonoBehaviour:
   - {fileID: -6435267857708946728, guid: a101173c925ae9b4eb4853ca574c5f5a, type: 3}
   - {fileID: -5228677443197928373, guid: a101173c925ae9b4eb4853ca574c5f5a, type: 3}
   spritesPjDerecha:
-  - {fileID: -2159090941446783750, guid: 5885cdf70e5a06d45ac45fe270fb16df, type: 3}
-  - {fileID: 6255761929639691222, guid: 5885cdf70e5a06d45ac45fe270fb16df, type: 3}
-  - {fileID: -452667375544937103, guid: 5885cdf70e5a06d45ac45fe270fb16df, type: 3}
+  - {fileID: -3383054473981314117, guid: 8749fcc4be85f4a449e62465d15a248e, type: 3}
+  - {fileID: -2059661504914388968, guid: 8749fcc4be85f4a449e62465d15a248e, type: 3}
+  - {fileID: -4734530536060288098, guid: 8749fcc4be85f4a449e62465d15a248e, type: 3}
   textoIntroduccion: {fileID: 1317366357}
   textoResultado: {fileID: 1717694072}
   sonidoVictoria: {fileID: 8300000, guid: abc027c0974ab354fb184245f3357cdd, type: 3}
@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 1091979633}
   - component: {fileID: 1091979634}
   m_Layer: 0
-  m_Name: Jup1
+  m_Name: Jup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

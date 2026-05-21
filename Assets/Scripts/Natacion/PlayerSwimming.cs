@@ -29,7 +29,7 @@ public class PlayerSwimming : MonoBehaviour
 
     void Update()
     {
-        if (logica != null && logica.EstaJuegoTerminado()) return;
+        if (logica != null && logica.EstaJuegoTerminado() || !logica.PuedeMoverse()) return;
 
         ManejarInput();
         AplicarFisicas();

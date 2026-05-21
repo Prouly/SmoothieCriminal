@@ -141,6 +141,11 @@ public class NatacionLogic : MonoBehaviour
         }
     }
     
+    public bool PuedeMoverse()
+    {
+        return introFinalizada && !juegoTerminado;
+    }
+    
     public bool ObtenerIntroFinalizada() => introFinalizada;
     #endregion
 
