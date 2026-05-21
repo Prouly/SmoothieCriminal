@@ -62,7 +62,7 @@ Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo exp
 * **Miguel Serrano** - *Lead Artist & Haznarito creator*
 * **Claudia Trigo** - *Character Design & J.A.M. creator*
 
-### 💻 Equipo de Diseño y Programación
+### 💻 Equipo de Programación
 * **Álvaro Muñoz** - *Lead Developer & Game Designer*
 * **Yeray Fernández** - *Developer*
 * **Luis Miguel Muñoz** - *System Designer*
