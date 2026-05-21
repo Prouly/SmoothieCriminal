@@ -31,21 +31,23 @@ Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo exp
 ## 🎮 Minijuegos (La Vida del Smoothie Criminal)
 
 ### La faceta "criminal" (Dinero fácil):
-* **Patos:** El clásico Duck Hunt con un toque de locura.
-* **Vaquero:** Dispara a los mafiosos evitando a los inocentes.
-* **Nadar:** Huye a toda velocidad nadando por un río antes de que el pez gigante te atrape.
-* **Martillo:** Pulsa en el momento adecuado para eliminar a un antiguo miembro rival de otra mafia.
-* **Nariz:** Introduce el dedo que se mueve de izquierda a derecha en el agujero de la nariz.
-* **Globo:** Infla y explota el globo rápido.
-* **Penalti:** Golpea el balón y mete gol mientras el portero se mueve de un lado a otro.
+| **Patos:** Clásico Duck Hunt con un toque de locura | **Vaquero:** Dispara a los mafiosos evitando a los inocentes |
+|-----------|-----------|
+| ![Patos](docs/gameplay/SmoothieCriminal_Patos.gif) | ![Vaquero](docs/gameplay/SmoothieCriminal_Vaquero.gif) |
+| **Nadar:** Huye anadando por el río antes de que el pez te coma | **Martillo:** Pulsa en el momento adecuado para eliminar al mafioso |
+| ![Nadar](docs/gameplay/SmoothieCriminal_Nadar.gif) | ![Martillo](docs/gameplay/SmoothieCriminal_Martillo.gif) |
+| **Nariz:** Introduce el dedo en movimiento en la nariz | **Globo:** Infla y explota el globo rápido |
+| ![Nariz](docs/gameplay/SmoothieCriminal_Nariz.gif) | ![Globo](docs/gameplay/SmoothieCriminal_Globo.gif) |
+| **Penalti:** Golpea el balón y mete gol | 
+| ![Penalti](docs/gameplay/SmoothieCriminal_Penalti.gif) | 
 
 ### La faceta "empresarial" (Blanqueo de capitales):
-| **Topos:** El clásico juego de los topos, pero golpeando frutas frescas para tus Smoothies | **Basket:** Salta y lanza a canasta |
+| **Topos:** Clásico juego de los topos, golpea las frutas | **Basket:** Salta y lanza a canasta |
 |-----------|-----------|
 | ![Topos](docs/gameplay/SmoothieCriminal_Topos.gif) | ![Basket](docs/gameplay/SmoothieCriminal_Basket.gif) |
-| **Carrera:** Gana en una trepidante carrera al tramposo Haznarito | **Trilero:** No pierdas de vista el vaso donde se enconde una de las frutas e indica en que vaso se encuentra después de la mezcla de vasos |
+| **Carrera:** Trepidante carrera contra el tramposo Haznarito | **Trilero:** No pierdas de vista el vaso donde se enconde la fruta |
 | ![Carrera](docs/gameplay/SmoothieCriminal_Carrera.gif) | ![Trilero](docs/gameplay/SmoothieCriminal_Trilero.gif) |
-| **Cartas:** Memoriza la pareja de cartas que se muestra y voltealas antes de que se agote el tiempo | **SimonDice:** Repite la secuencia de teclas correctamente |
+| **Cartas:** Memoriza la pareja de cartas y voltealas | **SimonDice:** Repite la secuencia de teclas correctamente |
 | ![Cartas](docs/gameplay/SmoothieCriminal_Cartas.gif) | ![SimonDice](docs/gameplay/SmoothieCriminal_SimonDice.gif) |
 | **BuscarJAM:** El clásico Buscar a Wally, pero con frutas | **SimonDice:** Aplasta con el matamoscas a las frutas que se mueven |
 | ![BuscarJAM](docs/gameplay/SmoothieCriminal_BuscarJAM.gif) | ![Bichos](docs/gameplay/SmoothieCriminal_Bichos.gif) |
