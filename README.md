@@ -1,164 +1,80 @@
-# Enlaces
+# 🥤 Smoothie Criminal
 
-## Drive
-[Link Drive](https://drive.google.com/drive/folders/1mU7QK-KrlB8Qi48LuKZNaKmsjQc8FOF6?usp=drive_link)
+**"¿Blanquear dinero nunca fue tan refrescante... ni tan peligroso."**
 
-## Kanban
-[Link Kanban](https://github.com/users/Prouly/projects/5/views/1)
-
-## Guía de Estilos: Comentarios en Código
-[Link Guía de Estilos](https://docs.google.com/document/d/1LLupK9fOVhgG9IsMlIMDQ1TccswxzIai/edit?usp=drive_link&ouid=118423209587717261722&rtpof=true&sd=true)
-
-# Flujo de trabajo Git
-
-## Estructura de ramas
-
-| Rama | Propósito |
-|------|-----------|
-| `main` | Versiones jugables y estables. **Nadie toca esto directamente.** |
-| `dev` | Rama de integración. Todo el trabajo de desarrollo se fusiona aquí. |
-| `art` | Rama de integración para diseño. Assets, sprites, UI y animaciones. |
-| `dev_nombre_feature` | Rama personal de cada desarrollador. |
-| `art_nombre_feature` | Rama personal de cada diseñador. |
+¡Bienvenidos a **Smoothie Criminal**! Un *party-game* frenético donde la delincuencia se encuentra con el arte de preparar batidos. Sumérgete en una historia de mafia, alucinaciones y decisiones cuestionables.
 
 ---
 
-## Flujo del día a día
+## 🕹️ Juego
+Actualmente en **fase preliminar (versión estable)** y disponible para **Windows**, *Smoothie Criminal* es una experiencia arcade que combina reflejos, memoria y caos absoluto.
 
-**Desarrolladores** parten siempre desde `dev`:
-```bash
-git checkout dev
-git pull origin dev
-git checkout -b dev_tunombre_feature
-```
+### 📜 Historia
+**Haznarito** ha decidido dejar la vida criminal, pero hay un pequeño detalle: se llevó consigo una maleta llena de dinero. Para limpiar su historial (y su fortuna), obtiene una licencia para vender Smoothies. Lo que parecía un negocio legítimo se tuerce cuando una clienta habitual empieza a pagar con unas pastillas de "dudosa procedencia". 
 
-**Diseñadores** parten siempre desde `des`:
-```bash
-git checkout art
-git pull origin art
-git checkout -b art_tunombre_feature
-```
-
-Cuando el trabajo está listo, se abre un **Pull Request** hacia `dev` o `art` según corresponda. Otra persona lo revisa antes de mergear.
-
-Cuando `dev` y `art` están estables y jugables, se hace merge a `main` como nuevo hito.
+Tras consumirlas, la realidad de Haznarito se fractura y aparece **J.A.M.**, alter ego o manifestación alucinógena, llevando el juego a otro nivel de locura.
 
 ---
 
-## Reglas
+## 🎨 Estilo Visual y Personajes
+Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo experiencias visuales totalmente distintas:
 
-- **Nunca** commitear directamente a `main`, `dev` ni `des`.
-- Hacer `pull` de tu rama base (`dev` o `des`) para evitar conflictos grandes.
-- Las ramas personales son cortas: se crean, se mergean y se borran.
-- Nombrar las ramas de forma descriptiva: `dev_nombre_feature`.
+* **Haznarito:** Enfocado en la transición de criminal a empresario.
+    * *Minijuegos:* En escala de grises con diseños mas grotescos.
+* **J.A.M.:** La mente alterada por las alucinaciones.
+    * *Minijuegos:* Estilo artístico colorido y surrealista protagonizados por distintas frutas.
 
 ---
 
-## Convención de commits
+## 🎮 Minijuegos (La Vida del Smoothie Criminal)
 
-Formato: `tipo: descripción breve en minúsculas`
+### La faceta "criminal" (Dinero fácil):
+* **Patos:** El clásico Duck Hunt con un toque de locura.
+* **Vaquero:** Dispara a los mafiosos evitando a los inocentes.
+* **Nadar:** Huye a toda velocidad nadando por un río antes de que el pez gigante te atrape.
+* **Martillo:** Pulsa en el momento adecuado para eliminar a un antiguo miembro rival de otra mafia.
+* **Nariz:** Introduce el dedo que se mueve de izquierda a derecha en el agujero de la nariz.
+* **Globo:** Infla y explota el globo rápido.
+* **Penalti:** Golpea el balón y mete gol mientras el portero se mueve de un lado a otro.
 
-| Tipo | Cuándo usarlo |
-|------|---------------|
-| `feat:` | Nueva funcionalidad |
-| `fix:` | Corrección de un bug |
-| `art:` | Assets, sprites, audio, animaciones |
-| `ui:` | Cambios visuales de interfaz |
-| `refactor:` | Reorganización de código sin cambiar comportamiento |
-| `docs:` | Cambios en documentación |
-| `chore:` | Tareas de mantenimiento (gitignore, configuración…) |
+### La faceta "empresarial" (Blanqueo de capitales):
+* **Topos:** El clásico juego de los topos, pero golpeando frutas frescas para tus Smoothies.
+* **Basket:** Salta y lanza a canasta.
+* **Carrera:** Gana en una trepidante carrera al tramposo Haznarito.
+* **Trilero:** No pierdas de vista el vaso donde se enconde una de las frutas e indica en que vaso se encuentra después de la mezcla de vasos.
+* **Cartas:** Memoriza la pareja de cartas que se muestra y voltealas antes de que se agote el tiempo.
+* **SimonDice:** Repite la secuencia de teclas correctamente.
+* **BuscarJAM:** El clásico Buscar a Wally pero con frutas.
+* **Bichos:** Aplasta con el matamoscas a las frutas que se mueven por el escenario.
 
-**Ejemplos:**
-```
-feat: añadir salto doble al jugador
-fix: corregir colisión con plataformas móviles
-art: añadir spritesheet del enemigo básico
-ui: ajustar posición del marcador de puntuación
-```
+---
 
-**Reglas:**
-- Descripción corta en minúsculas y en infinitivo
-- Sin punto final
+## 🚀 Cómo Empezar
+1.  Descarga el ejecutable (.exe) desde la sección de **Builds** de este repositorio.
+2.  ¡Ejecuta y empieza a blanquear!
+3.  *Requisitos:* Windows 10/11.
 
-## Guía de uso Git
+---
 
-### Sincronizar
+## 👥 Equipo de Desarrollo
 
-Tanto para subir cambios en Git como para descargarlos siempre ejecutar previamente el comando:
-```bash
-git fetch
-```
+### 🎨 Equipo de Arte
+* **[Miguel Serrano]** - *Lead Artist & Haznarito creator*
+* **[Claudia Trigo]** - *Character Design & J.A.M. creator*
 
-### Gestión de Ramas
+### 💻 Equipo de Diseño y Programación
+* **Álvaro Muñoz** - *Lead Developer & Game Designer*
+* **Yeray Fernández Jimenez** - *Developer*
+* **Luis Miguel Muñoz Vega** - *System Designer*
 
-Lista ramas locales.
-```bash
-git branch
-```
-Lista ramas remotas y locales.
-```bash
-git branch -a
-```
-Moverse a una rama existente.
-```bash
-git checkout nombre_rama
-```
-Crea una rama nueva y moverse a ella automáticamente.
-```bash
-git checkout -b nombre_rama
-```
+### 🎨 Equipo de Diseño
+* **[Álvaro Jaime]** - *Lead Designer*
+* **[Javier Gómez]** - *UI Designer*
 
-### Subir Cambios
+---
 
-Estando en la rama que se desea subir ejecutar:
-```bash
-git fetch
-git add -A
-git commit -m "Mensaje descriptivo"
-git push
-```
+## 📜 Licencia
+Este proyecto es un experimento de desarrollo independiente. *Si te ha gustado, no olvides seguirnos para próximas actualizaciones de contenido y nuevos minijuegos.*
 
-### Descargar Cambios
-
-Estando en la rama que se desea descargar ejecutar:
-```bash
-git fetch
-git pull
-```
-
-### Fusionar Ramas
-
-Para meter tus cambios de una rama (ej. dev_luismi) en otra rama (ej. dev_testing):
-- Ir a la rama donde quieres que se guarde la información.
-- Llamar a la otra rama para que venga a entregarte sus cambios.
-
-```bash
-git checkout dev_testing
-git pull origin dev_testing
-git merge dev_luismi
-git push origin dev_testing
-```
-
-### Resolver conflictos
-
-Es posible que al intentar fusionar dos ramas surjan conflictos que haya que resolver:
-
-- Abre los archivos en VS Code.
-- Busca las marcas <<<< HEAD, elige el código correcto y guarda el archivo.
-- git add .
-- git commit -m "Fix: conflictos resueltos"
-- git push origin <rama-en-la-que-estás>
-
-Cuando se borran ficheros y Scenes o cuando muevas de ubicación un fichero ocurrirá que se duplican los archivos movidos y que no se borran los archivos. Solución:
-
-- Cierra Unity.
-- Borra desde el explorador los archivos (incluído su archivo .meta).
-
-Utiliza los comandos para subir los archivos: 
-
-```bash
-git add --all
-git commit -m "Mensaje descriptivo"
-git push
-```
-
+---
+*Hecho para gamers que saben que, a veces, un buen batido es la mejor tapadera.*
