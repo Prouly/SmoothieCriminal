@@ -41,20 +41,21 @@ Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo exp
 
 ### La faceta "empresarial" (Blanqueo de capitales):
 * **Topos:** El clásico juego de los topos, pero golpeando frutas frescas para tus Smoothies.
-* ![Topos](docs/gameplay/SmoothieCriminal_Topos.gif)
+![Topos](docs/gameplay/SmoothieCriminal_Topos.gif)
 * **Basket:** Salta y lanza a canasta.
-* ![Basket](docs/gameplay/SmoothieCriminal_Basket.gif)
+![Basket](docs/gameplay/SmoothieCriminal_Basket.gif)
 * **Carrera:** Gana en una trepidante carrera al tramposo Haznarito.
 ![Carrera](docs/gameplay/SmoothieCriminal_Carrera.gif)
 * **Trilero:** No pierdas de vista el vaso donde se enconde una de las frutas e indica en que vaso se encuentra después de la mezcla de vasos.
-* ![Trilero](docs/gameplay/SmoothieCriminal_Trilero.gif)
+![Trilero](docs/gameplay/SmoothieCriminal_Trilero.gif)
 * **Cartas:** Memoriza la pareja de cartas que se muestra y voltealas antes de que se agote el tiempo.
+![Cartas](docs/gameplay/SmoothieCriminal_Cartas.gif)
 * **SimonDice:** Repite la secuencia de teclas correctamente.
-* ![SimonDice](docs/gameplay/SmoothieCriminal_SimonDice.gif)
+![SimonDice](docs/gameplay/SmoothieCriminal_SimonDice.gif)
 * **BuscarJAM:** El clásico Buscar a Wally pero con frutas.
-* ![BuscarJAM](docs/gameplay/SmoothieCriminal_BuscarJAM.gif)
+![BuscarJAM](docs/gameplay/SmoothieCriminal_BuscarJAM.gif)
 * **Bichos:** Aplasta con el matamoscas a las frutas que se mueven por el escenario.
-* ![Bichos](docs/gameplay/SmoothieCriminal_Bichos.gif)
+![Bichos](docs/gameplay/SmoothieCriminal_Bichos.gif)
 
 ---
 
