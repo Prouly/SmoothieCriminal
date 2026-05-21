@@ -4,6 +4,7 @@
 
 ¡Bienvenidos a **Smoothie Criminal**! Un *party-game* frenético donde la delincuencia se encuentra con el arte de preparar batidos. Sumérgete en una historia de mafia, alucinaciones y decisiones cuestionables.
 
+![Main Menu](docs/gameplay/SmoothieCriminal_MainMenu.gif)
 ---
 
 ## 🕹️ Juego
@@ -42,6 +43,7 @@ Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo exp
 * **Topos:** El clásico juego de los topos, pero golpeando frutas frescas para tus Smoothies.
 * **Basket:** Salta y lanza a canasta.
 * **Carrera:** Gana en una trepidante carrera al tramposo Haznarito.
+![Carrera](docs/gameplay/SmoothieCriminal_Carrera.gif)
 * **Trilero:** No pierdas de vista el vaso donde se enconde una de las frutas e indica en que vaso se encuentra después de la mezcla de vasos.
 * **Cartas:** Memoriza la pareja de cartas que se muestra y voltealas antes de que se agote el tiempo.
 * **SimonDice:** Repite la secuencia de teclas correctamente.
