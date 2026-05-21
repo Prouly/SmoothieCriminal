@@ -13,7 +13,7 @@ Elige tu personaje y experimenta una maratón de minijuegos hasta agotar las vid
 ### 📜 Historia
 **Haznarito** ha decidido dejar la vida criminal, pero hay un pequeño detalle: se llevó consigo una maleta llena de dinero. Para limpiar su historial (y su fortuna), obtiene una licencia para vender Smoothies. Lo que parecía un negocio legítimo se tuerce cuando una clienta habitual empieza a pagar con unas pastillas de "dudosa procedencia". 
 
-Tras consumirlas, la realidad de Haznarito se fractura y aparece **J.A.M.**, alter ego o manifestación alucinógena, llevando el juego a otro nivel de locura.
+Tras consumirlas, la realidad de **Haznarito** se fractura y aparece **J.A.M.**, alter ego o manifestación alucinógena, llevando el juego a otro nivel de locura.
 
 ---
 
