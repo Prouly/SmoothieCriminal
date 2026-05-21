@@ -8,6 +8,7 @@
 
 ## 🕹️ Juego
 Actualmente en **fase preliminar (versión estable)** y disponible para **Windows**, *Smoothie Criminal* es una experiencia arcade que combina reflejos, memoria y caos absoluto.
+Elige tu personaje y experimenta una maratón de minijuegos hasta agotar las vidas, la velocidad de los minijuegos irá incrementando gradualmente. 
 
 ### 📜 Historia
 **Haznarito** ha decidido dejar la vida criminal, pero hay un pequeño detalle: se llevó consigo una maleta llena de dinero. Para limpiar su historial (y su fortuna), obtiene una licencia para vender Smoothies. Lo que parecía un negocio legítimo se tuerce cuando una clienta habitual empieza a pagar con unas pastillas de "dudosa procedencia". 
