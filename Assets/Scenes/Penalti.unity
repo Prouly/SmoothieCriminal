@@ -1037,7 +1037,7 @@ MonoBehaviour:
   tiempoLimite: 7
   rotacionBaseFlecha: 90
   panelControles: {fileID: 95045258}
-  tiempoEsperaIntro: 4
+  tiempoEsperaIntro: 3
 --- !u!4 &1146588862
 Transform:
   m_ObjectHideFlags: 0

@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5417259156591053739, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5417259156591053739, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
       propertyPath: m_AnchorMax.y
@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5417259156591053739, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5417259156591053739, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
       propertyPath: m_AnchorMin.y
@@ -157,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5417259156591053739, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: -1820
       objectReference: {fileID: 0}
     - target: {fileID: 5417259156591053739, guid: 5db06bbbf92db0747a5699c7cc3c15fa, type: 3}
       propertyPath: m_SizeDelta.y
@@ -984,7 +984,7 @@ MonoBehaviour:
   - {fileID: 1226084770450488788, guid: 513ac3e86570ca745b9c4f9e3bcdc777, type: 3}
   - {fileID: 586583888043951831, guid: 88faa4a840ceac94ea6074e9af5f61dc, type: 3}
   - {fileID: 3863922775752141456, guid: 3ce5ad665e7b00c47b5d74e402370f8e, type: 3}
-  totalBichos: 4
+  totalBichos: 5
   contenedorPuntosSpawn: {fileID: 102579217}
   sonidoZasMatamoscas: {fileID: 8300000, guid: e9c6b021836eb5c4dbead7b9c0b640ca, type: 3}
   sonidoAplastarBicho: {fileID: 8300000, guid: f33f868efc784f943acce3fdf2ea279c, type: 3}
@@ -992,7 +992,7 @@ MonoBehaviour:
   duracionVibracion: 0.1
   tiempoLimite: 7
   panelControles: {fileID: 2026287380}
-  tiempoEsperaIntro: 4
+  tiempoEsperaIntro: 3
 --- !u!82 &1720400478
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1336,12 +1336,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

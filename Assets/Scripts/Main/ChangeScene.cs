@@ -144,4 +144,9 @@ public class ChangeScene : MonoBehaviour
         if (opcion == 0) SceneManager.LoadScene("RandomHaznarito");
         else if (opcion == 1) SceneManager.LoadScene("RandomJAM");
     }
+    
+       public void OnClickButtonBack()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
 }

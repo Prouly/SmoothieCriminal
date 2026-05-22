@@ -817,7 +817,7 @@ MonoBehaviour:
   sensibilidadTiming: 1
   tiempoLimite: 7
   panelControles: {fileID: 1745926992}
-  tiempoEsperaIntro: 4
+  tiempoEsperaIntro: 3
 --- !u!4 &950607613
 Transform:
   m_ObjectHideFlags: 0
