@@ -54,9 +54,9 @@ Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo exp
 ---
 
 ## 🚀 Cómo Empezar
-1.  Descarga el ejecutable (.exe) desde la sección de **Builds** de este repositorio.
+1.  Descarga el ejecutable (.exe) desde la sección [Release](https://github.com/Prouly/SmoothieCriminal/releases/tag/Pre-release) de este repositorio.
 2.  ¡Ejecuta y empieza a blanquear!
-3.  *Requisitos:* Windows 10/11.
+3.   Requisitos:* Windows 10/11.
 
 ---
 
