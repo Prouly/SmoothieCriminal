@@ -30,7 +30,7 @@ Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo exp
 
 ## 🎮 Minijuegos (La Vida del Smoothie Criminal)
 
-### La faceta "criminal" (Dinero fácil):
+### Juegos de Haznarito:
 | **Patos:** Clásico Duck Hunt con un toque de locura | **Vaquero:** Dispara a los mafiosos evitando a los inocentes |
 |-----------|-----------|
 | ![Patos](docs/gameplay/SmoothieCriminal_Patos.gif) | ![Vaquero](docs/gameplay/SmoothieCriminal_Vaquero.gif) |
@@ -41,7 +41,7 @@ Los jugadores podrán seleccionar entre **Haznarito** o **J.A.M.**, viviendo exp
 | **Penalti:** Golpea el balón y mete gol | 
 | ![Penalti](docs/gameplay/SmoothieCriminal_Penalti.gif) | 
 
-### La faceta "empresarial" (Blanqueo de capitales):
+### Juegos de JAM:
 | **Topos:** Clásico juego de los topos, golpea las frutas | **Basket:** Salta y lanza a canasta |
 |-----------|-----------|
 | ![Topos](docs/gameplay/SmoothieCriminal_Topos.gif) | ![Basket](docs/gameplay/SmoothieCriminal_Basket.gif) |
